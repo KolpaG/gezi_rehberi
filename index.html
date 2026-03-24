@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Gezgin Rehberi | Kurumsal Turizm Portalı</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #4CAF50; --dark: #1a1a1a; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        nav { background: var(--primary); padding: 1.5rem 8%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; z-index: 1000; }
+        .logo { color: white; font-weight: 700; font-size: 1.8rem; font-family: 'Montserrat'; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 2rem; font-weight: 600; }
+        .hero { height: 100vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070') center/cover; display: flex; align-items: center; padding: 0 8%; color: white; }
+        .hero-h1 { font-size: 5rem; line-height: 1.1; font-family: 'Montserrat'; margin-bottom: 2rem; }
+        .btn-group { display: flex; gap: 20px; }
+        .btn { padding: 1.2rem 3rem; border-radius: 50px; text-decoration: none; font-weight: 700; transition: 0.3s; }
+        .btn-white { background: #fff; color: var(--primary); }
+        .btn-outline { border: 2px solid #fff; color: #fff; }
+        .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">GEZGİN</div>
+        <div class="nav-links">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="rotalar.html">Rotalar</a>
+            <a href="lezzetler.html">Lezzetler</a>
+        </div>
+    </nav>
+    <header class="hero">
+        <div>
+            <h1 class="hero-h1">KEŞFETMEYE<br>HAZIR MISIN?</h1>
+            <p style="font-size: 1.2rem; margin-bottom: 3rem; max-width: 600px;">Dünyanın en iyi rotaları ve en gizli lezzet durakları tek bir platformda.</p>
+            <div class="btn-group">
+                <a href="rotalar.html" class="btn btn-white">Rotalar</a>
+                <a href="lezzetler.html" class="btn btn-outline">Lezzetler</a>
+            </div>
+        </div>
+    </header>
+</body>
+</html>

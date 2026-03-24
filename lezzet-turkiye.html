@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Türkiye Lezzet Rehberi | Ansiklopedik Detay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #1a1a1a; --accent: #f39c12; }
+        body { font-family: 'Inter', sans-serif; line-height: 2; color: var(--primary); background: #fff; margin: 0; }
+        
+        .hero-header { height: 90vh; position: relative; overflow: hidden; }
+        .hero-header img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.6); }
+        .hero-text { position: absolute; top: 50%; left: 8%; transform: translateY(-50%); color: white; max-width: 800px; }
+        .hero-text h1 { font-family: 'Playfair Display'; font-size: 6rem; margin: 0; }
+
+        .article-container { max-width: 900px; margin: 0 auto; padding: 8rem 2rem; }
+        .section-tag { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 1rem; }
+        h2 { font-family: 'Playfair Display'; font-size: 3.5rem; margin: 4rem 0 2rem; line-height: 1.2; }
+        p { font-size: 1.25rem; margin-bottom: 2.5rem; color: #333; }
+        
+        .quote-box { font-family: 'Playfair Display'; font-style: italic; font-size: 2rem; border-left: 5px solid var(--accent); padding-left: 3rem; margin: 5rem 0; color: #555; }
+        
+        .image-cluster { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; margin: 6rem 0; }
+        .img-1 { grid-column: 1 / 8; height: 500px; border-radius: 20px; object-fit: cover; width: 100%; }
+        .img-2 { grid-column: 8 / 13; height: 350px; border-radius: 20px; object-fit: cover; width: 100%; margin-top: 75px; }
+
+        .recommendation-grid { background: #f9f9f9; padding: 4rem; border-radius: 40px; margin: 6rem 0; }
+        .rec-item { margin-bottom: 3rem; }
+        .rec-item h4 { font-size: 1.5rem; color: var(--accent); margin-bottom: 0.5rem; }
+    </style>
+</head>
+<body>
+
+    <div class="hero-header">
+        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=2000">
+        <div class="hero-text">
+            <span class="section-tag">Anadolu Mirası</span>
+            <h1>Baharatın ve Ateşin Hikayesi</h1>
+        </div>
+    </div>
+
+    <div class="article-container">
+        <section>
+            <span class="section-tag">Giriş</span>
+            <h2>Bir İmparatorluk Mutfağının Doğuşu</h2>
+            <p>Türkiye mutfağı, sadece yemeklerden oluşmaz; o, Orta Asya'dan Balkanlar'a, Mezopotamya'dan Ege'ye uzanan devasa bir göç ve etkileşim haritasıdır. Saray mutfağının rafine dokunuşları ile köylü sofralarının samimi bereketi burada iç içe geçer. Her şehir, hatta her ilçe kendi özel reçetesine [yemek tarifi] sahip çıkar.</p>
+            
+            <div class="quote-box">"Türk mutfağı, dünyada Fransız ve Çin mutfağı ile birlikte 'ana mutfak' kabul edilen üç büyük ekolden biridir."</div>
+        </section>
+
+        <section>
+            <span class="section-tag">Gastronomi Durakları</span>
+            <h2>Ünlü Mekanlar ve Şehirler</h2>
+            <p>**Gaziantep:** UNESCO koruması altındaki bu şehir, "Dünya bir ev olsa mutfağı Gaziantep olurdu" sözünün kanıtıdır. Burada **İmam Çağdaş**'ta yiyeceğiniz bir Ali Nazik veya **Koçak**'tan çıkma bir baklava, sizi başka bir evrene götürür. <br><br>
+            **İstanbul:** Karaköy'deki **Namlı Gurme**'de yapacağınız bir kahvaltı veya **Mısır Çarşısı**'nın içindeki tarihi **Pandeli**'de yiyeceğiniz hünkarbeğendi, Osmanlı asaletini tabağınıza taşır.</p>
+            
+            <div class="image-cluster">
+                <img src="https://images.unsplash.com/photo-1606471191009-63994c53433b?q=80&w=1000" class="img-1">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=800" class="img-2">
+            </div>
+        </section>
+
+        <section>
+            <span class="section-tag">Sokaktaki Ruh</span>
+            <h2>Gezenlerin Tavsiye Ettiği Sokak Lezzetleri</h2>
+            <p>Gerçek gurme seyahati, beyaz örtülü masalarda değil, dumanı tüten seyyar tezgahlarda biter. Eminönü'nde o hırçın kalabalığın içinde teknede yenen **Balık Ekmek**, İzmir'in sabah ayazında fırından yeni çıkmış **Boyoz** ve gecenin finalinde mutlaka uğranması gereken **Kokoreç** durakları... <br><br>
+            **Midye Dolma:** İzmir usulü bol limonlu ve karabiberli midyeler, sahil kasabalarının en büyük ritüelidir [geleneksel uygulama].</p>
+        </section>
+
+        <div class="recommendation-grid">
+            <h2>Gezgin Önerileri</h2>
+            <div class="rec-item">
+                <h4>Hangi Mevsimde Ne Yenmeli?</h4>
+                <p>Kışın Karadeniz'de hamsi tava, yazın Ege'de kabak çiçeği dolması ve zeytinyağlılar, sonbaharda ise İç Anadolu'nun ağır ateşte pişmiş kuyu kebapları.</p>
+            </div>
+            <div class="rec-item">
+                <h4>Saklı Kalan Lezzet: Mıhlama</h4>
+                <p>Rize yaylalarında, yerel mısır unu ve taze tereyağı ile yapılan bu peynir şöleni, sabah kahvaltılarının zirvesidir.</p>
+            </div>
+        </div>
+
+        <a href="lezzetler.html" style="color: black; font-weight: bold; text-decoration: none; border-bottom: 2px solid var(--accent); font-size: 1.2rem;">&larr; Tüm Ülkelere Dön</a>
+    </div>
+</body>
+</html>
