@@ -3,37 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <title>Türkiye | Kapsamlı Rota Rehberi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #27ae60; --dark: #1a1a1a; }
-        body { font-family: 'Inter', sans-serif; line-height: 1.9; color: var(--dark); margin: 0; background: #fff; }
-        
-        .hero { height: 90vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1544627836-822bfe450209?w=1600') center/cover fixed; display: flex; align-items: center; justify-content: center; color: white; }
-        .hero h1 { font-family: 'Playfair Display'; font-size: 6rem; text-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        :root { 
+            --gold: #C5A065; 
+            --dark: #0A0A0A; 
+            --white: #FFFFFF;
+        }
 
-        .article-content { max-width: 900px; margin: 0 auto; padding: 100px 20px; }
-        .section-tag { font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 1rem; }
-        h2 { font-family: 'Playfair Display'; font-size: 3.5rem; margin: 4rem 0 2rem; border-left: 8px solid var(--primary); padding-left: 2rem; line-height: 1.2; }
-        p { font-size: 1.2rem; margin-bottom: 2.5rem; color: #444; text-align: justify; }
+        html { zoom: 95%; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        .image-box { margin: 5rem 0; border-radius: 40px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
-        .image-box img { width: 100%; height: 600px; object-fit: cover; }
-        .image-box span { display: block; padding: 1rem 2rem; background: #f9f9f9; color: #666; font-style: italic; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.8; 
+            color: rgba(255,255,255,0.9); 
+            background: var(--dark); 
+            overflow-x: hidden; 
+        }
 
-        .pro-tips { background: #f0fdf4; padding: 4rem; border-radius: 40px; margin: 6rem 0; }
-        .pro-tips h3 { font-family: 'Playfair Display'; font-size: 2.2rem; margin-bottom: 2rem; }
-        .tip-item { margin-bottom: 2rem; padding-left: 2rem; border-left: 3px solid var(--primary); }
+        /* --- Sağ Üst Yüzer Geri Dön Butonu --- */
+        .floating-back-btn {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 2000;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.3;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 10px 20px;
+            border: 1px solid rgba(197, 160, 101, 0.2);
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .floating-back-btn:hover {
+            opacity: 1;
+            background: rgba(197, 160, 101, 0.1);
+            border-color: var(--gold);
+            transform: translateX(-8px);
+        }
+
+        /* --- Hero --- */
+        .hero { 
+            height: 80vh; 
+            background: linear-gradient(rgba(0,0,0,0.2), var(--dark)), 
+                        url('https://images.unsplash.com/photo-1544627836-822bfe450209?w=1600') center/cover fixed; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .hero h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            letter-spacing: 10px;
+            color: var(--gold);
+        }
+
+        /* --- İçerik --- */
+        .article-content { max-width: 850px; margin: 0 auto; padding: 80px 20px; }
+        
+        .section-tag { 
+            font-weight: 600; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            display: block; 
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            margin: 3.5rem 0 2rem; 
+            border-left: 4px solid var(--gold); 
+            padding-left: 2rem; 
+            color: var(--white);
+        }
+
+        p { 
+            font-size: 1.15rem; 
+            margin-bottom: 2.5rem; 
+            color: rgba(255,255,255,0.7); 
+            text-align: justify; 
+        }
+
+        /* Vurgulanan Kelimeler İçin Kalın Font */
+        b, strong {
+            color: var(--white);
+            font-weight: 600;
+        }
+        
+        .image-box { margin: 5rem 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(197, 160, 101, 0.1); }
+        .image-box img { width: 100%; height: 550px; object-fit: cover; }
+        .image-box span { 
+            display: block; 
+            padding: 1.2rem 2rem; 
+            background: #111; 
+            color: var(--gold); 
+            font-style: italic; 
+        }
+
+        .pro-tips { 
+            background: rgba(197, 160, 101, 0.03); 
+            padding: 4rem; 
+            border-radius: 20px; 
+            margin: 6rem 0; 
+            border: 1px solid rgba(197, 160, 101, 0.1);
+        }
+        
+        .pro-tips h3 { font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 2.5rem; color: var(--gold); text-align: center; }
+        
+        .tip-item { margin-bottom: 2rem; padding-left: 2rem; border-left: 2px solid var(--gold); }
+        .tip-item strong { color: var(--white); display: block; margin-bottom: 5px; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .floating-back-btn { top: auto; bottom: 30px; right: 20px; opacity: 0.8; background: var(--dark); }
+        }
     </style>
 </head>
 <body>
+
+    <a href="rotalar.html" class="floating-back-btn">← Geri Dönün</a>
+
     <div class="hero"><h1>Anadolu Ruhu</h1></div>
 
     <article class="article-content">
         <section>
             <span class="section-tag">Bölüm 1: Tarihin Sıfır Noktası</span>
             <h2>Kadim Şehirler ve Antik Miras</h2>
-            <p>Türkiye'de rota çizmek, binlerce yıllık bir zaman tüneline girmektir. Başlangıç noktanız olan **İstanbul**'da, Ayasofya-i Kebir Cami-i Şerifi ve Sultanahmet Camii arasındaki o mistik meydanda durduğunuzda, Roma ve Osmanlı'nın ihtişamını aynı anda hissedersiniz. Yerebatan Sarnıcı'nın derinliklerindeki Medusa başlarından Galata Kulesi'nin zirvesindeki o meşhur İstanbul manzarasına kadar her köşe bir hikaye fısıldar.</p>
-            <p>Ege kıyılarına indiğinizde ise **Efes Antik Kenti**, mermer caddeleri ve meşhur Celsus Kütüphanesi ile sizi karşılar. Pamukkale Hierapolis'te ise antik tiyatronun basamaklarında otururken bembeyaz kalsiyum teraslarının (Travertenler) gün batımındaki renk dönüşümünü izlemek paha biçilemez bir deneyimdir.</p>
+            <p>Türkiye'de rota çizmek, binlerce yıllık bir zaman tüneline girmektir. Başlangıç noktanız olan <strong>İstanbul</strong>'da, Ayasofya-i Kebir Cami-i Şerifi ve Sultanahmet Camii arasındaki o mistik meydanda durduğunuzda, Roma ve Osmanlı'nın ihtişamını aynı anda hissedersiniz. Yerebatan Sarnıcı'nın derinliklerindeki Medusa başlarından Galata Kulesi'nin zirvesindeki o meşhur İstanbul manzarasına kadar her köşe bir hikaye fısıldar.</p>
+            <p>Ege kıyılarına indiğinizde ise <strong>Efes Antik Kenti</strong>, mermer caddeleri ve meşhur Celsus Kütüphanesi ile sizi karşılar. Pamukkale Hierapolis'te ise antik tiyatronun basamaklarında otururken bembeyaz kalsiyum teraslarının (Travertenler) gün batımındaki renk dönüşümünü izlemek paha biçilemez bir deneyimdir.</p>
         </section>
 
         <div class="image-box">
@@ -44,24 +153,23 @@
         <section>
             <span class="section-tag">Bölüm 2: Büyüleyici Doğa ve Gizli Rotalar</span>
             <h2>Peri Bacalarından Bulut Denizlerine</h2>
-            <p>**Kapadokya**, dünyadaki hiçbir yere benzemeyen, adeta başka bir gezegenden kopup gelmiş bir coğrafyadır. Peri bacalarının sessiz bekçiliği altında, sabahın ilk ışıklarıyla havalanan yüzlerce sıcak hava balonu gökyüzünü bir tuvale çevirir. Ihlara Vadisi'nin derinliklerinde akan Melendiz Çayı'nın sesi eşliğinde kayalara oyulmuş binlerce yıllık kiliseleri keşfedebilirsiniz.</p>
-            <p>Kuzeye, Karadeniz'e yöneldiğinizde ise doğa sizi tüm hırçınlığı ve yeşilliğiyle selamlar. **Pokut Yaylası**'nda 2000 metre rakımda [yükseklik], altınızdaki bulut denizini izlerken gerçekliğin sınırlarını zorlayacaksınız. Sümela Manastırı'nın sarp kayalıklara asılı duran silüeti ise insanın doğa ile olan mücadelesinin ve uyumunun en büyük kanıtıdır.</p>
+            <p><strong>Kapadokya</strong>, dünyadaki hiçbir yere benzemeyen, adeta başka bir gezegenden kopup gelmiş bir coğrafyadır. Peri bacalarının sessiz bekçiliği altında, sabahın ilk ışıklarıyla havalanan yüzlerce sıcak hava balonu gökyüzünü bir tuvale çevirir. Ihlara Vadisi'nin derinliklerinde akan Melendiz Çayı'nın sesi eşliğinde kayalara oyulmuş binlerce yıllık kiliseleri keşfedebilirsiniz.</p>
+            <p>Kuzeye, Karadeniz'e yöneldiğinizde ise doğa sizi tüm hırçınlığı ve yeşilliğiyle selamlar. <strong>Pokut Yaylası</strong>'nda 2000 metre rakımda, altınızdaki bulut denizini izlerken gerçekliğin sınırlarını zorlayacaksınız. Sümela Manastırı'nın sarp kayalıklara asılı duran silüeti ise insanın doğa ile olan mücadelesinin ve uyumunun en büyük kanıtıdır.</p>
         </section>
 
         <div class="pro-tips">
             <h3>Gezginlerin Gizli Önerileri</h3>
             <div class="tip-item">
-                <strong>En İyi Mevsim:</strong> Kapadokya için Mayıs ve Ekim ayları; Ege koyları için ise kalabalıktan uzak olan Eylül ayı (Sarı Yaz) en idealidir.
+                <strong>En İyi Mevsim:</strong> Kapadokya için Mayıs ve Ekim ayları; Ege koyları için ise Eylül ayı (Sarı Yaz) en idealidir.
             </div>
             <div class="tip-item">
-                <strong>Gizli Rota:</strong> Antalya'nın Kaş ilçesinden tekneyle ulaşabileceğiniz Kaleköy (Simena), sadece denizden ulaşımı olan sessiz bir cennettir.
+                <strong>Gizli Rota:</strong> Antalya'nın Kaş ilçesinden tekneyle ulaşabileceğiniz Simena, sadece denizden ulaşımı olan bir cennettir.
             </div>
             <div class="tip-item">
-                <strong>Macera Severlere:</strong> Likya Yolu'nun bir bölümünü (Özellikle Fethiye-Patara arası) yürüyerek antik limanları ve gizli koyları keşfedin.
+                <strong>Macera Severlere:</strong> Likya Yolu'nun bir bölümünü yürüyerek antik limanları ve gizli koyları keşfedin.
             </div>
         </div>
-
-        <a href="rotalar.html" style="font-weight: 700; color: var(--primary); text-decoration: none; font-size: 1.2rem;">&larr; Rotalara Geri Dön</a>
     </article>
+
 </body>
 </html>

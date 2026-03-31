@@ -3,28 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <title>Fransa | Sanatın ve Tarihin Kalbi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #c5a059; --dark: #121212; }
-        body { font-family: 'Inter', sans-serif; line-height: 2.2; color: var(--dark); margin: 0; background: #fcfcfc; }
-        .hero { height: 85vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1600') center/cover fixed; display: flex; align-items: center; justify-content: center; color: white; }
-        .hero h1 { font-family: 'Playfair Display'; font-size: 7rem; letter-spacing: 12px; }
-        .content { max-width: 1100px; margin: 0 auto; padding: 120px 60px; background: white; margin-top: -120px; border-radius: 50px; position: relative; }
-        h2 { font-family: 'Playfair Display'; font-size: 4rem; margin: 6rem 0 2.5rem; color: var(--dark); border-bottom: 8px solid var(--gold); display: inline-block; }
-        p { font-size: 1.4rem; margin-bottom: 4rem; text-align: justify; }
-        .landscape-img { width: 100%; border-radius: 50px; margin: 5rem 0; box-shadow: 0 50px 100px rgba(0,0,0,0.12); }
+        :root { 
+            --gold: #C5A065; 
+            --dark: #0A0A0A; 
+            --white: #FFFFFF;
+        }
+
+        html { zoom: 95%; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.8; 
+            color: rgba(255,255,255,0.9); 
+            background: var(--dark); 
+            overflow-x: hidden; 
+        }
+
+        /* --- Sağ Üst Yüzer Geri Dön Butonu --- */
+        .floating-back-btn {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 2000;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.3;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 10px 20px;
+            border: 1px solid rgba(197, 160, 101, 0.2);
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .floating-back-btn:hover {
+            opacity: 1;
+            background: rgba(197, 160, 101, 0.1);
+            border-color: var(--gold);
+            transform: translateX(-8px);
+        }
+
+        /* --- Hero Alanı --- */
+        .hero { 
+            height: 80vh; 
+            background: linear-gradient(rgba(0,0,0,0.3), var(--dark)), 
+                        url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=1600') center/cover fixed; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .hero h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            letter-spacing: 12px;
+            color: var(--gold);
+            text-align: center;
+        }
+
+        /* --- Makale İçeriği --- */
+        .article-content { max-width: 850px; margin: 0 auto; padding: 80px 20px; }
+        
+        .section-tag { 
+            font-weight: 600; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            display: block; 
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            margin: 3.5rem 0 2rem; 
+            border-left: 4px solid var(--gold); 
+            padding-left: 2rem; 
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        p { 
+            font-size: 1.15rem; 
+            margin-bottom: 2.5rem; 
+            color: rgba(255,255,255,0.7); 
+            text-align: justify; 
+        }
+
+        /* Kalın Yazıların Satırı Bölmemesi İçin Sabitlendi */
+        b, strong {
+            color: var(--white);
+            font-weight: 600;
+            display: inline !important;
+        }
+        
+        /* Görsel Kutusu */
+        .image-box { margin: 5rem 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(197, 160, 101, 0.1); }
+        .image-box img { width: 100%; height: 550px; object-fit: cover; filter: brightness(0.8); transition: 0.5s; }
+        .image-box:hover img { filter: brightness(1); }
+        .image-box span { 
+            display: block; 
+            padding: 1.2rem 2rem; 
+            background: #111; 
+            color: var(--gold); 
+            font-style: italic; 
+            font-size: 0.9rem;
+        }
+
+        /* İpucu Kutusu */
+        .pro-tips { 
+            background: rgba(197, 160, 101, 0.03); 
+            padding: 4rem; 
+            border-radius: 20px; 
+            margin: 6rem 0; 
+            border: 1px solid rgba(197, 160, 101, 0.1);
+        }
+        
+        .pro-tips h3 { 
+            font-family: 'Cinzel', serif; 
+            font-size: 1.8rem; 
+            margin-bottom: 2.5rem; 
+            color: var(--gold); 
+            text-align: center; 
+        }
+        
+        .tip-item { 
+            margin-bottom: 2rem; 
+            padding-left: 2rem; 
+            border-left: 2px solid var(--gold); 
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .tip-item strong { 
+            color: var(--white); 
+            display: inline !important; 
+            margin-right: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .floating-back-btn { top: auto; bottom: 30px; right: 20px; opacity: 0.8; background: var(--dark); }
+            h2 { font-size: 2.2rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="hero"><h1>L'ELEGANCE</h1></div>
-    <div class="content">
-        <h2>Paris: Bir Medeniyetin Vitrini</h2>
-        <p>Paris, modern dünyanın estetik standartlarını belirleyen bir başyapıttır. Haussmann'ın geniş bulvarları arasında yürürken, her köşe başında bir tarih katmanıyla karşılaşırsınız. **Eyfel Kulesi**, demir dantel gibi örülmüş yapısıyla romantizmi simgelerken, **Louvre Müzesi** insanlık dehasının deposu konumundadır.</p>
-        
-        <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=1200" class="landscape-img">
 
-        <h2>Provence: Renklerin Dansı</h2>
-        <p>Fransa'nın güneyine doğru yol aldığınızda, **Provence**'ın uçsuz bucaksız lavanta tarlaları size Van Gogh'un paletindeki moru sunar. **Côte d'Azur** [Fransız Rivierası] ise masmavi suları ve Nice’in sahil şeridiyle lüksü temsil eder.</p>
-    </div>
+    <a href="rotalar.html" class="floating-back-btn">← Geri Dönün</a>
+
+    <div class="hero"><h1>Zarafetin İmzası</h1></div>
+
+    <article class="article-content">
+        <section>
+            <span class="section-tag">Bölüm 1: Bir Medeniyetin Vitrini</span>
+            <h2>Paris: Şehirlerin Şairi</h2>
+            <p>Paris, modern dünyanın estetik standartlarını belirleyen bir başyapıttır. Haussmann'ın geniş bulvarları arasında yürürken, her köşe başında bir tarih katmanıyla karşılaşırsınız. <strong>Eyfel Kulesi</strong>, demir dantel gibi örülmüş yapısıyla romantizmi simgelerken, <strong>Louvre Müzesi</strong> insanlık dehasının kalesi konumundadır. Şehrin her caddesi, bir sanat galerisinin koridoru kadar özenli ve büyüleyicidir.</p>
+        </section>
+
+        <div class="image-box">
+            <img src="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?q=80&w=1200" alt="Fransız Estetiği">
+            <span>Gotik İhtişam: Paris sokaklarında tarihin ve mimarinin sessiz buluşması.</span>
+        </div>
+
+        <section>
+            <span class="section-tag">Bölüm 2: Renklerin ve Masmavi Suların Dansı</span>
+            <h2>Provence ve Rivyera: Doğa Üstü Estetik</h2>
+            <p>Fransa'nın güneyine doğru yol aldığınızda, <strong>Provence</strong>'ın uçsuz bucaksız lavanta tarlaları size Van Gogh'un paletindeki en derin morları sunar. Rüzgarın taşıdığı taze lavanta kokusu eşliğinde taş evlerin arasından geçmek, zaman algınızı değiştirecektir. <strong>Côte d'Azur</strong> [Fransız Rivierası] ise masmavi suları, Nice’in ikonik sahil şeridi ve lüksün en zarif haliyle sizi karşılar.</p>
+        </section>
+
+        <div class="pro-tips">
+            <h3>Fransız Rotaları İçin Notlar</h3>
+            <div class="tip-item">
+                <strong>Paris İpucu:</strong> Şehri bir de Seine Nehri üzerinden, akşam ışıkları altında tekneyle izleyin; <strong>Eyfel Kulesi</strong>'nin ışık şovu buradan bambaşka görünür.
+            </div>
+            <div class="tip-item">
+                <strong>Sanatın İzinde:</strong> Louvre'un kalabalığından kaçmak için biletinizi önceden online alın ve mutlaka <strong>Musée d'Orsay</strong>'daki empresyonist koleksiyonu ziyaret edin.
+            </div>
+            <div class="tip-item">
+                <strong>Güneyin Sırrı:</strong> Provence ziyaretinizi lavantaların tam açtığı Temmuz ayına denk getirmeye çalışın; renklerin canlılığına inanmakta güçlük çekeceksiniz.
+            </div>
+        </div>
+    </article>
+
 </body>
-</html> 
+</html>

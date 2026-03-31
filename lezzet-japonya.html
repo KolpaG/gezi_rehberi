@@ -2,39 +2,197 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Japonya | Gastronomi ve Umami Sanatı</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <title>Japonya | Gastronomi ve Lezzet Rotası</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --accent: #d32f2f; }
-        body { font-family: 'Inter', sans-serif; line-height: 1.8; margin: 0; background: #fff; }
-        .hero-banner { height: 65vh; background: url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=1800') center/cover; display: flex; align-items: center; justify-content: center; position: relative; }
-        .hero-banner h1 { font-family: 'Playfair Display'; font-size: 5rem; color: white; text-shadow: 0 5px 20px rgba(0,0,0,0.6); }
-        .article-wrap { max-width: 900px; margin: -100px auto 100px; background: white; padding: 80px; border-radius: 50px; box-shadow: 0 50px 100px rgba(0,0,0,0.1); }
-        h2 { font-family: 'Playfair Display'; font-size: 3rem; color: var(--accent); margin-bottom: 2rem; }
-        p { font-size: 1.3rem; color: #333; margin-bottom: 2.5rem; text-align: justify; }
-        .taste-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 5rem 0; }
-        .taste-grid img { width: 100%; height: 400px; object-fit: cover; border-radius: 30px; }
-        .guide-box { background: #fafafa; border: 2px dashed #ddd; padding: 4rem; border-radius: 30px; margin: 5rem 0; }
+        :root { 
+            --gold: #C5A065; 
+            --dark: #0A0A0A; 
+            --white: #FFFFFF;
+        }
+
+        html { zoom: 95%; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.8; 
+            color: rgba(255,255,255,0.9); 
+            background: var(--dark); 
+            overflow-x: hidden; 
+        }
+
+        /* --- Sağ Üst Yüzer Geri Dön Butonu --- */
+        .floating-back-btn {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 2000;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.3;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 10px 20px;
+            border: 1px solid rgba(197, 160, 101, 0.2);
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .floating-back-btn:hover {
+            opacity: 1;
+            background: rgba(197, 160, 101, 0.1);
+            border-color: var(--gold);
+            transform: translateX(-8px);
+        }
+
+        /* --- Hero Section --- */
+        .hero { 
+            height: 80vh; 
+            background: linear-gradient(rgba(0,0,0,0.3), var(--dark)), 
+                        url('https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=1800') center/cover fixed; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .hero h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            letter-spacing: 10px;
+            color: var(--gold);
+            text-align: center;
+        }
+
+        /* --- Makale İçeriği --- */
+        .article-content { max-width: 850px; margin: 0 auto; padding: 80px 20px; }
+        
+        .section-tag { 
+            font-weight: 600; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            display: block; 
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            margin: 3.5rem 0 2rem; 
+            border-left: 4px solid var(--gold); 
+            padding-left: 2rem; 
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        p { 
+            font-size: 1.15rem; 
+            margin-bottom: 2.5rem; 
+            color: rgba(255,255,255,0.7); 
+            text-align: justify; 
+        }
+
+        b, strong { color: var(--white); font-weight: 600; }
+
+        /* --- Görsel Kutusu --- */
+        .image-box { margin: 5rem 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(197, 160, 101, 0.1); }
+        .image-box img { width: 100%; height: 550px; object-fit: cover; }
+        .image-box span { 
+            display: block; 
+            padding: 1.2rem 2rem; 
+            background: #111; 
+            color: var(--gold); 
+            font-style: italic; 
+        }
+
+        /* --- Bilgi Kutusu (Pro-Tips) --- */
+        .pro-tips { 
+            background: rgba(197, 160, 101, 0.03); 
+            padding: 4rem; 
+            border-radius: 20px; 
+            margin: 6rem 0; 
+            border: 1px solid rgba(197, 160, 101, 0.1);
+        }
+        
+        .pro-tips h3 { font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 2.5rem; color: var(--gold); text-align: center; }
+        
+        .tip-item { margin-bottom: 2rem; padding-left: 2rem; border-left: 2px solid var(--gold); }
+        .tip-item strong { color: var(--white); display: block; margin-bottom: 5px; }
+
+        /* --- Alıntı Kutusu --- */
+        .quote-box {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.8rem;
+            color: rgba(255,255,255,0.8);
+            margin: 4rem 0;
+            padding: 2rem;
+            border-top: 1px solid rgba(197, 160, 101, 0.2);
+            border-bottom: 1px solid rgba(197, 160, 101, 0.2);
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .floating-back-btn { top: auto; bottom: 30px; right: 20px; opacity: 0.8; background: var(--dark); }
+        }
     </style>
 </head>
 <body>
-    <div class="hero-banner"><h1>THE ART OF UMAMI</h1></div>
-    <div class="article-wrap">
-        <h2>Sushi ve Sashimi: Saf Lezzetin Zirvesi</h2>
-        <p>Japon mutfağı (Washoku), sadece yemek hazırlamak değil, malzemeye duyulan sonsuz saygının bir ifadesidir. **Sushi**, pirinç ve taze balığın kusursuz dengesidir. Bir sushi ustası (Shokunin), pirincin ısısından balığın kesim açısına kadar her detayda mükemmeliyeti arar. Tokyo’nun Toyosu Balık Pazarı çevresindeki tezgah dükkanlarında yiyeceğiniz bir parça "Otoro" (orkinosun en yağlı kısmı), ağzınızda erirken size denizin tüm derinliğini sunar. Bu mutfakta her şey tazelik, mevsimsellik ve estetik sunum etrafında döner.</p>
-        
-        <div class="taste-grid">
-            <img src="https://images.unsplash.com/photo-1583623025817-d180a2221d0a?q=80&w=800">
-            <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=800">
+
+    <a href="lezzetler.html" class="floating-back-btn">← Geri Dönün</a>
+
+    <div class="hero"><h1>Umami Sanatı</h1></div>
+
+    <article class="article-content">
+        <section>
+            <span class="section-tag">Giriş: Disiplin ve Tazelik</span>
+            <h2>Malzemeye Duyulan Derin Saygı</h2>
+            <p>Japon mutfağı, sadece karın doyurmak değil; doğanın sunduğu malzemeyi en saf haliyle onurlandırmaktır. <b>Washoku [geleneksel Japon yemeği]</b> felsefesi, mevsimselliği ve estetiği merkeze alır. Bir sushi ustası için balığın tazeliği kadar, pirincin ısısı ve bıçağın kesiş açısı da bir <b>masterpiece [başyapıt]</b> yaratmanın anahtarıdır.</p>
+            
+            <div class="quote-box">
+                "Japon mutfağında lezzet, aşırılıkta değil; her bir malzemenin kendi öz sesini duyurabildiği o sessiz dengededir."
+            </div>
+        </section>
+
+        <section>
+            <span class="section-tag">Bölüm 1: Saf Lezzetin Zirvesi</span>
+            <h2>Sushi'den Ramen'e Uzanan Yolculuk</h2>
+            <p><strong>Sushi:</strong> Tokyo’nun Toyosu pazarından gelen taze orkinosun en yağlı kısmı olan <b>Otoro</b>, bir sushi şöleninin zirvesidir. <strong>Ramen:</strong> Eriştelerin el yapımı olduğu, kemik suyunun ise günlerce kaynatılarak o yoğun kıvama getirildiği ramen, Japonya'nın ruhunu besleyen en sıcak sokak lezzetidir.</p>
+            <p>Osaka sokaklarında karşınıza çıkan <b>Takoyaki [ahtapot topları]</b> veya sebze bazlı <b>Okonomiyaki [Japon pizzası]</b>, ülkenin modern ve hareketli yüzünü tabaklara yansıtır.</p>
+        </section>
+
+        <div class="image-box">
+            <img src="https://images.unsplash.com/photo-1583623025817-d180a2221d0a?q=80&w=1200" alt="Japon Mutfağı">
+            <span>Görsel Estetik: Japon mutfağında sunum, en az lezzet kadar önemli bir disiplindir.</span>
         </div>
 
-        <h2>Ramen ve Sokak Lezzetleri: Ruhun Gıdası</h2>
-        <p>Eğer sushi aristokrasiyse, **Ramen** halkın kalbidir. Saatlerce kaynatılmış kemik suyu, el yapımı erişteler ve üzerine eklenen yumurta, chashu [domuz eti dilimi] ve nori ile her kase ramen, içinde bir hikaye barındırır. Osaka, "Japonya'nın mutfağı" olarak bilinir ve sokaklarında **Takoyaki** (ahtapot topları) veya **Okonomiyaki** (Japon pizzası) kokuları yükselir. Bu şehirde yemek yemek, bir yaşam biçimidir.</p>
+        <section>
+            <span class="section-tag">Bölüm 2: Mutfak Diplomasisi</span>
+            <h2>Gelenek ve Modernin Uyumu</h2>
+            <p>Kyoto'nun sessiz sokaklarında servis edilen çok aşamalı <b>Kaiseki [geleneksel tadım menüsü]</b>, Japon zarafetinin doruk noktasıdır. Öte yandan, yüksek tempolu şehir hayatında "ayakta yenen" <b>soba [karabuğday eriştesi]</b> dükkanları, bu kadim kültürün her katmana nasıl nüfuz ettiğini gösterir.</p>
+            <p>Bu mutfakta beşinci tat olarak bilinen <strong>Umami</strong>, her lokmada aranan o gizemli ve derin doygunluk hissinin adıdır.</p>
+        </section>
 
-        <div class="guide-box">
-            <h3>Japonya'da Yemek Adabı</h3>
-            <p>Ramen yerken höpürdetmek kaba değil, aksine yemeği beğendiğinizi ve eriştelerin tadını oksijenle birleştirerek daha iyi aldığınızı gösteren bir saygı işaretidir. Ancak çubuklarınızı (hashi) hiçbir zaman pirinç kasesine dik olarak saplamayın; bu sadece cenazelerde yapılan bir ritüeldir.</p>
+        <div class="pro-tips">
+            <h3>Gurmenin Japonya Notları</h3>
+            <div class="tip-item">
+                <strong>Yemek Adabı:</strong> Ramen yerken höpürdetmek kaba bir davranış değil, yemeği beğendiğinizi gösteren bir <b>ritüeldir [geleneksel uygulama]</b>.
+            </div>
+            <div class="tip-item">
+                <strong>Sushi Kuralı:</strong> Soya sosuna sushi'nin pirinç kısmını değil, balık kısmını hafifçe batırın; bu sayede pirinç dağılmaz ve tatlar dengelenir.
+            </div>
+            <div class="tip-item">
+                <strong>Tatlı Finali:</strong> Yeşil çayın (Matcha) o buruk ve ferah tadıyla hazırlanan <b>Mochi [pirinç keki]</b> tatlılarını denemeden dönmeyin.
+            </div>
         </div>
-    </div>
+    </article>
+
 </body>
 </html>

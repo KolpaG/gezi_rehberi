@@ -3,28 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <title>İsviçre | Alplerin Kalbinde Huzur</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --swiss-red: #d52b1e; --snow: #f9f9f9; --dark: #1a1a1a; }
-        body { font-family: 'Inter', sans-serif; line-height: 2.2; color: var(--dark); margin: 0; background: #fff; }
-        .hero { height: 80vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=1600') center/cover fixed; display: flex; align-items: center; justify-content: center; color: white; }
-        .hero h1 { font-family: 'Playfair Display'; font-size: 6rem; letter-spacing: 5px; text-transform: uppercase; }
-        .container { max-width: 1100px; margin: -100px auto 100px; background: white; padding: 80px; border-radius: 40px; box-shadow: 0 40px 100px rgba(0,0,0,0.1); }
-        h2 { font-family: 'Playfair Display'; font-size: 3.5rem; margin: 5rem 0 2rem; color: var(--swiss-red); border-left: 15px solid var(--swiss-red); padding-left: 30px; }
-        p { font-size: 1.4rem; margin-bottom: 4rem; text-align: justify; }
-        .mountain-img { width: 100%; border-radius: 40px; margin: 4rem 0; box-shadow: 0 30px 60px rgba(0,0,0,0.15); }
+        :root { 
+            --gold: #C5A065; 
+            --dark: #0A0A0A; 
+            --white: #FFFFFF;
+        }
+
+        html { zoom: 95%; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.8; 
+            color: rgba(255,255,255,0.9); 
+            background: var(--dark); 
+            overflow-x: hidden; 
+        }
+
+        /* --- Sağ Üst Yüzer Geri Dön Butonu --- */
+        .floating-back-btn {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 2000;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.3;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 10px 20px;
+            border: 1px solid rgba(197, 160, 101, 0.2);
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .floating-back-btn:hover {
+            opacity: 1;
+            background: rgba(197, 160, 101, 0.1);
+            border-color: var(--gold);
+            transform: translateX(-8px);
+        }
+
+        /* --- Hero Alanı --- */
+        .hero { 
+            height: 80vh; 
+            background: linear-gradient(rgba(0,0,0,0.4), var(--dark)), 
+                        url('https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=1600') center/cover fixed; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .hero h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            letter-spacing: 12px;
+            color: var(--gold);
+            text-align: center;
+        }
+
+        /* --- Makale İçeriği --- */
+        .article-content { max-width: 850px; margin: 0 auto; padding: 80px 20px; }
+        
+        .section-tag { 
+            font-weight: 600; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            display: block; 
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            margin: 3.5rem 0 2rem; 
+            border-left: 4px solid var(--gold); 
+            padding-left: 2rem; 
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        p { 
+            font-size: 1.15rem; 
+            margin-bottom: 2.5rem; 
+            color: rgba(255,255,255,0.7); 
+            text-align: justify; 
+        }
+
+        /* Vurgular */
+        b, strong {
+            color: var(--white);
+            font-weight: 600;
+            display: inline !important;
+        }
+        
+        /* Görsel Kutusu */
+        .image-box { margin: 5rem 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(197, 160, 101, 0.1); }
+        .image-box img { width: 100%; height: 550px; object-fit: cover; filter: brightness(0.8); transition: 0.5s; }
+        .image-box:hover img { filter: brightness(1); }
+        .image-box span { 
+            display: block; 
+            padding: 1.2rem 2rem; 
+            background: #111; 
+            color: var(--gold); 
+            font-style: italic; 
+            font-size: 0.9rem;
+        }
+
+        /* İpucu Kutusu */
+        .pro-tips { 
+            background: rgba(197, 160, 101, 0.03); 
+            padding: 4rem; 
+            border-radius: 20px; 
+            margin: 6rem 0; 
+            border: 1px solid rgba(197, 160, 101, 0.1);
+        }
+        
+        .pro-tips h3 { 
+            font-family: 'Cinzel', serif; 
+            font-size: 1.8rem; 
+            margin-bottom: 2.5rem; 
+            color: var(--gold); 
+            text-align: center; 
+        }
+        
+        .tip-item { 
+            margin-bottom: 2rem; 
+            padding-left: 2rem; 
+            border-left: 2px solid var(--gold); 
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .tip-item strong { 
+            color: var(--white); 
+            display: inline !important; 
+            margin-right: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .floating-back-btn { top: auto; bottom: 30px; right: 20px; opacity: 0.8; background: var(--dark); }
+            h2 { font-size: 2.2rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="hero"><h1>SWITZERLAND</h1></div>
-    <div class="container">
-        <h2>Zermatt ve Matterhorn: İkonik Zirve</h2>
-        <p>İsviçre denince akla gelen ilk görüntü, piramit şeklindeki muazzam siluetiyle **Matterhorn** dağıdır. Zermatt kasabası, motorlu araç trafiğine kapalı yapısıyla, sadece doğanın sesini duyabileceğiniz bir huzur limanıdır. Burada dünyanın en yüksek teleferik hatlarından birine binerek buzulların üzerine çıkabilir veya meşhur **Glacier Express** [Buzul Ekspresi] treniyle karlı vadiler arasından geçen bir masal yolculuğuna başlayabilirsiniz.</p>
-        
-        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200" class="mountain-img">
 
-        <h2>Luzern ve Interlaken: Göller ve Dağların Buluşması</h2>
-        <p>Luzern, Orta Çağ'dan kalma ahşap **Kapellbrücke** [Şapel Köprüsü] ve göl manzarasıyla İsviçre'nin tarihi ruhunu temsil eder. Interlaken ise iki devasa gölün (Thun ve Brienz) arasında kurulmuş, macera tutkunlarının merkezidir. Jungfraujoch, yani "Avrupa'nın Çatısı", 3454 metre yükseklikteki tren istasyonuyla size bulutların üzerinde bir dünya sunar. İsviçre, her santimetrekaresi titizlikle korunmuş bir doğa parkı gibidir.</p>
-    </div>
+    <a href="rotalar.html" class="floating-back-btn">← Geri Dönün</a>
+
+    <div class="hero"><h1>Alp Disiplini</h1></div>
+
+    <article class="article-content">
+        <section>
+            <span class="section-tag">Bölüm 1: Gökyüzünün Sınırında</span>
+            <h2>Zermatt ve Matterhorn: Bir Doğal İkon</h2>
+            <p>İsviçre dendiğinde zihinlerde canlanan ilk ve en kuvvetli görüntü, piramit şeklindeki kusursuz siluetiyle gökyüzünü delen <strong>Matterhorn</strong> dağıdır. Bu ikonik zirvenin eteklerinde kurulu olan <strong>Zermatt</strong> kasabası, motorlu araç trafiğine tamamen kapalı olmasıyla dünyanın en temiz havasına sahip noktalarından biridir. Sadece elektrikli araçların ve faytonların dolaştığı bu sessiz limanda, Alplerin gerçek ruhunu hissedersiniz. Burası, doğanın insan yerleşimiyle kurabileceği en saygılı bağın bir temsilidir.</p>
+            <p>Macera tutkunları için Zermatt, dünyanın en yüksek teleferik hatlarından birine ev sahipliği yapar. 3883 metre yükseklikteki "Matterhorn Glacier Paradise" istasyonuna çıktığınızda, sonsuz bir buzul deniziyle karşılaşırsınız. Ancak bu dağı görmenin en masalsı yolu, meşhur <strong>Glacier Express</strong> [Buzul Ekspresi] trenidir. "Dünyanın en yavaş ekspres treni" olarak bilinen bu hat, panoramik camlı vagonlarıyla karlı vadiler, uçurumlar ve tüneller arasından geçen sekiz saatlik bir görsel şölen sunar.</p>
+        </section>
+
+        <div class="image-box">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1200" alt="Alpler Manzarası">
+            <span>Zirvelerin Senfonisi: İsviçre Alplerinde kışın ebedi beyazlığı.</span>
+        </div>
+
+        <section>
+            <span class="section-tag">Bölüm 2: Göllerin ve Tarihin Uyumu</span>
+            <h2>Luzern ve Interlaken: Mavi ile Beyazın Buluşması</h2>
+            <p>İsviçre'nin kalbi kabul edilen <strong>Luzern</strong>, Orta Çağ atmosferini koruyan mimarisi ve masalsı gölüyle ülkenin tarihi hafızasıdır. Şehrin sembolü olan ahşap <strong>Kapellbrücke</strong> [Şapel Köprüsü], 14. yüzyıldan bu yana Reuss nehrini süslemektedir. Göl kıyısında yürürken, arka planda yükselen Pilatus ve Rigi dağları, kentsel dokunun doğayla nasıl iç içe geçebileceğini gösterir. Luzern, saatin her saniyesinin kıymetli olduğu bir mühendislik ve zarafet kentidir.</p>
+            <p>Biraz daha batıya ilerlediğinizde ise kendinizi iki devasa gölün (Thun ve Brienz) tam ortasına kurulu olan <strong>Interlaken</strong>'da bulursunuz. Burası, Avrupa'nın macera başkenti olarak bilinir; ancak asıl mucize hemen yukarısındaki <strong>Jungfraujoch</strong>'tadır. "Avrupa'nın Çatısı" olarak adlandırılan ve 3454 metre yükseklikte yer alan bu tren istasyonu, size bulutların üzerinde, buzulların tam kalbinde bir dünya sunar. İsviçre’nin her santimetrekaresi, titizlikle işlenmiş bir doğa parkı gibi sizi sükunete davet eder.</p>
+        </section>
+
+        <div class="pro-tips">
+            <h3>İsviçre Seyahat Rehberi</h3>
+            <div class="tip-item">
+                <strong>Swiss Travel Pass Avantajı:</strong> Ülke genelindeki tüm tren, otobüs ve tekneleri kapsayan bu kart, İsviçre'nin o dünyaca ünlü dakik ulaşım ağını sınırsız kullanmanızı sağlar.
+            </div>
+            <div class="tip-item">
+                <strong>Zirve Planlaması:</strong> Matterhorn veya Jungfraujoch gibi noktalara çıkmadan önce mutlaka hava durumunu kontrol edin; bulutlu bir günde zirvenin o meşhur manzarası gizlenebilir.
+            </div>
+            <div class="tip-item">
+                <strong>Gastronomi Molası:</strong> Alp köylerinde geleneksel bir <strong>Fondü</strong> [erimiş peynir yemeği] veya dünyaca ünlü İsviçre çikolatalarının tadına bakmadan bu rotayı tamamlamış sayılmazsınız.
+            </div>
+        </div>
+    </article>
+
 </body>
 </html>

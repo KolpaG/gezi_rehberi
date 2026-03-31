@@ -3,35 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <title>Dünya Mutfağı | 10 Efsanevi Lezzet Durağı</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --accent: #e67e22; --dark: #1a1a1a; --bg: #fffaf5; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: var(--bg); color: var(--dark); }
-        
-        nav { padding: 1.5rem 8%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; top: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid #eee; }
-        .logo { font-family: 'Playfair Display'; font-size: 2rem; color: var(--accent); font-weight: 700; }
-        .nav-links a { text-decoration: none; color: var(--dark); margin-left: 2.5rem; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        :root { 
+            --gold: #C5A065; 
+            --gold-bright: #D4AF37;
+            --dark: #0A0A0A; 
+            --white: #FFFFFF;
+            --bg-gradient: linear-gradient(135deg, #051923 0%, #004e64 50%, #051923 100%);
+        }
 
-        .header-section { padding: 12rem 8% 5rem; text-align: center; }
-        .header-section h1 { font-family: 'Playfair Display'; font-size: 5rem; line-height: 1.1; margin-bottom: 1.5rem; color: #2c3e50; }
+        /* Ölçeklendirme Rotalar sayfasıyla eşitlendi (Zoom kaldırıldı) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        .grid-container { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 40px; padding: 0 8% 100px; }
-        .food-card { background: white; border-radius: 35px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.05); transition: 0.4s; border: 1px solid #eee; }
-        .food-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(230, 126, 34, 0.15); }
-        .food-card img { width: 100%; height: 300px; object-fit: cover; }
+        body { 
+            background: radial-gradient(circle at 20% 30%, rgba(197, 160, 101, 0.05), transparent 40%), var(--dark);
+            color: var(--white); 
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; 
+        }
         
-        .card-body { padding: 2.5rem; }
-        .card-body h3 { font-family: 'Playfair Display'; font-size: 2.2rem; margin-bottom: 0.8rem; color: var(--accent); }
-        .card-body p { color: #555; line-height: 1.7; font-size: 1.05rem; margin-bottom: 2rem; }
-        .btn-taste { display: inline-block; padding: 12px 35px; background: var(--accent); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; transition: 0.3s; }
-        .btn-taste:hover { background: #d35400; transform: scale(1.05); }
+        /* --- Navigasyon (Rotalar ile Birebir Eşitlendi) --- */
+        nav { 
+            background: var(--bg-gradient);
+            padding: 1.2rem 8%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: fixed; 
+            width: 100%; 
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            border-bottom: 1px solid rgba(197, 160, 101, 0.15);
+        }
+
+        .logo { 
+            color: var(--gold); 
+            font-family: 'Cinzel', serif; 
+            font-size: 2rem; 
+            font-weight: 700; 
+            letter-spacing: 3px;
+        }
+
+        .nav-links a { 
+            text-decoration: none; 
+            color: rgba(255, 255, 255, 0.8); 
+            margin-left: 2.5rem; 
+            font-weight: 500; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px;
+            transition: 0.4s ease;
+            display: inline-block;
+        }
+
+        .nav-links a:hover { 
+            color: var(--gold);
+            transform: translateY(-3px);
+            text-shadow: 0 0 10px rgba(197, 160, 101, 0.3);
+        }
+
+        /* --- Header Section (Rotalar Ölçeğine Çekildi) --- */
+        .header-section { padding: 12rem 8% 5rem; text-align: center; } 
+        .header-section h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(2.5rem, 6vw, 4.5rem); 
+            line-height: 1.1; 
+            margin-bottom: 1.5rem; 
+            color: var(--gold);
+        }
+        .header-section p { 
+            font-size: 1.1rem; 
+            color: rgba(255,255,255,0.6); 
+            max-width: 700px; 
+            margin: 0 auto; 
+            font-weight: 300;
+        }
+        
+        /* --- Layout: Grid Düzeni --- */
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 30px; 
+            padding: 0 8% 100px; 
+        }
+
+        /* Öne Çıkan Kart (Türkiye) - Rotalar Yüksekliğiyle Eşitlendi */
+        .food-card:first-child {
+            grid-column: span 3;
+            display: flex;
+            align-items: stretch;
+            height: 550px; 
+        }
+        
+        .food-card:first-child .img-container { width: 70%; height: 100%; }
+        .food-card:first-child img { width: 100%; height: 100%; object-fit: cover; }
+
+        .food-card:first-child .card-body { 
+            width: 30%; 
+            padding: 3.5rem; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(to right, rgba(10,10,10,0.9), var(--dark));
+            border-left: 1px solid rgba(197, 160, 101, 0.1);
+        }
+
+        .food-card:first-child h3 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1.5rem; color: var(--white); }
+        .food-card:first-child p { font-size: 1.15rem; color: rgba(255,255,255,0.8); margin-bottom: 3rem; }
+
+        /* Standart Kartlar */
+        .food-card { 
+            background: rgba(255, 255, 255, 0.03); 
+            border-radius: 20px; 
+            overflow: hidden; 
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+            cursor: pointer; 
+            border: 1px solid rgba(197, 160, 101, 0.1);
+            position: relative;
+        }
+
+        .food-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.6); border-color: var(--gold); }
+        .img-container { overflow: hidden; position: relative; }
+        .food-card img { width: 100%; height: 300px; object-fit: cover; transition: transform 0.6s ease; }
+        .food-card:hover img { transform: scale(1.1); }
+        
+        .card-body { padding: 2rem; } 
+        .card-body h3 { font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 1rem; color: var(--gold); }
+        .card-body p { color: rgba(255,255,255,0.7); line-height: 1.6; font-size: 0.95rem; margin-bottom: 2rem; }
+
+        .btn-taste { 
+            display: inline-block; 
+            padding: 12px 30px; 
+            border: 1px solid var(--gold); 
+            color: var(--gold); 
+            text-decoration: none; 
+            border-radius: 999px; 
+            font-weight: 600; 
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            transition: 0.3s; 
+            background: rgba(197, 160, 101, 0.05);
+            align-self: flex-start;
+        }
+        .btn-taste:hover { background: var(--gold); color: var(--dark); transform: scale(1.05); }
+
+        @media (max-width: 1100px) { .grid-container { grid-template-columns: repeat(2, 1fr); } .food-card:first-child { grid-column: span 2; } }
+        @media (max-width: 768px) { .grid-container { grid-template-columns: 1fr; } .food-card:first-child { flex-direction: column; height: auto; } .food-card:first-child img { width: 100%; height: 300px; } .food-card:first-child .card-body { width: 100%; padding: 2.5rem; } }
     </style>
 </head>
 <body>
     <nav>
         <div class="logo">GEZGİN</div>
-        <div class="nav-links"><a href="index.html">Ana Sayfa</a><a href="rotalar.html">Rotalar</a><a href="lezzetler.html">Lezzetler</a></div>
+        <div class="nav-links">
+            <a href="index.html">Ana Sayfa</a>
+            <a href="rotalar.html">Rotalar</a>
+            <a href="lezzetler.html">Lezzetler</a>
+            <a href="bilet.html">Bilet Al</a>
+        </div>
     </nav>
 
     <div class="header-section">
@@ -40,16 +170,24 @@
     </div>
 
     <div class="grid-container">
-        <div class="food-card"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"><div class="card-body"><h3>Türkiye</h3><p>Kebap kültüründen zeytinyağlılara, dünyanın en zengin sofrasına davetlisiniz.</p><a href="lezzet-turkiye.html" class="btn-taste">Keşfet</a></div></div>
-        <div class="food-card"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"><div class="card-body"><h3>İtalya</h3><p>Makarna ve pizzanın ötesinde, her bölgesi ayrı bir şaheser olan Akdeniz disiplini.</p><a href="lezzet-italya.html" class="btn-taste">Keşfet</a></div></div>
-        <div class="food-card"><img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"><div class="card-body"><h3>Japonya</h3><p>Tazeliğin ve sunum sanatının zirvesi. Umami [lezzetli tat] peşinde bir yolculuk.</p><a href="lezzet-japonya.html" class="btn-taste">Keşfet</a></div></div>
-        <div class="food-card"><img src="https://images.unsplash.com/photo-1608500219063-e5164085cd6f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"><div class="card-body"><h3>Fransa</h3><p>Dünya mutfağının temeli, Haute Cuisine [yüksek mutfak] tekniklerinin anavatanı.</p><a href="lezzet-fransa.html" class="btn-taste">Keşfet</a></div></div>
-        <div class="food-card"><img src="https://images.unsplash.com/photo-1606791422814-b32c705e3e2f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"><div class="card-body"><h3>İzlanda</h3><p>Okyanusun saf tazeliği ve volkanik toprağın sunduğu sıra dışı kuzey tatları.</p><a href="lezzet-izlanda.html" class="btn-taste">Keşfet</a></div></div>
-        <div class="food-card"><img src="https://images.unsplash.com/photo-1595666548990-788e19dc3885?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"><div class="card-body"><h3>Yunanistan</h3><p>Ege'nin her iki yakasından tanıdık, zeytinyağı ve taze otlarla harmanlanmış lezzetler.</p><a href="lezzet-yunanistan.html" class="btn-taste">Keşfet</a></div></div>
-        <div class="food-card"><img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"><div class="card-body"><h3>İspanya</h3><p>Tapas kültürü ve deniz ürünlerinin şahı Paella ile bitmeyen bir ziyafet.</p><a href="lezzet-ispanya.html" class="btn-taste">Keşfet</a></div></div>
-        <div class="food-card"><img src="https://images.unsplash.com/photo-1648437595587-e6a8b0cdf1f9?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"><div class="card-body"><h3>Meksika</h3><p>Acı, baharat ve mısırın bin yıllık dansı. UNESCO tescilli bir gastronomi mirası.</p><a href="lezzet-meksika.html" class="btn-taste">Keşfet</a></div></div>
-        <div class="food-card"><img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"><div class="card-body"><h3>Norveç</h3><p>Kuzey denizinin en kaliteli somonları ve Viking mirası saklama teknikleri.</p><a href="lezzet-norvec.html" class="btn-taste">Keşfet</a></div></div>
-        <div class="food-card"><img src="https://images.unsplash.com/photo-1765099271832-258bee41458b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"><div class="card-body"><h3>İsviçre</h3><p>Alp dağlarının huzurunda peynir fondüleri ve dünyanın en iyi çikolataları.</p><a href="lezzet-isvicre.html" class="btn-taste">Keşfet</a></div></div>
+        <div class="food-card">
+            <div class="img-container"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=1200"></div>
+            <div class="card-body">
+                <h3>Türkiye</h3>
+                <p>Kebap kültüründen zeytinyağlılara, dünyanın en zengin sofrasına davetlisiniz. Anadolu mirasını keşfedin.</p>
+                <a href="lezzet-turkiye.html" class="btn-taste">KEŞFET</a>
+            </div>
+        </div>
+
+        <div class="food-card"><div class="img-container"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=800"></div><div class="card-body"><h3>İtalya</h3><p>Makarna ve pizzanın ötesinde Akdeniz disiplini.</p><a href="lezzet-italya.html" class="btn-taste">Keşfet</a></div></div>
+        <div class="food-card"><div class="img-container"><img src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=800"></div><div class="card-body"><h3>Japonya</h3><p>Tazeliğin ve sunum sanatının zirvesi. Umami peşinde.</p><a href="lezzet-japonya.html" class="btn-taste">Keşfet</a></div></div>
+        <div class="food-card"><div class="img-container"><img src="https://images.unsplash.com/photo-1608500219063-e5164085cd6f?w=800"></div><div class="card-body"><h3>Fransa</h3><p>Yüksek mutfak tekniklerinin anavatanı.</p><a href="lezzet-fransa.html" class="btn-taste">Keşfet</a></div></div>
+        <div class="food-card"><div class="img-container"><img src="https://images.unsplash.com/photo-1606791422814-b32c705e3e2f?w=800"></div><div class="card-body"><h3>İzlanda</h3><p>Saf tazelik ve sıra dışı kuzey tatları.</p><a href="lezzet-izlanda.html" class="btn-taste">Keşfet</a></div></div>
+        <div class="food-card"><div class="img-container"><img src="https://images.unsplash.com/photo-1595666548990-788e19dc3885?w=800"></div><div class="card-body"><h3>Yunanistan</h3><p>Zeytinyağı ve taze otlarla harmanlanmış Ege mirası.</p><a href="lezzet-yunanistan.html" class="btn-taste">Keşfet</a></div></div>
+        <div class="food-card"><div class="img-container"><img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=800"></div><div class="card-body"><h3>İspanya</h3><p>Tapas kültürü ve deniz ürünlerinin şahı Paella.</p><a href="lezzet-ispanya.html" class="btn-taste">Keşfet</a></div></div>
+        <div class="food-card"><div class="img-container"><img src="https://images.unsplash.com/photo-1648437595587-e6a8b0cdf1f9?w=800"></div><div class="card-body"><h3>Meksika</h3><p>Acı, baharat ve mısırın bin yıllık dansı.</p><a href="lezzet-meksika.html" class="btn-taste">Keşfet</a></div></div>
+        <div class="food-card"><div class="img-container"><img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800"></div><div class="card-body"><h3>Norveç</h3><p>Kuzey denizinin somonları ve Viking teknikleri.</p><a href="lezzet-norvec.html" class="btn-taste">Keşfet</a></div></div>
+        <div class="food-card"><div class="img-container"><img src="https://images.unsplash.com/photo-1765099271832-258bee41458b?w=800"></div><div class="card-body"><h3>İsviçre</h3><p>Peynir fondüleri ve dünyanın en iyi çikolataları.</p><a href="lezzet-isvicre.html" class="btn-taste">Keşfet</a></div></div>
     </div>
 </body>
 </html>

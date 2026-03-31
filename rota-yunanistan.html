@@ -3,34 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <title>Yunanistan | Antik Dünyanın Mirası</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #005a9c; --dark: #1a1a1a; }
-        body { font-family: 'Inter', sans-serif; line-height: 2.2; color: var(--dark); margin: 0; background: #fff; }
-        .hero { height: 80vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1503152394-c571994fd383?q=80&w=1600') center/cover fixed; display: flex; align-items: center; justify-content: center; color: white; }
-        .hero h1 { font-family: 'Playfair Display'; font-size: 6rem; letter-spacing: 5px; }
-        .container { max-width: 1100px; margin: -100px auto 100px; background: white; padding: 80px; border-radius: 40px; box-shadow: 0 40px 100px rgba(0,0,0,0.1); position: relative; }
-        h2 { font-family: 'Playfair Display'; font-size: 4rem; margin: 5rem 0 2rem; color: var(--primary); border-left: 15px solid var(--primary); padding-left: 30px; line-height: 1; }
-        p { font-size: 1.4rem; margin-bottom: 4rem; text-align: justify; color: #333; }
-        .mega-img { width: 100%; border-radius: 40px; margin: 4rem 0; box-shadow: 0 30px 60px rgba(0,0,0,0.15); }
-        .mythology-box { background: #f0f7ff; padding: 5rem; border-radius: 40px; margin: 6rem 0; border: 1px solid #d1e8ff; }
+        :root { 
+            --gold: #C5A065; 
+            --dark: #0A0A0A; 
+            --white: #FFFFFF;
+        }
+
+        html { zoom: 95%; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.8; 
+            color: rgba(255,255,255,0.9); 
+            background: var(--dark); 
+            overflow-x: hidden; 
+        }
+
+        /* --- Sağ Üst Yüzer Geri Dön Butonu --- */
+        .floating-back-btn {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 2000;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.3;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 10px 20px;
+            border: 1px solid rgba(197, 160, 101, 0.2);
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .floating-back-btn:hover {
+            opacity: 1;
+            background: rgba(197, 160, 101, 0.1);
+            border-color: var(--gold);
+            transform: translateX(-8px);
+        }
+
+        /* --- Hero Alanı --- */
+        .hero { 
+            height: 80vh; 
+            background: linear-gradient(rgba(0,0,0,0.3), var(--dark)), 
+                        url('https://images.unsplash.com/photo-1503152394-c571994fd383?q=80&w=1600') center/cover fixed; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .hero h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            letter-spacing: 12px;
+            color: var(--gold);
+            text-align: center;
+        }
+
+        /* --- Makale İçeriği --- */
+        .article-content { max-width: 850px; margin: 0 auto; padding: 80px 20px; }
+        
+        .section-tag { 
+            font-weight: 600; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            display: block; 
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            margin: 3.5rem 0 2rem; 
+            border-left: 4px solid var(--gold); 
+            padding-left: 2rem; 
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        p { 
+            font-size: 1.15rem; 
+            margin-bottom: 2.5rem; 
+            color: rgba(255,255,255,0.7); 
+            text-align: justify; 
+        }
+
+        /* Kalın Yazıların Satırı Bölmemesi İçin inline !important Kullanıldı */
+        b, strong {
+            color: var(--white);
+            font-weight: 600;
+            display: inline !important;
+        }
+        
+        /* Görsel Kutusu */
+        .image-box { margin: 5rem 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(197, 160, 101, 0.1); }
+        .image-box img { width: 100%; height: 550px; object-fit: cover; filter: brightness(0.8); transition: 0.5s; }
+        .image-box:hover img { filter: brightness(1); }
+        .image-box span { 
+            display: block; 
+            padding: 1.2rem 2rem; 
+            background: #111; 
+            color: var(--gold); 
+            font-style: italic; 
+            font-size: 0.9rem;
+        }
+
+        /* İpucu Kutusu (Meteora Bölümü) */
+        .pro-tips { 
+            background: rgba(197, 160, 101, 0.03); 
+            padding: 4rem; 
+            border-radius: 20px; 
+            margin: 6rem 0; 
+            border: 1px solid rgba(197, 160, 101, 0.1);
+        }
+        
+        .pro-tips h3 { 
+            font-family: 'Cinzel', serif; 
+            font-size: 1.8rem; 
+            margin-bottom: 2.5rem; 
+            color: var(--gold); 
+            text-align: center; 
+        }
+        
+        .tip-item { 
+            margin-bottom: 2rem; 
+            padding-left: 2rem; 
+            border-left: 2px solid var(--gold); 
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .tip-item strong { 
+            color: var(--white); 
+            display: inline !important; 
+            margin-right: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .floating-back-btn { top: auto; bottom: 30px; right: 20px; opacity: 0.8; background: var(--dark); }
+            h2 { font-size: 2.2rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="hero"><h1>HELLAS</h1></div>
-    <div class="container">
-        <h2>Atina: Felsefenin ve Taşın Ölümsüzlüğü</h2>
-        <p>Batı medeniyetinin entelektüel köklerinin atıldığı Atina, insanlık tarihinin en büyük açık hava müzesidir. Şehrin tacı olan **Akropolis**, M.Ö. 5. yüzyılda inşa edilen Parthenon Tapınağı ile mimari kusursuzluğun zirvesidir. Burada yürürken Sokrat’ın öğrencileriyle tartıştığı **Agora** [antik pazar yeri ve meclis alanı] üzerinden geçecek, rüzgarın fısıltısında antik trajedilerin sesini duyacaksınız.</p>
-        
-        <img src="https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?q=80&w=1200" class="mega-img">
 
-        <div class="mythology-box">
-            <h3>Meteora: Gökyüzü İle Yeryüzü Arasında</h3>
-            <p>Yunanistan'ın kuzeyinde yer alan Meteora, devasa kumtaşı sütunlarının tepesine inşa edilmiş Ortodoks manastırlarıyla ünlüdür. 14. yüzyılda keşişlerin inzivaya çekilmek için sadece halatlar ve ağlarla ulaştığı bu yapılar, bugün UNESCO Dünya Mirası listesindedir. Burası, insanın spiritüel [manevi] gücünün doğanın sertliğine meydan okuduğu bir noktadır.</p>
+    <a href="rotalar.html" class="floating-back-btn">← Geri Dönün</a>
+
+    <div class="hero"><h1>Antik Miras</h1></div>
+
+    <article class="article-content">
+        <section>
+            <span class="section-tag">Bölüm 1: Batı Medeniyetinin Hafızası</span>
+            <h2>Atina: Felsefenin ve Taşın Ölümsüzlüğü</h2>
+            <p>Atina, sadece Yunanistan'ın başkenti değil; modern dünyanın sanat, bilim, felsefe ve siyaset alanındaki tüm referans noktalarının doğduğu kadim bir merkezdir. Şehrin her köşesi, insanlık tarihinin en büyük zihinsel devrimlerine ev sahipliği yapmış birer açık hava müzesi niteliğindedir. Gökyüzüne doğru mağrur bir edayla yükselen <strong>Akropolis</strong>, M.Ö. 5. yüzyılda inşa edilen ve matematiksel bir kusursuzluk örneği olan Parthenon Tapınağı ile ziyaretçilerini selamlar. Bu kutsal alanda yürürken, her mermer parçasının altında bir tarih katmanıyla karşılaşırsınız.</p>
+            <p><strong>Agora</strong> [antik pazar yeri ve meclis alanı] üzerinden geçerken rüzgarın fısıltısında Sokrat’ın öğrencileriyle yaptığı etik tartışmalarını veya Perikles’in demokrasiyi müjdeleyen o gür sesini duyabilirsiniz. Şehir, antik çağın muazzam kalıntılarını modern metropol hayatıyla öylesine ustaca harmanlamıştır ki, Plaka'nın dar sokaklarında yürürken kendinizi bir zaman makinesindeymiş gibi hissedersiniz. Atina, taşın dile geldiği ve tarihin nefes aldığı bir ölümsüzlük simgesidir.</p>
+        </section>
+
+        <div class="image-box">
+            <img src="https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?q=80&w=1200" alt="Atina Sokakları">
+            <span>Zamanın Ruhu: Antik Atina'nın gölgesinde binlerce yıllık bir yürüyüş.</span>
         </div>
 
-        <h2>Santorini: Volkanik Bir Rüya</h2>
-        <p>Dünyanın en çok fotoğraflanan adası olan Santorini, devasa bir volkanik patlamanın ardından geriye kalan bir **Kaldera** [çöküntü havzası] kenarına dizilmiş köylerden oluşur. Oia kasabasının bembeyaz evleri ve kobalt mavisi kubbeleri, estetiğin son noktasıdır.</p>
-    </div>
+        <section>
+            <span class="section-tag">Bölüm 2: Gökyüzüne Uzanan Dua</span>
+            <h2>Meteora: İnsanın ve Doğanın İnzivası</h2>
+            <p>Yunanistan'ın kalbinde, Teselya ovasının ortasından ansızın yükselen devasa kumtaşı sütunları, gerçekliğin sınırlarını zorlayan bir manzara sunar. <strong>Meteora</strong>, spiritüel [manevi] arayışın fiziksel dünyadaki en dramatik kanıtlarından biridir. 14. yüzyılın keşişleri, dünyevi kargaşadan tamamen kopmak için sadece halatlar, ağlar ve katırların yardımıyla ulaştıkları bu ulaşılmaz zirvelere manastırlar inşa etmişlerdir. Bulutların arasında adeta asılı duran bu yapılar, bugün UNESCO Dünya Mirası listesindedir.</p>
+            <p>Burası, insanın doğanın sertliğine karşı gösterdiği sabrın ve spiritüel gücün bir anıtıdır. Günümüzde aktif olarak kullanılan bu manastırlar, sessizliğin ve derin düşüncenin kalesi olmaya devam etmektedir. Ziyaretçiler için bu rota, sadece fiziksel bir gezi değil; aynı zamanda insanın kendi iç dünyasına yaptığı sessiz bir yolculuktur. Meteora’nın tepelerinden batan güneşi izlemek, yeryüzü ile gökyüzü arasındaki o ince çizgide durduğunuzu size hissettirecektir.</p>
+        </section>
+
+        <div class="pro-tips">
+            <h3>Ege'nin Masmavi İmzası: Santorini</h3>
+            <div class="tip-item">
+                <strong>Volkanik Bir Masal:</strong> Dünyanın en çok fotoğraflanan destinasyonu olan Santorini, devasa bir volkanik patlamanın ardından geriye kalan bir <strong>Kaldera</strong> [çöküntü havzası] kenarına dizilen köylerden oluşur.
+            </div>
+            <div class="tip-item">
+                <strong>Beyaz ve Mavi:</strong> Oia kasabasının kireç beyazı evleri ve kobalt mavisi kubbeleri, Ege mimarisinin en zarif ve saf halidir. Gün batımında kızıla boyanan bu dikey mimari, estetiğin zirve noktasıdır.
+            </div>
+            <div class="tip-item">
+                <strong>Gezgin Notu:</strong> Yunanistan rotasını tamamlamadan önce yerel bir tavernada zeytinyağlı taze mezeleri tatmayı ve Akropolis Müzesi’ni ziyaret ederek antik eserlerin modern sergileme sanatı içindeki ihtişamını görmeyi unutmayın.
+            </div>
+        </div>
+    </article>
+
 </body>
 </html>

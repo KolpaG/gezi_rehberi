@@ -3,68 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <title>Meksika | Piramitlerin Gölgesinde Bir Serüven</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --mex-red: #c0392b; --mex-gold: #f39c12; --mex-green: #27ae60; --dark: #1a1a1a; }
-        body { font-family: 'Inter', sans-serif; line-height: 2; color: var(--dark); margin: 0; background: #fffcf5; }
-        
-        /* Hero Section */
-        .hero { height: 90vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Chichen_Itza_3.jpg/1200px-Chichen_Itza_3.jpg') center/cover fixed; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
-        .hero h1 { font-family: 'Playfair Display'; font-size: 6.5rem; text-transform: uppercase; letter-spacing: 10px; margin: 0; }
-        .hero p { font-size: 1.5rem; font-weight: 300; letter-spacing: 3px; }
+        :root { 
+            --gold: #C5A065; 
+            --dark: #0A0A0A; 
+            --white: #FFFFFF;
+        }
 
-        .article-container { max-width: 1000px; margin: 0 auto; padding: 120px 40px; background: white; box-shadow: 0 0 100px rgba(0,0,0,0.05); position: relative; margin-top: -100px; border-radius: 60px 60px 0 0; }
+        html { zoom: 95%; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        .section-tag { color: var(--mex-red); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 2rem; border-bottom: 2px solid var(--mex-gold); width: fit-content; }
-        
-        h2 { font-family: 'Playfair Display'; font-size: 4rem; margin: 5rem 0 2.5rem; line-height: 1.1; color: var(--dark); }
-        
-        p { font-size: 1.35rem; margin-bottom: 3.5rem; text-align: justify; color: #333; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.8; 
+            color: rgba(255,255,255,0.9); 
+            background: var(--dark); 
+            overflow-x: hidden; 
+        }
 
-        .image-full { width: 100%; height: 700px; object-fit: cover; border-radius: 50px; margin: 6rem 0; box-shadow: 0 50px 100px rgba(0,0,0,0.15); }
-        
-        .cultural-highlight { background: #f1f8e9; padding: 5rem; border-radius: 40px; border-right: 15px solid var(--mex-green); margin: 7rem 0; }
-        .cultural-highlight h3 { font-family: 'Playfair Display'; font-size: 2.5rem; margin-bottom: 1.5rem; color: var(--mex-green); }
+        /* --- Sağ Üst Yüzer Geri Dön Butonu --- */
+        .floating-back-btn {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 2000;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.3;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 10px 20px;
+            border: 1px solid rgba(197, 160, 101, 0.2);
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.02);
+        }
 
-        .cenote-info { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin: 6rem 0; }
-        .cenote-info img { width: 100%; border-radius: 30px; height: 500px; object-fit: cover; }
+        .floating-back-btn:hover {
+            opacity: 1;
+            background: rgba(197, 160, 101, 0.1);
+            border-color: var(--gold);
+            transform: translateX(-8px);
+        }
+
+        /* --- Hero Alanı --- */
+        .hero { 
+            height: 80vh; 
+            background: linear-gradient(rgba(0,0,0,0.4), var(--dark)), 
+                        url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Chichen_Itza_3.jpg/1200px-Chichen_Itza_3.jpg') center/cover fixed; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .hero h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            letter-spacing: 12px;
+            color: var(--gold);
+            text-align: center;
+        }
+
+        /* --- Makale İçeriği --- */
+        .article-content { max-width: 850px; margin: 0 auto; padding: 80px 20px; }
+        
+        .section-tag { 
+            font-weight: 600; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            display: block; 
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            margin: 3.5rem 0 2rem; 
+            border-left: 4px solid var(--gold); 
+            padding-left: 2rem; 
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        p { 
+            font-size: 1.15rem; 
+            margin-bottom: 2.5rem; 
+            color: rgba(255,255,255,0.7); 
+            text-align: justify; 
+        }
+
+        /* Vurgular */
+        b, strong {
+            color: var(--white);
+            font-weight: 600;
+            display: inline !important;
+        }
+        
+        /* Görsel Kutusu */
+        .image-box { margin: 5rem 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(197, 160, 101, 0.1); }
+        .image-box img { width: 100%; height: 550px; object-fit: cover; filter: brightness(0.8); transition: 0.5s; }
+        .image-box:hover img { filter: brightness(1); }
+        .image-box span { 
+            display: block; 
+            padding: 1.2rem 2rem; 
+            background: #111; 
+            color: var(--gold); 
+            font-style: italic; 
+            font-size: 0.9rem;
+        }
+
+        /* Özel Izgara Düzeni (Cenote Bölümü) */
+        .grid-info { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin: 4rem 0; }
+        .grid-info img { width: 100%; border-radius: 20px; height: 400px; object-fit: cover; border: 1px solid rgba(197, 160, 101, 0.2); }
+
+        /* İpucu Kutusu (Ölüler Günü & Şehirler) */
+        .pro-tips { 
+            background: rgba(197, 160, 101, 0.03); 
+            padding: 4rem; 
+            border-radius: 20px; 
+            margin: 6rem 0; 
+            border: 1px solid rgba(197, 160, 101, 0.1);
+        }
+        
+        .pro-tips h3 { 
+            font-family: 'Cinzel', serif; 
+            font-size: 1.8rem; 
+            margin-bottom: 2.5rem; 
+            color: var(--gold); 
+            text-align: center; 
+        }
+        
+        .tip-item { 
+            margin-bottom: 2rem; 
+            padding-left: 2rem; 
+            border-left: 2px solid var(--gold); 
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .tip-item strong { 
+            color: var(--white); 
+            display: inline !important; 
+            margin-right: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .grid-info { grid-template-columns: 1fr; }
+            .floating-back-btn { top: auto; bottom: 30px; right: 20px; opacity: 0.8; background: var(--dark); }
+            h2 { font-size: 2.2rem; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="hero">
-        <div>
-            <p>TIERRA DE SOL</p>
-            <h1>MEXICO</h1>
+    <a href="rotalar.html" class="floating-back-btn">← Geri Dönün</a>
+
+    <div class="hero"><h1>Güneşin Toprakları</h1></div>
+
+    <article class="article-content">
+        <section>
+            <span class="section-tag">Bölüm 1: Antik Dünyanın Kozmik Mirası</span>
+            <h2>Maya ve Aztek: Gökyüzüne Uzanan Taşlar</h2>
+            <p>Meksika toprakları, sadece egzotik bir tatil destinasyonu değil; insanlık tarihinin en ileri mühendislik, matematik ve astronomi bilgilerine sahip medeniyetlerin kadim yurdudur. Yucatan Yarımadası’nın kalbinde yükselen <strong>Chichen Itza</strong>, Maya takviminin taşa dönüşmüş, devasa bir anıtıdır. "El Castillo" piramidinin her bir yüzündeki 91 basamak ve en üstteki platform toplandığında, yılın 365 gününü temsil eder. Ekinoks zamanlarında piramidin merdivenlerine vuran güneş ışığının oluşturduğu "yılan gölgesi" illüzyonu, bu halkın gökyüzü olaylarını milimetrik bir hassasiyetle nasıl takip ettiğinin en çarpıcı kanıtıdır.</p>
+            <p>Başkent Mexico City’nin kuzeyinde uzanan <strong>Teotihuacan</strong> ise "Tanrıların Şehri" adıyla anılır. Ölüler Yolu boyunca heybetle yükselen Güneş ve Ay Piramitleri, Aztekler bölgeye ulaştığında bile orada olan gizemli bir geçmişin mirasıdır. Bu devasa yapılar sadece dini ritüellerin merkezi değil, aynı zamanda yıldızların ve gezegenlerin hareketlerini gözlemlemek için tasarlanmış devasa birer rasathanedir [gözlemevi]. Bu piramitlerin tepesinde durduğunuzda, antik mühendislerin evrenle kurduğu o derin bağı iliklerinize kadar hissedersiniz.</p>
+        </section>
+
+        <div class="image-box">
+            <img src="https://iavogue.tmgrup.com.tr/original/17-05/26/1-tulum-1.jpg" alt="Tulum Sahili">
+            <span>Mavi Miras: Tulum'un antik kalıntıları Karayipler'in turkuaz sularıyla buluşuyor.</span>
         </div>
-    </div>
 
-    <article class="article-container">
-        <span class="section-tag">Bölüm 1: Antik Dünyanın Mühendisliği</span>
-        <h2>Maya ve Aztek: Gökyüzüne Uzanan Taşlar</h2>
-        <p>Meksika toprakları, sadece bir tatil destinasyonu değil, insanlık tarihinin en ileri mühendislik ve astronomi bilgilerine sahip medeniyetlerin evidir. Yucatan Yarımadası’nın kalbinde yer alan **Chichen Itza**, Maya takviminin taşa dönüşmüş halidir. "El Castillo" piramidinin her bir yüzündeki 91 basamak ve en üstteki platform, toplamda 365 günü temsil eder. Ekinoks zamanlarında piramidin merdivenlerine vuran güneş ışığının oluşturduğu "yılan gölgesi" ilüzyonu, antik dünyanın kozmik bilgisinin bir kanıtıdır.</p>
-        <p>Başkent Mexico City’nin hemen dışında yükselen **Teotihuacan** ise, "Tanrıların Şehri" olarak bilinir. Ölüler Yolu boyunca uzanan devasa Güneş ve Ay Piramitleri, Aztekler burayı bulduğunda bile oradaydı. Bu devasa yapılar, sadece dini birer merkez değil, aynı zamanda gökyüzü olaylarını takip etmek için kullanılan devasa birer rasathanedir [gözlemevi].</p>
-        
-        <img src="https://iavogue.tmgrup.com.tr/original/17-05/26/1-tulum-1.jpg" class="image-full" alt="Tulum Sahili">
-
-        <span class="section-tag">Bölüm 2: Doğal Mucizeler</span>
-        <h2>Cenoteler ve Karayipler'in Büyüsü</h2>
-        <div class="cenote-info">
-            <div>
-                <p>Meksika’nın sadece üstü değil, altı da büyüleyicidir. Yucatan genelinde binlerce bulunan **Cenote**’ler, kireçtaşının çökmesiyle oluşan doğal yeraltı nehirleri ve obruklardır. Antik Mayalar için bu sular sadece yaşam kaynağı değil, aynı zamanda yeraltı dünyasına (Xibalba) açılan kutsal kapılardı. Bugün ise turkuaz suları ve sarkan devasa sarkıtlarıyla dünyanın en eşsiz yüzme ve dalış noktalarını oluştururlar.</p>
-                <p>Karayip kıyısında yer alan **Tulum**, dünyada deniz kenarına inşa edilmiş tek antik şehirdir. Beyaz kumların bittiği yerde başlayan piramit kalıntıları, denizin sonsuz maviliğiyle birleşerek sürreal bir manzara sunar.</p>
+        <section>
+            <span class="section-tag">Bölüm 2: Yeraltı Dünyasının Kutsal Suları</span>
+            <h2>Cenoteler ve Karayipler'in Sürreal Doğası</h2>
+            <div class="grid-info">
+                <p>Meksika’nın büyüleyiciliği sadece yeryüzüyle sınırlı değildir; toprağın altında bambaşka bir dünya gizlidir. Yucatan genelinde sayıları binleri bulan <strong>Cenote</strong>’ler, kireçtaşının çökmesiyle oluşan doğal yeraltı nehirleri ve obruklardır. Antik Mayalar için bu sular sadece yaşam kaynağı değil, aynı zamanda yeraltı dünyasına (Xibalba) açılan kutsal birer kapıydı. Bugün ise turkuaz suları ve sarkan devasa sarkıtlarıyla dünyanın en eşsiz yüzme ve dalış noktalarını oluştururlar. Kristal berraklığındaki bu sulara dalmak, binlerce yıllık jeolojik bir sessizliğe tanıklık etmektir.</p>
+                <img src="https://www.traveler.com/wp-content/uploads/2024/02/Cenote-Ik-Kil-1a.jpg" alt="Cenote">
             </div>
-            <img src="https://www.traveler.com/wp-content/uploads/2024/02/Cenote-Ik-Kil-1a.jpg" alt="Cenote">
-        </div>
+            <p>Karayip kıyısındaki <strong>Tulum</strong> ise dünyada deniz kenarına inşa edilmiş tek antik Maya şehridir. Beyaz kumsalların bittiği noktada başlayan piramit kalıntıları, denizin sonsuz maviliğiyle birleşerek ziyaretçilerine sürreal bir manzara sunar. Burası, tarihin ve doğanın el ele verdiği, zamanın yavaşladığı nadir noktalardan biridir.</p>
+        </section>
 
-        <div class="cultural-highlight">
-            <h3>Ölüler Günü (Día de los Muertos)</h3>
-            <p>Meksika’yı anlamak için sadece yerlerini görmek yetmez, ruhunu hissetmek gerekir. Her yıl Kasım başında düzenlenen Ölüler Günü, yasın değil, sevginin ve anıların festivalidir. Sokaklar turuncu çiçeklerle (Cempasúchil) süslenir, her köşede şekerden kurukafalar ve rengarenk "Ofrenda" [sunak] masaları kurulur. Meksika halkı için ölüm, hayatın sonu değil, hatırlanan sürece devam eden bir yolculuktur.</p>
+        <div class="pro-tips">
+            <h3>Kültürel Derinlik ve Yaşam Enerjisi</h3>
+            <div class="tip-item">
+                <strong>Ölüler Günü (Día de los Muertos):</strong> Meksika ruhunu anlamak için Kasım başındaki bu festivali deneyimlemelisiniz. Ölümün bir son değil, hatırlanan sürece devam eden bir yolculuk sayıldığı bu günlerde sokaklar turuncu çiçeklerle (Cempasúchil) ve rengarenk "Ofrenda" [sunak] masalarıyla şenlenir.
+            </div>
+            <div class="tip-item">
+                <strong>Sanatın ve Gastronominin Kalbi:</strong> Sömürge döneminden kalma barok mimarisiyle <strong>San Miguel de Allende</strong> ve ülkenin lezzet merkezi kabul edilen <strong>Oaxaca</strong>, Meksika'nın modern yüzünü ve zengin el sanatlarını keşfetmek için ideal duraklardır.
+            </div>
+            <div class="tip-item">
+                <strong>Yerel Tavsiye:</strong> Mariachi müziğinin yankılandığı meydanlarda yerel halkla karışın ve Meksika mutfağının UNESCO mirası kabul edilen o derin baharat kültürünü mutlaka yerinde tadın.
+            </div>
         </div>
-
-        <span class="section-tag">Bölüm 3: Egzotik Şehirler</span>
-        <h2>Oaxaca ve San Miguel de Allende</h2>
-        <p>Meksika’nın kültürel derinliği, sömürge döneminden kalma renkli kasabalarında devam eder. **Oaxaca**, hem gastronomisi hem de yerel el sanatlarıyla ülkenin kalbidir. **San Miguel de Allende** ise barok mimarisi ve sanat galerileriyle dünyanın en güzel şehirleri listesinde daima üst sıralardadır. Her sokak başında duyacağınız Mariachi müziği ve meydanlarda dans eden insanlar, Meksika'nın bitmek bilmeyen yaşam enerjisinin birer parçasıdır.</p>
     </article>
 
 </body>

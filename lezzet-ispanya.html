@@ -2,30 +2,196 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>İspanyol Mutfağı | Lezzet Şöleni</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <title>İspanya | Gastronomi ve Lezzet Rotası</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --accent: #aa381e; --dark: #1a1a1a; }
-        body { font-family: 'Inter', sans-serif; line-height: 2.3; color: var(--dark); margin: 0; background: #fdfdfd; }
-        .header { height: 60vh; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://plus.unsplash.com/premium_photo-1731953243143-c69471ac68c9?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover fixed; display: flex; align-items: center; justify-content: center; color: white; }
-        .article { max-width: 1000px; margin: 80px auto; padding: 40px; }
-        h2 { font-family: 'Playfair Display'; font-size: 3.5rem; color: var(--accent); margin-bottom: 2.5rem; }
-        p { font-size: 1.35rem; margin-bottom: 3.5rem; text-align: justify; }
-        .tapas-box { background: #fffcf5; padding: 4rem; border-radius: 40px; border: 2px solid var(--accent); margin: 5rem 0; }
+        :root { 
+            --gold: #C5A065; 
+            --dark: #0A0A0A; 
+            --white: #FFFFFF;
+        }
+
+        html { zoom: 95%; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.8; 
+            color: rgba(255,255,255,0.9); 
+            background: var(--dark); 
+            overflow-x: hidden; 
+        }
+
+        /* --- Sağ Üst Yüzer Geri Dön Butonu --- */
+        .floating-back-btn {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 2000;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.3;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 10px 20px;
+            border: 1px solid rgba(197, 160, 101, 0.2);
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .floating-back-btn:hover {
+            opacity: 1;
+            background: rgba(197, 160, 101, 0.1);
+            border-color: var(--gold);
+            transform: translateX(-8px);
+        }
+
+        /* --- Hero Section --- */
+        .hero { 
+            height: 80vh; 
+            background: linear-gradient(rgba(0,0,0,0.3), var(--dark)), 
+                        url('https://plus.unsplash.com/premium_photo-1731953243143-c69471ac68c9?q=80&w=1600') center/cover fixed; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .hero h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            letter-spacing: 10px;
+            color: var(--gold);
+            text-align: center;
+        }
+
+        /* --- Makale İçeriği --- */
+        .article-content { max-width: 850px; margin: 0 auto; padding: 80px 20px; }
+        
+        .section-tag { 
+            font-weight: 600; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            display: block; 
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            margin: 3.5rem 0 2rem; 
+            border-left: 4px solid var(--gold); 
+            padding-left: 2rem; 
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        p { 
+            font-size: 1.15rem; 
+            margin-bottom: 2.5rem; 
+            color: rgba(255,255,255,0.7); 
+            text-align: justify; 
+        }
+
+        b, strong { color: var(--white); font-weight: 600; }
+
+        /* --- Görsel Kutusu --- */
+        .image-box { margin: 5rem 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(197, 160, 101, 0.1); }
+        .image-box img { width: 100%; height: 550px; object-fit: cover; }
+        .image-box span { 
+            display: block; 
+            padding: 1.2rem 2rem; 
+            background: #111; 
+            color: var(--gold); 
+            font-style: italic; 
+        }
+
+        /* --- Bilgi Kutusu (Pro-Tips) --- */
+        .pro-tips { 
+            background: rgba(197, 160, 101, 0.03); 
+            padding: 4rem; 
+            border-radius: 20px; 
+            margin: 6rem 0; 
+            border: 1px solid rgba(197, 160, 101, 0.1);
+        }
+        
+        .pro-tips h3 { font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 2.5rem; color: var(--gold); text-align: center; }
+        
+        .tip-item { margin-bottom: 2rem; padding-left: 2rem; border-left: 2px solid var(--gold); }
+        .tip-item strong { color: var(--white); display: block; margin-bottom: 5px; }
+
+        /* --- Alıntı Kutusu --- */
+        .quote-box {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.8rem;
+            color: rgba(255,255,255,0.8);
+            margin: 4rem 0;
+            padding: 2rem;
+            border-top: 1px solid rgba(197, 160, 101, 0.2);
+            border-bottom: 1px solid rgba(197, 160, 101, 0.2);
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .floating-back-btn { top: auto; bottom: 30px; right: 20px; opacity: 0.8; background: var(--dark); }
+        }
     </style>
 </head>
 <body>
-    <div class="header"><h1>SPANISH GASTRONOMY</h1></div>
-    <div class="article">
-        <h2>Paylaşmanın Sanatı: Tapas ve Paella</h2>
-        <p>İspanyol mutfağı denince akla gelen ilk şey sosyalleşmedir. **Paella**, safranlı pirincin deniz ürünleri, tavuk veya sebzelerle dev tavalarda pişmesiyle oluşan bir görsel şölendir. Valencia kökenli bu yemek, İspanya’nın birliğini ve bereketini simgeler. Deniz ürünlerinin tazeliği, safranın altın sarısı rengiyle birleşerek damaklarda unutulmaz bir iz bırakır.</p>
-        
-        <img src="https://images.unsplash.com/photo-1614124544688-723cb2414de2?q=80&w=1889&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" style="width:100%; border-radius:30px; margin-bottom:4rem;">
 
-        <div class="tapas-box">
-            <h3>Tapas Kültürü: Küçük Tabaklar, Büyük Lezzetler</h3>
-            <p>**Tapas**, aslında bir yemekten ziyade bir yaşam tarzıdır. İş çıkışı gidilen barlarda içeceklerin yanında sunulan küçük atıştırmalıklardır. **Patatas Bravas** [acılı soslu patates], **Jamón Ibérico** [İber yarımadasına özgü meşhur kurutulmuş jambon] ve deniz ürünleri çeşitleri bu kültürün ana parçalarıdır. Bu gelenek, İspanyolların neşeli ve dışa dönük karakterinin mutfaktaki yansımasıdır.</p>
+    <a href="lezzetler.html" class="floating-back-btn">← Geri Dönün</a>
+
+    <div class="hero"><h1>İber Esintisi</h1></div>
+
+    <article class="article-content">
+        <section>
+            <span class="section-tag">Giriş: Sosyalleşmenin Mutfağı</span>
+            <h2>Paylaşmanın ve Neşenin Sanatı</h2>
+            <p>İspanyol mutfağı, sadece bir yemek yeme eylemi değil; dostlukların pekiştiği, kahkahaların yükseldiği bir kutlama <b>seremonisidir [törensel uygulama]</b>. Akdeniz'in taze deniz ürünleri, İç Anadolu'nun güçlü et kültürü ve safranın altın dokunuşu bu mutfağın karakterini belirler. İspanyollar için sofra, hayatın tüm neşesini bir araya getiren bir <b>heritage [kültürel miras]</b> alanıdır.</p>
+            
+            <div class="quote-box">
+                "İspanya'da yemek, bir kase safranlı pirincin çevresinde toplanan bir ailenin hikayesidir."
+            </div>
+        </section>
+
+        <section>
+            <span class="section-tag">Bölüm 1: Bölgesel Başyapıtlar</span>
+            <h2>Görsel Şölen: Paella ve Gastronomi Atlası</h2>
+            <p><strong>Valencia:</strong> İspanya'nın simgesi haline gelen <b>Paella</b>, safranlı pirincin dev tavalarda deniz mahsulleri veya sebzelerle buluştuğu bir sanat eseridir. Pirincin en dipteki o hafif yanık ve çıtır katmanı, lezzetin zirvesini oluşturur.</p>
+            <p><strong>San Sebastián:</strong> Dünyanın en çok Michelin yıldızına sahip şehirlerinden biri olan bu bölge, modern gastronomi tekniklerini yerel ürünlerle harmanlar. Burada yemek yemek, bir <b>masterpiece [başyapıt]</b> deneyimlemekle eş değerdir.</p>
+        </section>
+
+        <div class="image-box">
+            <img src="https://images.unsplash.com/photo-1614124544688-723cb2414de2?q=80&w=1200" alt="İspanyol Paellası">
+            <span>Altın Dokunuş: Safranın rengini verdiği, deniz ürünleriyle bezeli geleneksel Paella sunumu.</span>
         </div>
-    </div>
+
+        <section>
+            <span class="section-tag">Bölüm 2: Yaşam Tarzı Olarak Lezzet</span>
+            <h2>Küçük Tabaklar, Büyük Hikayeler: Tapas</h2>
+            <p>Bir İspanyol klasiği olan <strong>Tapas</strong>, aslında bir yaşam biçimidir. İş çıkışı gidilen barlarda sunulan <b>Patatas Bravas [acılı soslu patates]</b> veya meşhur kurutulmuş jambon olan <b>Jamón Ibérico</b>, bu kültürün temel taşlarıdır. Bu küçük atıştırmalıklar, İspanyolların dışa dönük ve hareketli ruhunu yansıtan bir mutfak <b>ritüelidir [geleneksel uygulama]</b>.</p>
+        </section>
+
+        <div class="pro-tips">
+            <h3>Gurmenin İspanya Notları</h3>
+            <div class="tip-item">
+                <strong>Tapas Turu:</strong> Barselona veya Madrid sokaklarında tek bir mekanda kalmak yerine, her barda bir meşhur tapas deneyerek "Tapeo" yapın.
+            </div>
+            <div class="tip-item">
+                <strong>Et Kültürü:</strong> Segovia bölgesinde geleneksel yöntemlerle taş fırınlarda pişen kuzu etlerini denemeden rotanızı tamamlamayın.
+            </div>
+            <div class="tip-item">
+                <strong>Tatlı Finali:</strong> Sıcak çikolataya batırılarak yenen çıtır <b>Churros</b> tatlısı, İspanya'nın her köşesinde günün her saati bulabileceğiniz bir mutluluk kaynağıdır.
+            </div>
+        </div>
+    </article>
+
 </body>
 </html>

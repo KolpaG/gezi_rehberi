@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Bilet Rezervasyon | Anadolu Gurme</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --gold: #C5A065; 
+            --dark: #0A0A0A; 
+            --darker: #050505;
+            --white: #FFFFFF;
+            --nav-bg: #002B36; 
+        }
+
+        html { zoom: 95%; scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--darker);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        /* --- Arka Plan Ayarları --- */
+        #bg-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -3;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+        }
+
+        #world-map {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            opacity: 0.25;
+            background-image: url('https://kolpag.github.io/gezi_rehberi/map.jpg');
+            background-size: cover;
+            filter: invert(1);
+        }
+
+        .glow-point {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 1s ease;
+            pointer-events: none;
+        }
+
+        #glow-from { background: radial-gradient(circle at var(--fx, 50%) var(--fy, 50%), rgba(255, 255, 255, 0.2) 0%, transparent 30%); }
+        #glow-to { background: radial-gradient(circle at var(--tx, 50%) var(--ty, 50%), rgba(255, 255, 255, 0.2) 0%, transparent 30%); }
+
+        nav {
+            background: var(--nav-bg);
+            padding: 20px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            letter-spacing: 6px;
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a {
+            text-decoration: none; color: var(--white); font-family: 'Inter', sans-serif;
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+            transition: 0.3s; opacity: 0.8;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+        }
+
+        /* Bilet Kısmı - Yüksekliği Biraz Azaltıldı ki Alttaki Kısım Gözüksün */
+        .hero-section {
+            min-height: 85vh; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .ticket-panel {
+            background: rgba(15, 15, 15, 0.9);
+            padding: 40px; border-radius: 20px;
+            border: 1px solid rgba(197, 160, 101, 0.2);
+            display: flex; flex-wrap: wrap; align-items: flex-end; gap: 20px;
+            width: 100%; max-width: 1400px; box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        /* İletişim Kısmı - Yukarı Yaklaştırıldı */
+        .footer-section {
+            padding: 20px 0 80px 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .contact-panel {
+            background: rgba(15, 15, 15, 0.9);
+            padding: 40px; border-radius: 20px;
+            border: 1px solid rgba(197, 160, 101, 0.2);
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 40px;
+            width: 100%; max-width: 1400px;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-info {
+            border-right: 1px solid rgba(197, 160, 101, 0.1);
+            display: flex; flex-direction: column; gap: 30px;
+        }
+
+        .contact-info-item h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .contact-info-item p { font-size: 1.1rem; opacity: 0.9; }
+
+        .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+        /* Tüm Input ve Textarea için Odaklanma (Yanma) Efekti */
+        .contact-form input:focus, 
+        .contact-form textarea:focus { 
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(197, 160, 101, 0.3);
+            background: #151515;
+            outline: none;
+        }
+
+        .contact-form textarea {
+            grid-column: span 2;
+            background: #111;
+            border: 1px solid rgba(197, 160, 101, 0.2);
+            padding: 15px;
+            border-radius: 6px;
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            min-height: 120px;
+            resize: none;
+            transition: 0.3s ease;
+        }
+
+        .submit-btn {
+            grid-column: span 2;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 15px;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.4s;
+            letter-spacing: 2px;
+        }
+
+        .submit-btn:hover { background: var(--gold); color: var(--dark); }
+
+        .input-group { display: flex; flex-direction: column; gap: 8px; }
+        .input-group label {
+            font-family: 'Cinzel', serif; font-size: 0.65rem; color: var(--gold);
+            letter-spacing: 1.5px; text-transform: uppercase;
+        }
+
+        select, input {
+            background: #111; border: 1px solid rgba(197, 160, 101, 0.2);
+            padding: 12px 15px; border-radius: 6px; color: var(--white);
+            font-size: 0.9rem; width: 100%;
+            transition: 0.3s ease;
+        }
+
+        .price-box {
+            text-align: right; min-width: 165px; border-left: 1px solid rgba(197, 160, 101, 0.2); padding-left: 20px;
+        }
+
+        .price-box .amount {
+            display: block; font-family: 'Cinzel', serif; font-size: 1.6rem;
+            color: var(--gold); margin: 5px 0;
+        }
+
+        .buy-btn {
+            background: var(--gold); color: var(--dark); border: none;
+            padding: 15px 35px; border-radius: 6px; font-family: 'Cinzel', serif;
+            font-weight: 700; text-transform: uppercase; cursor: pointer; transition: 0.4s;
+        }
+        .buy-btn:disabled { opacity: 0.3; filter: grayscale(1); }
+    </style>
+</head>
+<body>
+
+    <div id="bg-container"></div>
+    <div id="world-map"></div>
+    <div id="glow-from" class="glow-point"></div>
+    <div id="glow-to" class="glow-point"></div>
+
+    <nav>
+        <a href="index.html" class="logo">GEZGİN</a>
+        <div class="nav-links">
+            <a href="index.html">ANA SAYFA</a>
+            <a href="rotalar.html">ROTALAR</a>
+            <a href="lezzetler.html">LEZZETLER</a>
+            <a href="bilet-al.html">BİLET AL</a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <section class="hero-section">
+            <div class="ticket-panel">
+                <div class="input-group">
+                    <label>Nereden</label>
+                    <select id="fromCountry" onchange="handleCountryChange('from')">
+                        <option value="" selected disabled>Ülke Seçin</option>
+                        <option value="tr">Türkiye</option>
+                        <option value="gr">Yunanistan</option>
+                        <option value="es">İspanya</option>
+                        <option value="mx">Meksika</option>
+                        <option value="no">Norveç</option>
+                        <option value="ch">İsviçre</option>
+                        <option value="it">İtalya</option>
+                        <option value="fr">Fransa</option>
+                        <option value="jp">Japonya</option>
+                        <option value="is">İzlanda</option>
+                    </select>
+                    <select id="fromCity" class="sub-select" disabled>
+                        <option value="">Şehir Seçin</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Nereye</label>
+                    <select id="toCountry" onchange="handleCountryChange('to')">
+                        <option value="" selected disabled>Ülke Seçin</option>
+                        <option value="tr">Türkiye</option>
+                        <option value="gr">Yunanistan</option>
+                        <option value="es">İspanya</option>
+                        <option value="mx">Meksika</option>
+                        <option value="no">Norveç</option>
+                        <option value="ch">İsviçre</option>
+                        <option value="it">İtalya</option>
+                        <option value="fr">Fransa</option>
+                        <option value="jp">Japonya</option>
+                        <option value="is">İzlanda</option>
+                    </select>
+                    <select id="toCity" class="sub-select" disabled>
+                        <option value="">Şehir Seçin</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Tarih</label>
+                    <input type="date" id="travelDate" onchange="updateLogic()">
+                </div>
+
+                <div class="input-group">
+                    <label>Kalkış Saati</label>
+                    <select id="hours" disabled onchange="updateLogic()">
+                        <option value="">Saat Seçin</option>
+                    </select>
+                </div>
+
+                <div class="price-box">
+                    <label>Toplam Bilet</label>
+                    <span class="amount" id="totalPrice">₺0</span>
+                    <button class="buy-btn" id="buyBtn" disabled>Bilet Al</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="footer-section">
+            <div class="contact-panel">
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <h3>Tel No</h3>
+                        <p>+90 532 985 41 23</p>
+                    </div>
+                    <div class="contact-info-item">
+                        <h3>E-Mail</h3>
+                        <p>iletisim@anadolugurme.hotmail.com</p>
+                    </div>
+                </div>
+
+                <form class="contact-form">
+                    <div class="input-group">
+                        <label>E-Posta Adresiniz</label>
+                        <input type="email" placeholder="mail@example.com" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Konu</label>
+                        <input type="text" placeholder="Mesaj Konusu" required>
+                    </div>
+                    <textarea placeholder="Açıklamanızı buraya yazın..." required></textarea>
+                    <button type="submit" class="submit-btn">Mesajı Gönder</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const mapCoordinates = {
+            tr: { x: 58, y: 40 }, gr: { x: 55, y: 41 }, es: { x: 48, y: 42 },
+            mx: { x: 25, y: 55 }, no: { x: 53, y: 22 }, ch: { x: 51, y: 38 },
+            it: { x: 52, y: 41 }, fr: { x: 50, y: 39 }, jp: { x: 85, y: 45 },
+            is: { x: 44, y: 20 }
+        };
+
+        const database = {
+            tr: { cities: ["İstanbul", "Ankara", "Antalya"], coords: [40, 32] },
+            gr: { cities: ["Atina", "Selanik", "Girit"], coords: [38, 23] },
+            es: { cities: ["Madrid", "Barselona", "Valencia"], coords: [40, -3] },
+            mx: { cities: ["Mexico City", "Cancun", "Tulum"], coords: [19, -99] },
+            no: { cities: ["Oslo", "Bergen", "Tromsø"], coords: [60, 10] },
+            ch: { cities: ["Zürih", "Cenevre", "Bern"], coords: [47, 8] },
+            it: { cities: ["Roma", "Milano", "Venedik"], coords: [41, 12] },
+            fr: { cities: ["Paris", "Lyon", "Marsilya"], coords: [48, 2] },
+            jp: { cities: ["Tokyo", "Osaka", "Kyoto"], coords: [35, 139] },
+            is: { cities: ["Reykjavik", "Akureyri", "Vik"], coords: [64, -21] }
+        };
+
+        function updateMapVisuals() {
+            const from = document.getElementById('fromCountry').value;
+            const to = document.getElementById('toCountry').value;
+            const gFrom = document.getElementById('glow-from');
+            const gTo = document.getElementById('glow-to');
+
+            if (from && mapCoordinates[from]) {
+                const { x, y } = mapCoordinates[from];
+                gFrom.style.setProperty('--fx', x + '%');
+                gFrom.style.setProperty('--fy', y + '%');
+                gFrom.style.opacity = '1';
+            } else { gFrom.style.opacity = '0'; }
+
+            if (to && mapCoordinates[to]) {
+                const { x, y } = mapCoordinates[to];
+                gTo.style.setProperty('--tx', x + '%');
+                gTo.style.setProperty('--ty', y + '%');
+                gTo.style.opacity = '1';
+            } else { gTo.style.opacity = '0'; }
+        }
+
+        function handleCountryChange(type) {
+            const fromSelect = document.getElementById('fromCountry');
+            const toSelect = document.getElementById('toCountry');
+            const countryCode = document.getElementById(type + 'Country').value;
+            const citySelect = document.getElementById(type + 'City');
+            
+            citySelect.innerHTML = '<option value="" selected disabled>Şehir Seçin</option>';
+            if(database[countryCode]) {
+                database[countryCode].cities.forEach(city => {
+                    citySelect.innerHTML += `<option value="${city}">${city}</option>`;
+                });
+                citySelect.disabled = false;
+            }
+            
+            if (type === 'from') {
+                Array.from(toSelect.options).forEach(opt => opt.disabled = false);
+                const targetOption = Array.from(toSelect.options).find(opt => opt.value === countryCode);
+                if (targetOption) targetOption.disabled = true;
+            } else {
+                Array.from(fromSelect.options).forEach(opt => opt.disabled = false);
+                const targetOption = Array.from(fromSelect.options).find(opt => opt.value === countryCode);
+                if (targetOption) targetOption.disabled = true;
+            }
+
+            const hourSelect = document.getElementById('hours');
+            hourSelect.innerHTML = '<option value="" selected disabled>Saat Seçin</option>';
+            hourSelect.disabled = true;
+            
+            updateMapVisuals();
+            updateLogic();
+        }
+
+        function updateLogic() {
+            const from = document.getElementById('fromCountry').value;
+            const to = document.getElementById('toCountry').value;
+            const date = document.getElementById('travelDate').value;
+            const hourSelect = document.getElementById('hours');
+            const buyBtn = document.getElementById('buyBtn');
+
+            if(from && to && from !== to && date) {
+                if(hourSelect.options.length <= 1) {
+                    hourSelect.innerHTML = '<option value="" selected disabled>Saat Seçin</option>';
+                    ["08:30", "13:00", "17:45", "22:30"].forEach(s => hourSelect.innerHTML += `<option value="${s}">${s}</option>`);
+                }
+                hourSelect.disabled = false;
+                if(hourSelect.value) buyBtn.disabled = false;
+                calculatePrice();
+            } else {
+                hourSelect.disabled = true;
+                buyBtn.disabled = true;
+                document.getElementById('totalPrice').innerText = "₺0";
+            }
+        }
+
+        function calculatePrice() {
+            const fromCode = document.getElementById('fromCountry').value;
+            const toCode = document.getElementById('toCountry').value;
+            if(!fromCode || !toCode || fromCode === toCode) return;
+            const c1 = database[fromCode].coords;
+            const c2 = database[toCode].coords;
+            const dist = Math.sqrt(Math.pow(c1[0]-c2[0], 2) + Math.pow(c1[1]-c2[1], 2));
+            let price = (dist * 350) + 5500; 
+            document.getElementById('totalPrice').innerText = "₺" + Math.floor(price).toLocaleString('tr-TR');
+        }
+    </script>
+</body>
+</html>

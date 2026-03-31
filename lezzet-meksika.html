@@ -2,39 +2,196 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Meksika | Gastronomi ve Baharat Sanatı</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <title>Meksika | Gastronomi ve Lezzet Rotası</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --mex-red: #c0392b; --mex-green: #27ae60; }
-        body { font-family: 'Inter', sans-serif; line-height: 1.8; margin: 0; background: #fff; }
-        .food-hero { height: 75vh; background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1800') center/cover; display: flex; align-items: center; justify-content: center; }
-        .food-hero h1 { font-family: 'Playfair Display'; font-size: 5.5rem; color: white; text-shadow: 0 10px 40px rgba(0,0,0,0.6); }
-        .article-mex { max-width: 900px; margin: -100px auto 100px; background: white; padding: 80px; border-radius: 60px; box-shadow: 0 50px 100px rgba(0,0,0,0.1); }
-        h2 { font-family: 'Playfair Display'; font-size: 3.5rem; color: var(--mex-red); margin-bottom: 2.5rem; }
-        p { font-size: 1.3rem; color: #333; margin-bottom: 3rem; text-align: justify; }
-        .food-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 5rem 0; }
-        .food-duo img { width: 100%; height: 450px; object-fit: cover; border-radius: 35px; }
-        .chef-note { background: #f1f8e9; padding: 4rem; border-radius: 40px; border-left: 10px solid var(--mex-green); margin: 6rem 0; }
+        :root { 
+            --gold: #C5A065; 
+            --dark: #0A0A0A; 
+            --white: #FFFFFF;
+        }
+
+        html { zoom: 95%; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.8; 
+            color: rgba(255,255,255,0.9); 
+            background: var(--dark); 
+            overflow-x: hidden; 
+        }
+
+        /* --- Sağ Üst Yüzer Geri Dön Butonu --- */
+        .floating-back-btn {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 2000;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.3;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 10px 20px;
+            border: 1px solid rgba(197, 160, 101, 0.2);
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .floating-back-btn:hover {
+            opacity: 1;
+            background: rgba(197, 160, 101, 0.1);
+            border-color: var(--gold);
+            transform: translateX(-8px);
+        }
+
+        /* --- Hero Section --- */
+        .hero { 
+            height: 80vh; 
+            background: linear-gradient(rgba(0,0,0,0.3), var(--dark)), 
+                        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1800') center/cover fixed; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .hero h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            letter-spacing: 10px;
+            color: var(--gold);
+            text-align: center;
+        }
+
+        /* --- Makale İçeriği --- */
+        .article-content { max-width: 850px; margin: 0 auto; padding: 80px 20px; }
+        
+        .section-tag { 
+            font-weight: 600; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            display: block; 
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            margin: 3.5rem 0 2rem; 
+            border-left: 4px solid var(--gold); 
+            padding-left: 2rem; 
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        p { 
+            font-size: 1.15rem; 
+            margin-bottom: 2.5rem; 
+            color: rgba(255,255,255,0.7); 
+            text-align: justify; 
+        }
+
+        b, strong { color: var(--white); font-weight: 600; }
+
+        /* --- Görsel Kutusu --- */
+        .image-box { margin: 5rem 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(197, 160, 101, 0.1); }
+        .image-box img { width: 100%; height: 550px; object-fit: cover; }
+        .image-box span { 
+            display: block; 
+            padding: 1.2rem 2rem; 
+            background: #111; 
+            color: var(--gold); 
+            font-style: italic; 
+        }
+
+        /* --- Bilgi Kutusu (Pro-Tips) --- */
+        .pro-tips { 
+            background: rgba(197, 160, 101, 0.03); 
+            padding: 4rem; 
+            border-radius: 20px; 
+            margin: 6rem 0; 
+            border: 1px solid rgba(197, 160, 101, 0.1);
+        }
+        
+        .pro-tips h3 { font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 2.5rem; color: var(--gold); text-align: center; }
+        
+        .tip-item { margin-bottom: 2rem; padding-left: 2rem; border-left: 2px solid var(--gold); }
+        .tip-item strong { color: var(--white); display: block; margin-bottom: 5px; }
+
+        /* --- Alıntı Kutusu --- */
+        .quote-box {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.8rem;
+            color: rgba(255,255,255,0.8);
+            margin: 4rem 0;
+            padding: 2rem;
+            border-top: 1px solid rgba(197, 160, 101, 0.2);
+            border-bottom: 1px solid rgba(197, 160, 101, 0.2);
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .floating-back-btn { top: auto; bottom: 30px; right: 20px; opacity: 0.8; background: var(--dark); }
+        }
     </style>
 </head>
 <body>
-    <div class="food-hero"><h1>FIESTA DE SABORES</h1></div>
-    <div class="article-mex">
-        <h2>Taco ve Tortilla: Meksika'nın Kalbi</h2>
-        <p>Meksika mutfağı, mısırın kutsal sayıldığı antik bir mirastır. El yapımı mısır tortillalarının içine giren her şey bir sanata dönüşür. **Taco al Pastor**, Lübnan etkileriyle harmanlanmış marine edilmiş etin, ananas dilimi ve taze kişnişle buluştuğu bir başyapıttır. Kuzeydeki **Burrito** çeşitlerinden güneyin meşhur **Mole** sosuna kadar Meksika, baharatın sadece "acı" değil, devasa bir aroma derinliği [koku ve tat zenginliği] olduğunu kanıtlar. Mole sosu, içinde çikolatanın bile bulunduğu 20'den fazla malzemenin günlerce pişmesiyle hazırlanır.</p>
-        
-        <div class="food-duo">
-            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=800">
-            <img src="https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?q=80&w=800">
+
+    <a href="lezzetler.html" class="floating-back-btn">← Geri Dönün</a>
+
+    <div class="hero"><h1>Baharatın Ruhu</h1></div>
+
+    <article class="article-content">
+        <section>
+            <span class="section-tag">Giriş: Kadim Mısırın Mirası</span>
+            <h2>Toprağın ve Ateşin Festivali</h2>
+            <p>Meksika mutfağı, binlerce yıllık mısır kültürünün ve Azteklerden gelen baharat sanatının modern dünyadaki en canlı <b>seremonisidir [törensel uygulama]</b>. Burada her tabak, sadece bir yemek değil; renklerin, aromaların ve tarihin buluştuğu bir <b>heritage [kültürel miras]</b> örneğidir. Meksika'da baharat, sadece acı vermek için değil, lezzeti bir üst seviyeye taşıyan bir <b>essence [öz]</b> olarak kullanılır.</p>
+            
+            <div class="quote-box">
+                "Meksika mutfağında her lokma, mısırın kutsallığına ve ateşin gücüne duyulan bir saygı duruşudur."
+            </div>
+        </section>
+
+        <section>
+            <span class="section-tag">Bölüm 1: Mutfak Klasikleri</span>
+            <h2>Taco'dan Mole Sosuna Bir Yolculuk</h2>
+            <p><strong>Taco al Pastor:</strong> Lübnan usulü pişirme tekniğinin Meksika baharatlarıyla harmanlandığı bu efsane, ananasın tatlılığı ve kişnişin ferahlığıyla damaklarda bir denge kurar. <strong>Mole Sosu:</strong> Meksika'nın en karmaşık sosu olan Mole, içinde çikolata ve 20'den fazla baharatın bulunduğu, günlerce süren bir sabrın ürünüdür. Bu sos, mutfağın derin <b>aroma [koku ve tat zenginliği]</b> yapısını simgeler.</p>
+            <p>Geleneksel <b>Tortilla [mısır ekmeği]</b> el yapımı olduğunda, mısırın o toprak kokusu tabağın tüm karakterini değiştirir.</p>
+        </section>
+
+        <div class="image-box">
+            <img src="https://vacationintulum.com/wp-content/uploads/2024/11/IMG_5231.jpeg" alt="Meksika Tacoları">
+            <span>Sokak Sanatı: Geleneksel Taquería kültürünün en canlı ve lezzetli yansıması.</span>
         </div>
 
-        <h2>Sokak Lezzetleri ve Guacamole</h2>
-        <p>Gerçek Meksika deneyimi sokaklardaki "Taquería"larda yaşanır. Taze avokado, soğan, domates ve misket limonuyla hazırlanan **Guacamole**, her sofranın vazgeçilmezidir. Tatlı bir final için ise tarçınlı ve şekerli kızarmış hamur tatlısı olan **Churro**, sıcak çikolata eşliğinde geceyi kapatmanın en güzel yoludur.</p>
+        <section>
+            <span class="section-tag">Bölüm 2: Sosyal Lezzetler</span>
+            <h2>Tazeliğin Doruk Noktası: Guacamole</h2>
+            <p>Taze avokado, misket limonu ve soğanla hazırlanan <strong>Guacamole</strong>, her Meksika sofrasının vazgeçilmez eşlikçisidir. Sokaklardaki hareketli yaşamın bir parçası olan bu lezzetler, ülkenin dışa dönük ve enerjik ruhunu yansıtır. Tatlı bir kapanış için ise tarçınlı ve şekerli çıtır <b>Churros</b>, sıcak çikolata eşliğinde bir mutfak <b>ritüelidir [geleneksel uygulama]</b>.</p>
+        </section>
 
-        <div class="chef-note">
-            <h3>Ustanın Sırrı</h3>
-            <p>Meksika yemeği yerken yanındaki "Salsa" soslarına dikkat edin. Yeşil sos (Salsa Verde) genellikle tomatillo [yeşil domates benzeri meyve] ile yapılır ve daha ferahlatıcıdır; kırmızı sos ise farklı chili biberleri ile hazırlanır ve ateşli bir deneyim sunar.</p>
+        <div class="pro-tips">
+            <h3>Gurmenin Meksika Notları</h3>
+            <div class="tip-item">
+                <strong>Salsa Seçimi:</strong> Ferahlatıcı bir başlangıç için <b>Salsa Verde [yeşil sos]</b>; daha derin ve ateşli bir deneyim için chili biberli kırmızı sosları tercih edin.
+            </div>
+            <div class="tip-item">
+                <strong>Yerel Deneyim:</strong> Gerçek Meksika mutfağını tatmak için restoranlar yerine, kalabalık sokaklardaki yerel <b>Taquería [taco dükkanı]</b> tezgahlarına şans verin.
+            </div>
+            <div class="tip-item">
+                <strong>Avokado Sırrı:</strong> Gerçek bir Guacamole asla pürüzsüz bir krema gibi olmamalı; içindeki malzemelerin dokusu hissedilmelidir.
+            </div>
         </div>
-    </div>
+    </article>
+
 </body>
 </html>

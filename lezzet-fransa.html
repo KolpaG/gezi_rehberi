@@ -2,30 +2,197 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Fransız Mutfağı | Gastronominin Mabedi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <title>Fransa | Gastronomi ve Lezzet Rotası</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --burgundy: #800020; --cream: #fdfaf5; }
-        body { font-family: 'Inter', sans-serif; line-height: 2.3; color: #1a1a1a; margin: 0; background: var(--cream); }
-        .hero-banner { height: 60vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1608500219063-e5164085cd6f?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover fixed; display: flex; align-items: center; justify-content: center; color: white; }
-        .main-content { max-width: 1000px; margin: 60px auto; background: white; padding: 80px; border-radius: 40px; }
-        h2 { font-family: 'Playfair Display'; font-size: 3.5rem; color: var(--burgundy); }
-        p { font-size: 1.35rem; margin-bottom: 3.5rem; text-align: justify; }
-        .technique-box { background: #fffcfc; border: 3px double var(--burgundy); padding: 5rem; border-radius: 40px; }
+        :root { 
+            --gold: #C5A065; 
+            --dark: #0A0A0A; 
+            --white: #FFFFFF;
+        }
+
+        html { zoom: 95%; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.8; 
+            color: rgba(255,255,255,0.9); 
+            background: var(--dark); 
+            overflow-x: hidden; 
+        }
+
+        /* --- Sağ Üst Yüzer Geri Dön Butonu --- */
+        .floating-back-btn {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 2000;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.3;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 10px 20px;
+            border: 1px solid rgba(197, 160, 101, 0.2);
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .floating-back-btn:hover {
+            opacity: 1;
+            background: rgba(197, 160, 101, 0.1);
+            border-color: var(--gold);
+            transform: translateX(-8px);
+        }
+
+        /* --- Hero Section --- */
+        .hero { 
+            height: 80vh; 
+            background: linear-gradient(rgba(0,0,0,0.3), var(--dark)), 
+                        url('https://images.unsplash.com/photo-1608500219063-e5164085cd6f?q=80&w=1600') center/cover fixed; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .hero h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            letter-spacing: 10px;
+            color: var(--gold);
+            text-align: center;
+        }
+
+        /* --- Makale İçeriği --- */
+        .article-content { max-width: 850px; margin: 0 auto; padding: 80px 20px; }
+        
+        .section-tag { 
+            font-weight: 600; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            display: block; 
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            margin: 3.5rem 0 2rem; 
+            border-left: 4px solid var(--gold); 
+            padding-left: 2rem; 
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        p { 
+            font-size: 1.15rem; 
+            margin-bottom: 2.5rem; 
+            color: rgba(255,255,255,0.7); 
+            text-align: justify; 
+        }
+
+        b, strong { color: var(--white); font-weight: 600; }
+
+        /* --- Görsel Kutusu --- */
+        .image-box { margin: 5rem 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(197, 160, 101, 0.1); }
+        .image-box img { width: 100%; height: 550px; object-fit: cover; }
+        .image-box span { 
+            display: block; 
+            padding: 1.2rem 2rem; 
+            background: #111; 
+            color: var(--gold); 
+            font-style: italic; 
+        }
+
+        /* --- Bilgi Kutusu (Pro-Tips) --- */
+        .pro-tips { 
+            background: rgba(197, 160, 101, 0.03); 
+            padding: 4rem; 
+            border-radius: 20px; 
+            margin: 6rem 0; 
+            border: 1px solid rgba(197, 160, 101, 0.1);
+        }
+        
+        .pro-tips h3 { font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 2.5rem; color: var(--gold); text-align: center; }
+        
+        .tip-item { margin-bottom: 2rem; padding-left: 2rem; border-left: 2px solid var(--gold); }
+        .tip-item strong { color: var(--white); display: block; margin-bottom: 5px; }
+
+        /* --- Alıntı Kutusu --- */
+        .quote-box {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.8rem;
+            color: rgba(255,255,255,0.8);
+            margin: 4rem 0;
+            padding: 2rem;
+            border-top: 1px solid rgba(197, 160, 101, 0.2);
+            border-bottom: 1px solid rgba(197, 160, 101, 0.2);
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .floating-back-btn { top: auto; bottom: 30px; right: 20px; opacity: 0.8; background: var(--dark); }
+        }
     </style>
 </head>
 <body>
-    <div class="hero-banner"><h1>CUISINE FRANÇAISE</h1></div>
-    <div class="main-content">
-        <h2>Haute Cuisine: Mükemmeliyetin Reçetesi</h2>
-        <p>Fransız mutfağı, UNESCO tarafından koruma altına alınan tek mutfak kültürüdür. Burada her sosun bir hiyerarşisi, her kesim tarzının bir ismi vardır. **Haute Cuisine** [üst düzey yemek sanatı], malzemenin en saf ve teknik açıdan en kusursuz halidir.</p>
-        
-        <img src="https://images.unsplash.com/photo-1608835291093-394b0c943a75?q=80&w=1200" style="width:100%; border-radius:30px; margin-bottom:4rem;">
 
-        <div class="technique-box">
-            <h3>Boulangerie ve Patisserie</h3>
-            <p>Bir Fransız sabahı, çıtır bir **Croissant** [kruvasan] ile başlar. Tatlı dünyasında ise **Macaron**, **Crème Brûlée** [üstü karamelize edilmiş krema] ve **Soufflé** [sufle], Fransızların detaylara verdiği önemin kanıtıdır.</p>
+    <a href="lezzetler.html" class="floating-back-btn">← Geri Dönün</a>
+
+    <div class="hero"><h1>Zarafetin Mutfağı</h1></div>
+
+    <article class="article-content">
+        <section>
+            <span class="section-tag">Giriş: Mutfak Sanatının Mabedi</span>
+            <h2>Tekniğin ve Estetiğin Buluşması</h2>
+            <p>Fransız mutfağı, dünyada gastronominin temel taşlarını belirleyen, her tekniğin ve her sosun bir hiyerarşiye sahip olduğu devasa bir ekoldür. UNESCO tarafından somut olmayan kültürel miras listesine alınan bu mutfak, malzemenin en kusursuz ve teknik açıdan en rafine halidir. <b>Haute Cuisine [üst düzey yemek sanatı]</b>, sadece bir yemek pişirme yöntemi değil, bir yaşam disiplinidir.</p>
+            
+            <div class="quote-box">
+                "Fransızlar için yemek, bir ihtiyaçtan öte, her aşaması titizlikle planlanmış bir performans sanatıdır."
+            </div>
+        </section>
+
+        <section>
+            <span class="section-tag">Bölüm 1: Gastronomi Klasikleri</span>
+            <h2>Bölgesel Zenginlik ve Sos Kültürü</h2>
+            <p><strong>Paris:</strong> Modern gastronomisinin kalbi olan başkentte, Michelin yıldızlı restoranlardan en samimi <b>Bistro [küçük mahalle lokantası]</b> duraklarına kadar her yerde kalite esastır. <strong>Lyon:</strong> Fransa’nın gastronomi başkenti olarak kabul edilen bu şehirde, geleneksel <b>Bouchon [Lyon'a has yerel lokanta]</b> kültürü, mutfağın köklü tarihini günümüze taşır.</p>
+            <p>Fransız mutfağının ruhu soslarda gizlidir. Beş ana sos (Mother Sauces), binlerce farklı lezzetin kapısını aralayan anahtarlardır. Her malzeme, kendine has bir pişirme <b>ritüeli [geleneksel uygulama]</b> ile tabağa aktarılır.</p>
+        </section>
+
+        <div class="image-box">
+            <img src="https://images.unsplash.com/photo-1608835291093-394b0c943a75?q=80&w=1200" alt="Fransız Yemek Sunumu">
+            <span>Mutfak Sanatı: Fransız şeflerin elinden çıkan, görsel ve tatsal bir mükemmellik örneği.</span>
         </div>
-    </div>
+
+        <section>
+            <span class="section-tag">Bölüm 2: Fırın ve Pastane Sanatı</span>
+            <h2>Çıtır Bir Sabah ve Tatlı Final</h2>
+            <p>Bir Fransız sabahı, sokağa yayılan taze tereyağı kokusuyla başlar. Fırından yeni çıkmış, kat kat hamuruyla çıtırdayan bir <strong>Croissant</strong> [kruvasan], güne başlamanın en lezzetli yoludur. <b>Boulangerie [fırın]</b> kültürü, Fransız günlük hayatının en temel parçasıdır.</p>
+            <p>Tatlı dünyasında ise zarafet konuşur. Rengarenk <strong>Macaron</strong>lar, üstü yakılmış bir <strong>Crème Brûlée</strong> veya fırından yükselen bir <strong>Soufflé</strong> [sufle], Fransız pastacılığının (Patisserie) ulaştığı zirveyi gösterir.</p>
+        </section>
+
+        <div class="pro-tips">
+            <h3>Gezginin Fransa Notları</h3>
+            <div class="tip-item">
+                <strong>Peynir Kültürü:</strong> Fransa'da 400'den fazla peynir çeşidi bulunur; her bölgenin kendine özgü peynirini yerinde denemek gerçek bir keşif <b>serüvenidir [macera]</b>.
+            </div>
+            <div class="tip-item">
+                <strong>Ekmek Kuralı:</strong> Bir fırına girdiğinizde gerçek kaliteyi anlamak için <b>Baguette Tradition</b> sipariş edin; bu ekmek sadece dört temel malzeme ile hazırlanır.
+            </div>
+            <div class="tip-item">
+                <strong>Yemek Saati:</strong> Fransa'da öğle ve akşam yemeği saatleri keskindir; bu saatlerin dışında mutfakların kapalı olabileceğini unutmayın.
+            </div>
+        </div>
+    </article>
+
 </body>
 </html>

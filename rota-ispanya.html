@@ -3,28 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <title>İspanya | Endülüs'ten Katalonya'ya Yolculuk</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --spanish-red: #aa381e; --gold: #f1bf00; --dark: #1a1a1a; }
-        body { font-family: 'Inter', sans-serif; line-height: 2.2; color: var(--dark); margin: 0; background: #fff; }
-        .hero { height: 80vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1583422409516-2895a77efded?q=80&w=1200') center/cover fixed; display: flex; align-items: center; justify-content: center; color: white; }
-        .hero h1 { font-family: 'Playfair Display'; font-size: 6rem; letter-spacing: 5px; text-transform: uppercase; }
-        .container { max-width: 1100px; margin: -100px auto 100px; background: white; padding: 80px; border-radius: 40px; box-shadow: 0 40px 100px rgba(0,0,0,0.1); }
-        h2 { font-family: 'Playfair Display'; font-size: 3.5rem; margin: 5rem 0 2rem; color: var(--spanish-red); border-left: 15px solid var(--gold); padding-left: 30px; }
-        p { font-size: 1.4rem; margin-bottom: 4rem; text-align: justify; }
-        .feature-img { width: 100%; border-radius: 40px; margin: 4rem 0; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+        :root { 
+            --gold: #C5A065; 
+            --dark: #0A0A0A; 
+            --white: #FFFFFF;
+        }
+
+        html { zoom: 95%; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.8; 
+            color: rgba(255,255,255,0.9); 
+            background: var(--dark); 
+            overflow-x: hidden; 
+        }
+
+        /* --- Sağ Üst Yüzer Geri Dön Butonu --- */
+        .floating-back-btn {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 2000;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.3;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 10px 20px;
+            border: 1px solid rgba(197, 160, 101, 0.2);
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .floating-back-btn:hover {
+            opacity: 1;
+            background: rgba(197, 160, 101, 0.1);
+            border-color: var(--gold);
+            transform: translateX(-8px);
+        }
+
+        /* --- Hero Alanı --- */
+        .hero { 
+            height: 80vh; 
+            background: linear-gradient(rgba(0,0,0,0.3), var(--dark)), 
+                        url('https://images.unsplash.com/photo-1583422409516-2895a77efded?q=80&w=1200') center/cover fixed; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .hero h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            letter-spacing: 12px;
+            color: var(--gold);
+            text-align: center;
+        }
+
+        /* --- Makale İçeriği --- */
+        .article-content { max-width: 850px; margin: 0 auto; padding: 80px 20px; }
+        
+        .section-tag { 
+            font-weight: 600; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            display: block; 
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            margin: 3.5rem 0 2rem; 
+            border-left: 4px solid var(--gold); 
+            padding-left: 2rem; 
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        p { 
+            font-size: 1.15rem; 
+            margin-bottom: 2.5rem; 
+            color: rgba(255,255,255,0.7); 
+            text-align: justify; 
+        }
+
+        /* Satır Bölünme Hatasını Engelleyen Sabitleme */
+        b, strong {
+            color: var(--white);
+            font-weight: 600;
+            display: inline !important;
+        }
+        
+        /* Görsel Kutusu */
+        .image-box { margin: 5rem 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(197, 160, 101, 0.1); }
+        .image-box img { width: 100%; height: 550px; object-fit: cover; filter: brightness(0.8); transition: 0.5s; }
+        .image-box:hover img { filter: brightness(1); }
+        .image-box span { 
+            display: block; 
+            padding: 1.2rem 2rem; 
+            background: #111; 
+            color: var(--gold); 
+            font-style: italic; 
+            font-size: 0.9rem;
+        }
+
+        /* İpucu Kutusu */
+        .pro-tips { 
+            background: rgba(197, 160, 101, 0.03); 
+            padding: 4rem; 
+            border-radius: 20px; 
+            margin: 6rem 0; 
+            border: 1px solid rgba(197, 160, 101, 0.1);
+        }
+        
+        .pro-tips h3 { 
+            font-family: 'Cinzel', serif; 
+            font-size: 1.8rem; 
+            margin-bottom: 2.5rem; 
+            color: var(--gold); 
+            text-align: center; 
+        }
+        
+        .tip-item { 
+            margin-bottom: 2rem; 
+            padding-left: 2rem; 
+            border-left: 2px solid var(--gold); 
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .tip-item strong { 
+            color: var(--white); 
+            display: inline !important; 
+            margin-right: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .floating-back-btn { top: auto; bottom: 30px; right: 20px; opacity: 0.8; background: var(--dark); }
+            h2 { font-size: 2.2rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="hero"><h1>ESPANA</h1></div>
-    <div class="container">
-        <h2>Barselona: Gaudi'nin Düşler Şehri</h2>
-        <p>Katalonya'nın kalbi Barselona, modernizmin dehası Antoni Gaudi'nin yaşayan bir sergisidir. Şehrin simgesi olan **Sagrada Familia**, bitmeyen bir dua gibi gökyüzüne uzanır. Park Güell'in mozaikleri arasında yürürken kendinizi bir masalın içinde hissedersiniz. **La Rambla** caddesinin enerjisi, Gotik Mahalle'nin (Barri Gòtic) dar ve gizemli sokaklarıyla birleşerek İspanya'nın hem modern hem de tarihi yüzünü aynı anda sunar.</p>
-        
-        <img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?q=80&w=1200" class="feature-img">
 
-        <h2>Endülüs: İslam ve Hristiyan Mirasının Kesişimi</h2>
-        <p>İspanya'nın güneyi, yani Endülüs bölgesi, Mağribi [Kuzey Afrikalı Müslümanlar] etkisinin en zarif örneklerini taşır. Granada'daki **Elhamra Sarayı**, su sesleri ve geometrik süslemeleriyle bir yeryüzü cennetini andırır. Sevilla’nın flamenko ritimleri ve Cordoba’nın muazzam Kurtuba Camii (Mezquita), bu toprakların ne kadar derin bir kültürel katmana sahip olduğunu kanıtlar. Burası "La Siesta" [öğle uykusu geleneği] ruhunun ve sıcak güneşin ana vatanıdır.</p>
-    </div>
+    <a href="rotalar.html" class="floating-back-btn">← Geri Dönün</a>
+
+    <div class="hero"><h1>Akdeniz Ateşi</h1></div>
+
+    <article class="article-content">
+        <section>
+            <span class="section-tag">Bölüm 1: Katalonya'nın Mimari Dehası</span>
+            <h2>Barselona: Gaudi'nin Düşler Sahnesi</h2>
+            <p>Katalonya'nın kalbi olan Barselona, sadece bir şehir değil; modernizmin dahi ismi Antoni Gaudi'nin zihninden fırlamış yaşayan bir sanat galerisidir. Şehrin her caddesinde doğadan ilham alan, kıvrımlı ve organik formların taşa işlendiğine tanıklık edersiniz. Barselona'nın tacı olan <strong>Sagrada Familia</strong>, 1882'den bu yana bitmeyen bir dua gibi gökyüzüne uzanır; içeri girdiğinizde vitraylardan süzülen ışık oyunları size bir ormanın içindeymişsiniz hissini verir. Gaudi'nin vasiyeti olan bu bazilika, insanlık tarihinin en sıra dışı mimari yolculuklarından biridir.</p>
+            <p>Şehrin yüksek tepelerinden birine kurulu olan <strong>Park Güell</strong>, renkli mozaik ejderhası ve masalsı pavyonlarıyla Barselona'nın yaratıcı ruhunu yansıtır. Ancak şehir sadece modernizmden ibaret değildir. <strong>Barri Gòtic</strong> [Gotik Mahalle] bölgesine girdiğinizde, Orta Çağ'ın dar ve gizemli sokakları sizi tarihin derinliklerine çeker. Şehrin enerjisini hissetmek için <strong>La Rambla</strong> boyunca yürüyüp yerel pazarların canlılığına karışmak, Barselona'nın neden dünyanın en çekici metropollerinden biri olduğunu anlamanızı sağlar.</p>
+        </section>
+
+        <div class="image-box">
+            <img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?q=80&w=1200" alt="Barselona Mimarisi">
+            <span>Modernizmin Zirvesi: Sagrada Familia'nın gökyüzüne uzanan kuleleri.</span>
+        </div>
+
+        <section>
+            <span class="section-tag">Bölüm 2: Endülüs'ün Mistik Mirası</span>
+            <h2>Güneyin Ruhu: İslam ve Hristiyan Sanatının Dansı</h2>
+            <p>İspanya'nın güneyine, yani güneşin toprakları Endülüs'e doğru yol aldığınızda, karşınıza Avrupa'nın en zengin kültürel mozaiklerinden biri çıkar. Granada'daki <strong>Elhamra Sarayı</strong>, Mağribi [Kuzey Afrikalı Müslümanlar] mimarisinin doruk noktasıdır; dantel gibi işlenmiş duvarları ve su seslerinin yankılandığı avlularıyla bir yeryüzü cennetini andırır. Burada her ayrıntı, İslam sanatının geometrik estetiği ile İspanyol zarafetinin nasıl tek bir vücutta birleştiğini kanıtlar.</p>
+            <p>Cordoba'da yer alan ve büyüleyici sütun ormanıyla ünlü <strong>Kurtuba Camii</strong> (Mezquita) ise bu toprakların derin dini dönüşümünü tek bir çatı altında özetler. Endülüs'ün ruhu sadece taşlarda değil, aynı zamanda sokaklarda yankılanan flamenko ritimlerinde gizlidir. Sevilla’nın beyaz badanalı mahallelerinde bir akşam vakti yankılanan gitar sesi ve hüzünlü danslar, İspanya’nın gerçek karakterini; yani acıyı, aşkı ve tutkuyu tek bir potada eritmesini temsil eder.</p>
+        </section>
+
+        <div class="pro-tips">
+            <h3>İspanya Gezi Notları</h3>
+            <div class="tip-item">
+                <strong>Siesta Kültürü:</strong> İspanya'da hayatın ritmi farklı akar. <strong>La Siesta</strong> [öğle uykusu geleneği] nedeniyle öğle saatlerinde dükkanların kapalı olmasına alışın ve bu zamanı yavaşlamanın tadını çıkararak değerlendirin.
+            </div>
+            <div class="tip-item">
+                <strong>Gastronomi Deneyimi:</strong> Akşam yemeği öncesi barlarda küçük porsiyonlar halinde sunulan <strong>Tapas</strong> kültürü, İspanya'nın sosyal yaşamının temelidir. Mutlaka farklı lezzetleri deneyerek şehrin tadını çıkarın.
+            </div>
+            <div class="tip-item">
+                <strong>Ulaşım ve Planlama:</strong> Elhamra Sarayı ve Sagrada Familia gibi popüler noktalar için biletlerinizi haftalar öncesinden online rezerve etmeniz, bu görkemli mirasları kaçırmamanız için hayati önem taşır.
+            </div>
+        </div>
+    </article>
+
 </body>
 </html>

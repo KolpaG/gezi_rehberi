@@ -2,40 +2,196 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>İzlanda | Gastronomi ve Yerel Mutfak</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>İzlanda | Gastronomi ve Lezzet Rotası</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --accent: #2980b9; }
-        body { font-family: 'Inter', sans-serif; line-height: 1.9; margin: 0; background: #fff; }
-        .header-img { height: 65vh; background: url('https://www.seyatra.com/wp-content/uploads/2024/04/Izlanda-Mutfagi-En-Iyi-10-Izlanda-Yemegi.webp') center/cover; position: relative; }
-        .header-title { position: absolute; bottom: 80px; left: 10%; color: white; max-width: 800px; }
-        .header-title h1 { font-family: 'Playfair Display'; font-size: 5rem; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .article-main { max-width: 900px; margin: 0 auto; padding: 100px 30px; }
-        h2 { font-family: 'Playfair Display'; font-size: 3.5rem; color: var(--accent); margin-top: 5rem; border-bottom: 2px solid #eee; padding-bottom: 20px; }
-        p { font-size: 1.3rem; color: #333; margin-bottom: 2.5rem; text-align: justify; }
-        .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin: 5rem 0; }
-        .gallery-grid img { width: 100%; height: 450px; object-fit: cover; border-radius: 30px; }
-        .pro-box { background: #f0f4f8; padding: 4rem; border-radius: 40px; margin: 5rem 0; }
+        :root { 
+            --gold: #C5A065; 
+            --dark: #0A0A0A; 
+            --white: #FFFFFF;
+        }
+
+        html { zoom: 95%; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.8; 
+            color: rgba(255,255,255,0.9); 
+            background: var(--dark); 
+            overflow-x: hidden; 
+        }
+
+        /* --- Sağ Üst Yüzer Geri Dön Butonu --- */
+        .floating-back-btn {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 2000;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.3;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 10px 20px;
+            border: 1px solid rgba(197, 160, 101, 0.2);
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .floating-back-btn:hover {
+            opacity: 1;
+            background: rgba(197, 160, 101, 0.1);
+            border-color: var(--gold);
+            transform: translateX(-8px);
+        }
+
+        /* --- Hero Section --- */
+        .hero { 
+            height: 80vh; 
+            background: linear-gradient(rgba(0,0,0,0.3), var(--dark)), 
+                        url('https://www.seyatra.com/wp-content/uploads/2024/04/Izlanda-Mutfagi-En-Iyi-10-Izlanda-Yemegi.webp') center/cover fixed; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .hero h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            letter-spacing: 10px;
+            color: var(--gold);
+            text-align: center;
+        }
+
+        /* --- Makale İçeriği --- */
+        .article-content { max-width: 850px; margin: 0 auto; padding: 80px 20px; }
+        
+        .section-tag { 
+            font-weight: 600; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            display: block; 
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            margin: 3.5rem 0 2rem; 
+            border-left: 4px solid var(--gold); 
+            padding-left: 2rem; 
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        p { 
+            font-size: 1.15rem; 
+            margin-bottom: 2.5rem; 
+            color: rgba(255,255,255,0.7); 
+            text-align: justify; 
+        }
+
+        b, strong { color: var(--white); font-weight: 600; }
+
+        /* --- Görsel Kutusu --- */
+        .image-box { margin: 5rem 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(197, 160, 101, 0.1); }
+        .image-box img { width: 100%; height: 550px; object-fit: cover; }
+        .image-box span { 
+            display: block; 
+            padding: 1.2rem 2rem; 
+            background: #111; 
+            color: var(--gold); 
+            font-style: italic; 
+        }
+
+        /* --- Bilgi Kutusu (Pro-Tips) --- */
+        .pro-tips { 
+            background: rgba(197, 160, 101, 0.03); 
+            padding: 4rem; 
+            border-radius: 20px; 
+            margin: 6rem 0; 
+            border: 1px solid rgba(197, 160, 101, 0.1);
+        }
+        
+        .pro-tips h3 { font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 2.5rem; color: var(--gold); text-align: center; }
+        
+        .tip-item { margin-bottom: 2rem; padding-left: 2rem; border-left: 2px solid var(--gold); }
+        .tip-item strong { color: var(--white); display: block; margin-bottom: 5px; }
+
+        /* --- Alıntı Kutusu --- */
+        .quote-box {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.8rem;
+            color: rgba(255,255,255,0.8);
+            margin: 4rem 0;
+            padding: 2rem;
+            border-top: 1px solid rgba(197, 160, 101, 0.2);
+            border-bottom: 1px solid rgba(197, 160, 101, 0.2);
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .floating-back-btn { top: auto; bottom: 30px; right: 20px; opacity: 0.8; background: var(--dark); }
+        }
     </style>
 </head>
 <body>
-    <div class="header-img"><div class="header-title"><h1>KUZEYİN SAF LEZZETLERİ</h1></div></div>
-    <div class="article-main">
-        <h2>Okyanusun ve Volkanik Toprağın Hediyesi</h2>
-        <p>İzlanda mutfağı, sert iklim koşullarına karşı geliştirilmiş saklama teknikleri ve dünyanın en taze deniz ürünleri üzerine kuruludur. Yerel halkın vazgeçilmezi olan **Langoustine (İzlanda Istakozu)**, Höfn kasabasında en lezzetli haliyle servis edilir. Tereyağı ve sarımsakla harmanlanan bu lezzet, okyanusun tüm saflığını tabağınıza taşır. Ayrıca, volkanik ısının kullanıldığı yeraltı fırınlarında 24 saat boyunca pişirilen **Rúgbrauð** (çavdar ekmeği), tatlımsı dokusuyla mutlaka denenmesi gereken bir yan lezzettir.</p>
-        
-        <div class="gallery-grid">
-            <img src="https://cdn.tasteatlas.com/images/ingredients/eccc45dd47144985919c1f3ed2a456a9.jpg?m=facebook">
-            <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=800">
+
+    <a href="lezzetler.html" class="floating-back-btn">← Geri Dönün</a>
+
+    <div class="hero"><h1>Kuzey Işıkları</h1></div>
+
+    <article class="article-content">
+        <section>
+            <span class="section-tag">Giriş: Ateş ve Buzun Mutfağı</span>
+            <h2>Doğanın En Saf Lezzet Durakları</h2>
+            <p>İzlanda mutfağı, Atlantik'in hırçın sularından ve volkanik toprakların sunduğu eşsiz imkanlardan doğan, dünyanın en doğal gastronomi deneyimlerinden biridir. Sert iklim koşulları, bu coğrafyada gıdayı saklama ve pişirme tekniklerini bir sanata dönüştürmüştür. Her öğün, doğayla verilen bir mücadelenin ve ona duyulan <b>venerasyonun [derin saygı]</b> bir yansımasıdır.</p>
+            
+            <div class="quote-box">
+                "İzlanda'da yemek, sadece bir lezzet arayışı değil, bu vahşi doğada hayatta kalma sanatının en estetik formudur."
+            </div>
+        </section>
+
+        <section>
+            <span class="section-tag">Bölüm 1: Okyanusun Hediyeleri</span>
+            <h2>Derin Suların ve Volkanik Isının Tadı</h2>
+            <p><strong>Höfn:</strong> İzlanda'nın güneydoğusundaki bu kasaba, dünyanın en taze <b>Langoustine [İzlanda Istakozu]</b> çeşitlerini sunmasıyla ünlüdür. Tereyağı ve sarımsakla ağır ateşte harmanlanan bu deniz ürünü, okyanusun tüm ferahlığını tabağınıza taşır.</p>
+            <p><strong>Yeraltı Fırınları:</strong> Volkanik sıcaklığın kullanıldığı jeotermal alanlarda, yerin altında 24 saat boyunca pişen <b>Rúgbrauð [çavdar ekmeği]</b>, kendine has tatlımsı dokusuyla bu mutfağın en özel <b>legacy [kültürel miras]</b> unsurlarından biridir.</p>
+        </section>
+
+        <div class="image-box">
+            <img src="https://static.wixstatic.com/media/60c2d8_cfe6af3b49f5493ca6dd60eeed93ff6d~mv2.jpg/v1/fill/w_980,h_654,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/60c2d8_cfe6af3b49f5493ca6dd60eeed93ff6d~mv2.jpg" alt="İzlanda Istakozu">
+            <span>Okyanusun Saf Tadı: Atlantik'in soğuk sularından gelen meşhur İzlanda ıstakozu sunumu.</span>
         </div>
 
-        <h2>Modern İzlanda Mutfağı ve Skyr Kültürü</h2>
-        <p>Binlerce yıldır tüketilen yüksek proteinli ve az yağlı bir süt ürünü olan **Skyr**, İzlanda mutfağının temel direğidir. Meyvelerle harmanlanarak hafif bir tatlıya dönüşen Skyr, İzlandalıların sağlıklı yaşam sırrıdır. Modern Reykjavik restoranları ise bu geleneksel malzemeleri, örneğin füme somon ve kuzu etini, dünyaca ünlü şef teknikleriyle birleştirerek "Yeni İskandinav Mutfağı" akımının öncüsü olmaktadır.</p>
+        <section>
+            <span class="section-tag">Bölüm 2: Geleneksel Sağlık Sırları</span>
+            <h2>Bin Yıllık Süper Gıda: Skyr</h2>
+            <p>Viking döneminden beri tüketilen ve İzlandalıların sağlıklı yaşam kaynağı olan <strong>Skyr</strong>, yüksek proteinli ve ipeksi dokusuyla mutfağın temel direğidir. Modern Reykjavik şefleri, bu geleneksel malzemeyi füme somon ve yabani kuzu etiyle birleştirerek "Yeni İskandinav Mutfağı" <b>trendini [akım]</b> şekillendirmektedir.</p>
+        </section>
 
-        <div class="pro-box">
-            <h3>Gurme Tavsiyesi</h3>
-            <p>Reykjavik Limanı'ndaki **The Sea Baron** dükkanında efsanevi ıstakoz çorbasını denemeden dönmeyin. Eğer gerçekten cesursanız, İzlanda'nın en uç geleneksel lezzeti olan fermente edilmiş [mayalanmış] köpek balığı eti **Hákarl**'ın tadına bakabilirsiniz.</p>
+        <div class="pro-tips">
+            <h3>Gezginin İzlanda Notları</h3>
+            <div class="tip-item">
+                <strong>Klasik Lezzet:</strong> Reykjavik limanındaki tarihi <b>The Sea Baron</b> dükkanında, efsaneleşmiş ıstakoz çorbasını mutlaka tadın.
+            </div>
+            <div class="tip-item">
+                <strong>Cesur Deneyim:</strong> Eğer farklı tatlara açıksanız, fermente edilmiş [mayalanmış] köpek balığı eti olan <b>Hákarl</b>'ı bir İzlanda geleneği olarak deneyebilirsiniz.
+            </div>
+            <div class="tip-item">
+                <strong>Mevsimsel Tavsiye:</strong> Yaz aylarında nehirlerden tutulan taze yabani somonları yerel pişirme teknikleriyle denemek rotanın en değerli anlarından biridir.
+            </div>
         </div>
-    </div>
+    </article>
+
 </body>
 </html>

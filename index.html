@@ -2,39 +2,160 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Gezgin Rehberi | Kurumsal Turizm Portalı</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Gezgin Rehberi | Premium Seyahat Deneyimi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #4CAF50; --dark: #1a1a1a; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-        nav { background: var(--primary); padding: 1.5rem 8%; display: flex; justify-content: space-between; align-items: center; position: fixed; width: 100%; z-index: 1000; }
-        .logo { color: white; font-weight: 700; font-size: 1.8rem; font-family: 'Montserrat'; }
-        .nav-links a { color: white; text-decoration: none; margin-left: 2rem; font-weight: 600; }
-        .hero { height: 100vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070') center/cover; display: flex; align-items: center; padding: 0 8%; color: white; }
-        .hero-h1 { font-size: 5rem; line-height: 1.1; font-family: 'Montserrat'; margin-bottom: 2rem; }
+        :root { 
+            --gold: #C5A065; 
+            --gold-bright: #D4AF37;
+            --dark: #0A0A0A; 
+            --white: #FFFFFF;
+            --bg-gradient: linear-gradient(135deg, #051923 0%, #004e64 50%, #051923 100%);
+        }
+
+        /* Sayfa Geneli Sıfırlama - Rotalar ile Birebir Eşitlendi */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background: radial-gradient(circle at 20% 30%, rgba(197, 160, 101, 0.05), transparent 40%), var(--dark);
+            color: var(--white); 
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden; 
+            line-height: 1.6;
+        }
+        
+        /* --- Navigasyon (Rotalar Kodundan Birebir Eşitlendi) --- */
+        nav { 
+            background: var(--bg-gradient);
+            padding: 1.2rem 8%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: fixed; 
+            width: 100%; 
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            border-bottom: 1px solid rgba(197, 160, 101, 0.15);
+        }
+
+        .logo { 
+            color: var(--gold); 
+            font-family: 'Cinzel', serif; 
+            font-size: 2rem; 
+            font-weight: 700; 
+            letter-spacing: 3px;
+            text-decoration: none;
+        }
+
+        .nav-links a { 
+            text-decoration: none; 
+            color: rgba(255, 255, 255, 0.8); 
+            margin-left: 2.5rem; 
+            font-weight: 500; 
+            font-size: 0.9rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px;
+            transition: 0.4s ease;
+            display: inline-block;
+        }
+
+        .nav-links a:hover { 
+            color: var(--gold);
+            transform: translateY(-3px);
+            text-shadow: 0 0 10px rgba(197, 160, 101, 0.3);
+        }
+
+        /* --- Hero Alanı (Hizalama ve Padding Rotalar ile Aynı) --- */
+        .hero { 
+            height: 100vh; 
+            background: linear-gradient(rgba(10,10,10,0.4), rgba(10,10,10,0.6)), 
+                        url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070') center/cover fixed; 
+            display: flex; 
+            align-items: center; 
+            padding: 0 8%; 
+            position: relative;
+        }
+
+        .hero-container { 
+            max-width: 900px;
+            z-index: 2;
+        }
+
+        .hero-h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(3rem, 8vw, 5.5rem); 
+            line-height: 1.1; 
+            margin-bottom: 1.5rem; 
+            color: var(--gold);
+            text-shadow: 3px 3px 15px rgba(0,0,0,0.5);
+        }
+
+        .hero-p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem; 
+            margin-bottom: 3.5rem; 
+            max-width: 650px;
+            color: rgba(255, 255, 255, 0.7); 
+            font-weight: 300;
+        }
+
+        /* --- Butonlar (Rotalar btn-discover ile birebir ölçeklendi) --- */
         .btn-group { display: flex; gap: 20px; }
-        .btn { padding: 1.2rem 3rem; border-radius: 50px; text-decoration: none; font-weight: 700; transition: 0.3s; }
-        .btn-white { background: #fff; color: var(--primary); }
-        .btn-outline { border: 2px solid #fff; color: #fff; }
-        .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+
+        .btn { 
+            display: inline-block; 
+            padding: 14px 40px; 
+            border: 1px solid var(--gold); 
+            color: var(--gold); 
+            text-decoration: none; 
+            border-radius: 999px; 
+            font-weight: 600; 
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); 
+            background: rgba(197, 160, 101, 0.05);
+        }
+
+        .btn:hover { 
+            background: var(--gold); 
+            color: var(--dark); 
+            transform: translateY(-5px) scale(1.05); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        .btn-outline { 
+            color: var(--white); 
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-outline:hover { 
+            background: var(--white);
+            color: var(--dark);
+            border-color: var(--white);
+        }
     </style>
 </head>
 <body>
     <nav>
-        <div class="logo">GEZGİN</div>
+        <a href="index.html" class="logo">GEZGİN</a>
         <div class="nav-links">
             <a href="index.html">Ana Sayfa</a>
             <a href="rotalar.html">Rotalar</a>
             <a href="lezzetler.html">Lezzetler</a>
+            <a href="bilet.html">Bilet Al</a>
         </div>
     </nav>
+
     <header class="hero">
-        <div>
+        <div class="hero-container">
             <h1 class="hero-h1">KEŞFETMEYE<br>HAZIR MISIN?</h1>
-            <p style="font-size: 1.2rem; margin-bottom: 3rem; max-width: 600px;">Dünyanın en iyi rotaları ve en gizli lezzet durakları tek bir platformda.</p>
+            <p class="hero-p">Dünyanın en iyi rotaları ve en gizli lezzet durakları tek bir premium platformda seni bekliyor.</p>
             <div class="btn-group">
-                <a href="rotalar.html" class="btn btn-white">Rotalar</a>
-                <a href="lezzetler.html" class="btn btn-outline">Lezzetler</a>
+                <a href="rotalar.html" class="btn">Rotaları Gör</a>
+                <a href="lezzetler.html" class="btn btn-outline">Lezzetleri Keşfet</a>
             </div>
         </div>
     </header>

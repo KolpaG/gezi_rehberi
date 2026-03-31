@@ -2,30 +2,196 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Norveç Mutfağı | Arktik Tazelik</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <title>Norveç | Gastronomi ve Lezzet Rotası</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --arctic: #2c3e50; --ice: #f0f4f7; }
-        body { font-family: 'Inter', sans-serif; line-height: 2.3; color: #1a1a1a; margin: 0; background: var(--ice); }
-        .hero-banner { height: 60vh; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1559058789-672da06263d8?q=80&w=1467&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover fixed; display: flex; align-items: center; justify-content: center; color: white; }
-        .main-content { max-width: 1000px; margin: 60px auto; background: white; padding: 80px; border-radius: 40px; }
-        h2 { font-family: 'Playfair Display'; font-size: 3.5rem; color: var(--arctic); margin-bottom: 2.5rem; }
-        p { font-size: 1.35rem; margin-bottom: 3.5rem; text-align: justify; }
-        .viking-note { background: #f9fbfd; border-left: 10px solid var(--arctic); padding: 4rem; border-radius: 20px; }
+        :root { 
+            --gold: #C5A065; 
+            --dark: #0A0A0A; 
+            --white: #FFFFFF;
+        }
+
+        html { zoom: 95%; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.8; 
+            color: rgba(255,255,255,0.9); 
+            background: var(--dark); 
+            overflow-x: hidden; 
+        }
+
+        /* --- Sağ Üst Yüzer Geri Dön Butonu --- */
+        .floating-back-btn {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 2000;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.3;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 10px 20px;
+            border: 1px solid rgba(197, 160, 101, 0.2);
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .floating-back-btn:hover {
+            opacity: 1;
+            background: rgba(197, 160, 101, 0.1);
+            border-color: var(--gold);
+            transform: translateX(-8px);
+        }
+
+        /* --- Hero Section --- */
+        .hero { 
+            height: 80vh; 
+            background: linear-gradient(rgba(0,0,0,0.3), var(--dark)), 
+                        url('https://images.unsplash.com/photo-1559058789-672da06263d8?q=80&w=1600') center/cover fixed; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .hero h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            letter-spacing: 10px;
+            color: var(--gold);
+            text-align: center;
+        }
+
+        /* --- Makale İçeriği --- */
+        .article-content { max-width: 850px; margin: 0 auto; padding: 80px 20px; }
+        
+        .section-tag { 
+            font-weight: 600; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            display: block; 
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            margin: 3.5rem 0 2rem; 
+            border-left: 4px solid var(--gold); 
+            padding-left: 2rem; 
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        p { 
+            font-size: 1.15rem; 
+            margin-bottom: 2.5rem; 
+            color: rgba(255,255,255,0.7); 
+            text-align: justify; 
+        }
+
+        b, strong { color: var(--white); font-weight: 600; }
+
+        /* --- Görsel Kutusu --- */
+        .image-box { margin: 5rem 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(197, 160, 101, 0.1); }
+        .image-box img { width: 100%; height: 550px; object-fit: cover; }
+        .image-box span { 
+            display: block; 
+            padding: 1.2rem 2rem; 
+            background: #111; 
+            color: var(--gold); 
+            font-style: italic; 
+        }
+
+        /* --- Bilgi Kutusu (Pro-Tips) --- */
+        .pro-tips { 
+            background: rgba(197, 160, 101, 0.03); 
+            padding: 4rem; 
+            border-radius: 20px; 
+            margin: 6rem 0; 
+            border: 1px solid rgba(197, 160, 101, 0.1);
+        }
+        
+        .pro-tips h3 { font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 2.5rem; color: var(--gold); text-align: center; }
+        
+        .tip-item { margin-bottom: 2rem; padding-left: 2rem; border-left: 2px solid var(--gold); }
+        .tip-item strong { color: var(--white); display: block; margin-bottom: 5px; }
+
+        /* --- Alıntı Kutusu --- */
+        .quote-box {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.8rem;
+            color: rgba(255,255,255,0.8);
+            margin: 4rem 0;
+            padding: 2rem;
+            border-top: 1px solid rgba(197, 160, 101, 0.2);
+            border-bottom: 1px solid rgba(197, 160, 101, 0.2);
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .floating-back-btn { top: auto; bottom: 30px; right: 20px; opacity: 0.8; background: var(--dark); }
+        }
     </style>
 </head>
 <body>
-    <div class="hero-banner"><h1>NORWEGIAN CUISINE</h1></div>
-    <div class="main-content">
-        <h2>Denizin Hediyesi: Somon ve Morina</h2>
-        <p>Norveç mutfağı, dünyanın en kaliteli ve taze deniz ürünlerine dayanır. Norveç somonu, bugün küresel bir marka haline gelmiştir. Soğuk ve temiz Arktik sularında yetişen bu balıklar, yağlı ve zengin aromasıyla çiğ, ızgara veya füme olarak tüketilir. Geleneksel bir Norveç kahvaltısında **Gravlaks** [tuz, şeker ve dereotu ile marine edilmiş somon] olmadan masaya oturulmaz.</p>
-        
-        <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?q=80&w=1200" style="width:100%; border-radius:30px; margin-bottom:4rem;">
 
-        <div class="viking-note">
-            <h3>Viking Mirası: Saklama Teknikleri</h3>
-            <p>Sert kuzey kışları, Norveçlileri yiyecek saklama konusunda uzmanlaştırmıştır. **Tørrfisk** [kurutulmuş morina balığı] ve **Lutefisk** [kül suyunda bekletilmiş kurutulmuş balık], Viking döneminden beri süregelen kadim lezzetlerdir. Ayrıca kahverengi peynir olan **Brunost**, karamelize tadıyla dünyada sadece bu bölgeye özgü, oldukça şaşırtıcı bir lezzettir.</p>
+    <a href="lezzetler.html" class="floating-back-btn">← Geri Dönün</a>
+
+    <div class="hero"><h1>Arktik Tazelik</h1></div>
+
+    <article class="article-content">
+        <section>
+            <span class="section-tag">Giriş: Soğuk Suların Mirası</span>
+            <h2>Okyanusun Saf ve Güçlü Sesleri</h2>
+            <p>Norveç mutfağı, dünyanın en temiz ve soğuk sularına sahip olan Arktik bölgesinin sunduğu sonsuz tazelik üzerine kuruludur. Bu coğrafyada gastronomi, malzemenin en doğal halini korumak ve sert kış koşullarına karşı geliştirilen kadim saklama yöntemlerini bir <b>masterpiece [başyapıt]</b> haline getirmekle ilgilidir. Norveçliler için deniz, sadece bir kaynak değil, bin yıllık bir mutfak <b>heritage [kültürel miras]</b> alanıdır.</p>
+            
+            <div class="quote-box">
+                "Arktik suların derinliğinden gelen her lokma, Norveç'in doğasına duyulan sonsuz saygının bir ifadesidir."
+            </div>
+        </section>
+
+        <section>
+            <span class="section-tag">Bölüm 1: Denizin Başyapıtları</span>
+            <h2>Somon ve Morinanın Görkemli Dansı</h2>
+            <p><strong>Norveç Somonu:</strong> Küresel bir marka haline gelen bu özel balık, zengin yağ oranı ve ipeksi dokusuyla mutfağın kralıdır. Özellikle <b>Gravlaks [tuz, şeker ve dereotu ile marine edilmiş somon]</b>, Norveç kahvaltı ve davet sofralarının değişmez <b>ritüelidir [geleneksel uygulama]</b>.</p>
+            <p><strong>Viking Saklama Sanatı:</strong> Sert iklimle başa çıkmak için geliştirilen <b>Tørrfisk [kurutulmuş morina balığı]</b> ve <b>Lutefisk [kül suyunda bekletilmiş balık]</b>, Viking döneminden günümüze taşınan en karakteristik lezzetlerdir. Bu teknikler, balığın o yoğun <b>aroma [koku ve tat zenginliği]</b> yapısını korumasını sağlar.</p>
+        </section>
+
+        <div class="image-box">
+            <img src="https://ballstad.com.tr/cdn/shop/articles/BLOG-NSR-LAKSETACO-P01_9d0f40a2-f451-42ac-9270-cd6723f712a3.jpg?v=1746008869&width=1500" alt="Norveç Deniz Ürünleri">
+            <span>Derin Suların Tadı: Arktik okyanusun en taze ve kaliteli mahsulleriyle hazırlanan bir sunum.</span>
         </div>
-    </div>
+
+        <section>
+            <span class="section-tag">Bölüm 2: Benzersiz Yerel Tatlar</span>
+            <h2>Kahverengi Peynir ve Karamel Dokunuşu</h2>
+            <p>Norveç'e özgü en şaşırtıcı lezzetlerden biri olan <strong>Brunost</strong>, peynir altı suyunun karamelize edilerek yoğun bir kıvama getirilmesiyle elde edilen kahverengi bir peynirdir. Tatlımsı ve yoğun yapısıyla dünyada benzeri olmayan bu ürün, Norveç mutfak kimliğinin en güçlü <b>essence [öz]</b> parçalarından biridir.</p>
+        </section>
+
+        <div class="pro-tips">
+            <h3>Gezginin Norveç Notları</h3>
+            <div class="tip-item">
+                <strong>Yerinde Deneyim:</strong> Bergen’deki tarihi balık pazarında (Fisketorget), taze avlanmış kral yengeçleri ve balina etini en otantik haliyle tadabilirsiniz.
+            </div>
+            <div class="tip-item">
+                <strong>Tatlı Ritüeli:</strong> Orman meyveleri ve krema ile hazırlanan <b>Krumkake</b> bisküvilerini bir bardak kahve eşliğinde denemeden dönmeyin.
+            </div>
+            <div class="tip-item">
+                <strong>Mevsimsel Öneri:</strong> Kış aylarında düzenlenen Noel pazarlarında, zencefilli kurabiyeler ve sıcak meyve içecekleriyle kuzeyin o büyülü <b>seremonisini [törensel uygulama]</b> yaşayın.
+            </div>
+        </div>
+    </article>
+
 </body>
 </html>

@@ -2,32 +2,196 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>İsviçre Mutfağı | Peynir ve Çikolata Sanatı</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <title>İsviçre | Gastronomi ve Lezzet Rotası</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --accent: #a52a2a; --dark: #1a1a1a; }
-        body { font-family: 'Inter', sans-serif; line-height: 2.3; color: var(--dark); margin: 0; background: #fdfdfd; }
-        .header { height: 60vh; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1512594282804-b5f400408c9d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover fixed; display: flex; align-items: center; justify-content: center; color: white; }
-        .article { max-width: 1000px; margin: 80px auto; padding: 40px; }
-        h2 { font-family: 'Playfair Display'; font-size: 3.5rem; color: var(--accent); margin-bottom: 2.5rem; border-bottom: 3px solid #eee; padding-bottom: 15px; }
-        p { font-size: 1.35rem; margin-bottom: 3.5rem; text-align: justify; }
-        .chocolate-box { background: #fdf5f5; padding: 4rem; border-radius: 40px; border-right: 12px solid var(--accent); margin: 5rem 0; }
+        :root { 
+            --gold: #C5A065; 
+            --dark: #0A0A0A; 
+            --white: #FFFFFF;
+        }
+
+        html { zoom: 95%; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.8; 
+            color: rgba(255,255,255,0.9); 
+            background: var(--dark); 
+            overflow-x: hidden; 
+        }
+
+        /* --- Sağ Üst Yüzer Geri Dön Butonu --- */
+        .floating-back-btn {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 2000;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.3;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 10px 20px;
+            border: 1px solid rgba(197, 160, 101, 0.2);
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .floating-back-btn:hover {
+            opacity: 1;
+            background: rgba(197, 160, 101, 0.1);
+            border-color: var(--gold);
+            transform: translateX(-8px);
+        }
+
+        /* --- Hero Section --- */
+        .hero { 
+            height: 80vh; 
+            background: linear-gradient(rgba(0,0,0,0.3), var(--dark)), 
+                        url('https://images.unsplash.com/photo-1512594282804-b5f400408c9d?q=80&w=1600') center/cover fixed; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .hero h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            letter-spacing: 10px;
+            color: var(--gold);
+            text-align: center;
+        }
+
+        /* --- Makale İçeriği --- */
+        .article-content { max-width: 850px; margin: 0 auto; padding: 80px 20px; }
+        
+        .section-tag { 
+            font-weight: 600; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            display: block; 
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            margin: 3.5rem 0 2rem; 
+            border-left: 4px solid var(--gold); 
+            padding-left: 2rem; 
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        p { 
+            font-size: 1.15rem; 
+            margin-bottom: 2.5rem; 
+            color: rgba(255,255,255,0.7); 
+            text-align: justify; 
+        }
+
+        b, strong { color: var(--white); font-weight: 600; }
+
+        /* --- Görsel Kutusu --- */
+        .image-box { margin: 5rem 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(197, 160, 101, 0.1); }
+        .image-box img { width: 100%; height: 550px; object-fit: cover; }
+        .image-box span { 
+            display: block; 
+            padding: 1.2rem 2rem; 
+            background: #111; 
+            color: var(--gold); 
+            font-style: italic; 
+        }
+
+        /* --- Bilgi Kutusu (Pro-Tips) --- */
+        .pro-tips { 
+            background: rgba(197, 160, 101, 0.03); 
+            padding: 4rem; 
+            border-radius: 20px; 
+            margin: 6rem 0; 
+            border: 1px solid rgba(197, 160, 101, 0.1);
+        }
+        
+        .pro-tips h3 { font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 2.5rem; color: var(--gold); text-align: center; }
+        
+        .tip-item { margin-bottom: 2rem; padding-left: 2rem; border-left: 2px solid var(--gold); }
+        .tip-item strong { color: var(--white); display: block; margin-bottom: 5px; }
+
+        /* --- Alıntı Kutusu --- */
+        .quote-box {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.8rem;
+            color: rgba(255,255,255,0.8);
+            margin: 4rem 0;
+            padding: 2rem;
+            border-top: 1px solid rgba(197, 160, 101, 0.2);
+            border-bottom: 1px solid rgba(197, 160, 101, 0.2);
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .floating-back-btn { top: auto; bottom: 30px; right: 20px; opacity: 0.8; background: var(--dark); }
+        }
     </style>
 </head>
 <body>
-    <div class="header"><h1>SWISS CUISINE</h1></div>
-    <div class="article">
-        <h2>Peynir Ritüeli: Fondü ve Raclette</h2>
-        <p>İsviçre mutfağının kalbi Alplerdeki mandıralarda atar. **Fondue** [fondü], eritilmiş Gravyer ve Emmental peynirlerinin içine ekmek parçalarının batırılmasıyla yenen, tam bir birliktelik yemeğidir. **Raclette** [raklet] ise, koca bir peynir kalıbının ısıtılarak eriyen kısmının doğrudan haşlanmış patateslerin üzerine kazınmasıyla servis edilir. Soğuk kış günlerinde bu yoğun ve sıcak lezzetler, İsviçre kültürünün en sıcak yanını temsil eder.</p>
-        
-        <img src="https://images.unsplash.com/photo-1541544537156-7627a7a4aa1c?q=80&w=1200" style="width:100%; border-radius:30px; margin-bottom:4rem;">
 
-        <div class="chocolate-box">
-            <h3>Dünya Markası: İsviçre Çikolatası</h3>
-            <p>İsviçre, kişi başı çikolata tüketiminde dünya lideridir. 19. yüzyılda sütlü çikolatanın burada icat edilmesiyle, bu lezzet bir milli gurur kaynağına dönüşmüştür. Pürüzsüz dokusu, yüksek kaliteli kakao yağı ve Alp sütü, İsviçre çikolatasını rakiplerinden ayırır. Ayrıca sabah kahvaltılarının vazgeçilmezi olan **Bircher Müesli** [bir çeşit yulaflı karışım], sağlıklı yaşamın bu mutfaktaki simgesidir.</p>
+    <a href="lezzetler.html" class="floating-back-btn">← Geri Dönün</a>
+
+    <div class="hero"><h1>Alplerin Zirvesi</h1></div>
+
+    <article class="article-content">
+        <section>
+            <span class="section-tag">Giriş: Disiplin ve Kalite</span>
+            <h2>Alplerin Kalbinde Bir Lezzet Senfonisi</h2>
+            <p>İsviçre mutfağı, sadeliği yüksek kaliteyle buluşturan, her malzemenin en saf halini korumaya odaklanan bir mutfak kültürüdür. Alplerin mandıralarından süzülen taze sütlerin, yüzyıllık peynir ustalarının elinde bir <b>masterpiece [başyapıt]</b> haline dönüştüğü bu coğrafya, gastronomi dünyasına silinmez izler bırakmıştır. Burada yemek, doğanın sunduğu <b>essence [öz]</b> değerlere duyulan büyük bir saygı <b>ritüelidir [geleneksel uygulama]</b>.</p>
+            
+            <div class="quote-box">
+                "İsviçre sofrası, Alplerin soğuk rüzgarlarına karşı eritilmiş peynirin sıcaklığıyla kurulan bir dostluk meydanıdır."
+            </div>
+        </section>
+
+        <section>
+            <span class="section-tag">Bölüm 1: Peynir Mirası</span>
+            <h2>Fondü ve Raklet'in Sıcak Dünyası</h2>
+            <p><strong>Peynir Ritüeli:</strong> İsviçre mutfağının ruhu peynirlerde saklıdır. <b>Fondue [fondü]</b>, eritilmiş Gravyer ve Emmental peynirlerinin paylaşıldığı bir birliktelik yemeğidir. Bir diğer klasik olan <b>Raclette [raklet]</b> ise, dev peynir kalıplarının ısıtılarak doğrudan patateslerin üzerine kazınmasıyla sunulan görsel bir şölendir.</p>
+            <p><strong>Geleneksel Dokunuş:</strong> Zürih’in meşhur <b>Zürcher Geschnetzeltes [kremalı mantar soslu dana eti]</b> yemeği, yanında servis edilen çıtır patates rendesi <b>Rösti</b> ile mutfağın doyurucu ve klasik <b>heritage [kültürel miras]</b> yanını temsil eder.</p>
+        </section>
+
+        <div class="image-box">
+            <img src="https://media.licdn.com/dms/image/v2/C4D12AQGPZ4ZK_1X62w/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1538855489395?e=2147483647&v=beta&t=r3i_GsFrObNEb8JLKTdMCc-mbU4VpByz1M0ABCALE88" alt="İsviçre Peynir Tabağı">
+            <span>Alp Lezzetleri: Bölgenin taze mandıra ürünlerinden gelen zengin peynir çeşitliliği.</span>
         </div>
 
-        <p>Et yemeklerinde ise Zürih usulü **Zürcher Geschnetzeltes** [kremalı mantar soslu ince dilimlenmiş dana eti], yanında servis edilen çıtır patates rendesi **Rösti** ile tam bir doyuruculuk sunar. İsviçre mutfağı, sadeliği kaliteyle birleştiren bir disiplindir.</p>
-    </div>
+        <section>
+            <span class="section-tag">Bölüm 2: Tatlı Gururu</span>
+            <h2>Dünya Lideri: İsviçre Çikolatası</h2>
+            <p>Pürüzsüz dokusu ve yüksek kaliteli kakao yağı ile bilinen <strong>İsviçre Çikolatası</strong>, 19. yüzyıldan beri bir milli gurur kaynağıdır. Alp sütüyle harmanlanan bu lezzet, ülkenin dünyaca ünlü gastronomi <b>trendini [akım]</b> belirler. Sağlıklı bir başlangıç için ise yulafın meyvelerle buluştuğu <b>Bircher Müesli [yulaflı karışım]</b>, sabahların vazgeçilmez bir parçasıdır.</p>
+        </section>
+
+        <div class="pro-tips">
+            <h3>Gezginin İsviçre Notları</h3>
+            <div class="tip-item">
+                <strong>Çikolata Turu:</strong> Zürih ve Cenevre'deki butik çikolata atölyelerini ziyaret ederek, el yapımı <b>Pralliné</b> çeşitlerini yerinde deneyimleyin.
+            </div>
+            <div class="tip-item">
+                <strong>Peynir Seçimi:</strong> Gerçek bir fondü deneyimi için farklı bölgelerin peynirlerini karıştırarak yapılan "Moitié-Moitié" karışımını talep edin.
+            </div>
+            <div class="tip-item">
+                <strong>Yerel Pazar:</strong> Hafta sonları kurulan yerel mandıra pazarlarında, endüstriyel olmayan ve sadece o bölgeye has <b>aroma [koku ve tat zenginliği]</b> sunan peynirlerin tadına bakın.
+            </div>
+        </div>
+    </article>
+
 </body>
 </html>

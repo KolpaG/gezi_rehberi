@@ -2,43 +2,197 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>İtalya | Gastronomi Ansiklopedisi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <title>İtalya | Gastronomi ve Lezzet Rotası</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --accent: #c0392b; --bg: #fffbf5; }
-        body { font-family: 'Inter', sans-serif; line-height: 1.9; margin: 0; background: var(--bg); }
-        .header-bg { height: 75vh; background: url('https://images.unsplash.com/photo-1498579150354-977475b7ea0b?q=80&w=1800') center/cover; position: relative; }
-        .header-content { position: absolute; bottom: 80px; left: 10%; color: white; max-width: 700px; }
-        .header-content h1 { font-family: 'Playfair Display'; font-size: 5rem; line-height: 1.1; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .article-main { max-width: 900px; margin: 0 auto; padding: 100px 30px; background: white; border-radius: 60px 60px 0 0; margin-top: -100px; position: relative; }
-        h2 { font-family: 'Playfair Display'; font-size: 3.5rem; color: var(--accent); margin: 4rem 0 2rem; }
-        p { font-size: 1.25rem; color: #444; margin-bottom: 2.5rem; text-align: justify; }
-        .recipe-spotlight { background: #fdf2f2; padding: 4rem; border-radius: 35px; border-left: 8px solid var(--accent); margin: 5rem 0; }
-        .img-stack { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 5rem 0; }
-        .img-stack img { width: 100%; height: 450px; object-fit: cover; border-radius: 25px; }
+        :root { 
+            --gold: #C5A065; 
+            --dark: #0A0A0A; 
+            --white: #FFFFFF;
+        }
+
+        html { zoom: 95%; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.8; 
+            color: rgba(255,255,255,0.9); 
+            background: var(--dark); 
+            overflow-x: hidden; 
+        }
+
+        /* --- Sağ Üst Yüzer Geri Dön Butonu (Referans Kodla Eşit) --- */
+        .floating-back-btn {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 2000;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.3;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 10px 20px;
+            border: 1px solid rgba(197, 160, 101, 0.2);
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .floating-back-btn:hover {
+            opacity: 1;
+            background: rgba(197, 160, 101, 0.1);
+            border-color: var(--gold);
+            transform: translateX(-8px);
+        }
+
+        /* --- Hero Section --- */
+        .hero { 
+            height: 80vh; 
+            background: linear-gradient(rgba(0,0,0,0.3), var(--dark)), 
+                        url('https://cdn.tasteatlas.com/images/dishes/785295d4ab6f4f0bab43d5fcf2e123b6.jpg?w=1476&h=830') center/cover fixed; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .hero h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            letter-spacing: 10px;
+            color: var(--gold);
+            text-align: center;
+        }
+
+        /* --- Makale İçeriği --- */
+        .article-content { max-width: 850px; margin: 0 auto; padding: 80px 20px; }
+        
+        .section-tag { 
+            font-weight: 600; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            display: block; 
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            margin: 3.5rem 0 2rem; 
+            border-left: 4px solid var(--gold); 
+            padding-left: 2rem; 
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        p { 
+            font-size: 1.15rem; 
+            margin-bottom: 2.5rem; 
+            color: rgba(255,255,255,0.7); 
+            text-align: justify; 
+        }
+
+        b, strong { color: var(--white); font-weight: 600; }
+
+        /* --- Görsel Kutusu --- */
+        .image-box { margin: 5rem 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(197, 160, 101, 0.1); }
+        .image-box img { width: 100%; height: 550px; object-fit: cover; }
+        .image-box span { 
+            display: block; 
+            padding: 1.2rem 2rem; 
+            background: #111; 
+            color: var(--gold); 
+            font-style: italic; 
+        }
+
+        /* --- Bilgi Kutusu (Pro-Tips) --- */
+        .pro-tips { 
+            background: rgba(197, 160, 101, 0.03); 
+            padding: 4rem; 
+            border-radius: 20px; 
+            margin: 6rem 0; 
+            border: 1px solid rgba(197, 160, 101, 0.1);
+        }
+        
+        .pro-tips h3 { font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 2.5rem; color: var(--gold); text-align: center; }
+        
+        .tip-item { margin-bottom: 2rem; padding-left: 2rem; border-left: 2px solid var(--gold); }
+        .tip-item strong { color: var(--white); display: block; margin-bottom: 5px; }
+
+        /* --- Alıntı Kutusu --- */
+        .quote-box {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.8rem;
+            color: rgba(255,255,255,0.8);
+            margin: 4rem 0;
+            padding: 2rem;
+            border-top: 1px solid rgba(197, 160, 101, 0.2);
+            border-bottom: 1px solid rgba(197, 160, 101, 0.2);
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .floating-back-btn { top: auto; bottom: 30px; right: 20px; opacity: 0.8; background: var(--dark); }
+        }
     </style>
 </head>
 <body>
-    <div class="header-bg"><div class="header-content"><h1>TOPRAĞIN VE TUTKUNUN LEZZETİ</h1></div></div>
-    <div class="article-main">
-        <h2>Bölgesel Bir Şölen: Kuzeyden Güneye İtalya</h2>
-        <p>İtalyan mutfağı tek bir mutfak değildir; her bölgenin kendine has karakterini, toprağını ve tarihini yansıtan bir mozaiktir. Napoli’de, odun ateşinde 90 saniyede pişen ince hamurlu, taze fesleğenli **Pizza Margherita**, basitliğin ne kadar sofistike olabileceğinin küresel bir simgesidir. Kuzeye, Bologna’ya çıktığınızda ise "La Grassa" (Şişman) lakabının hakkını veren zengin soslar sizi karşılar. Gerçek bir **Tagliatelle alla Bolognese**, domates soslu bir makarna değil, saatlerce kısık ateşte pişen kıymalı bir ragù [et sosu] şaheseridir.</p>
-        <p>Roma sokaklarında ise sadece dört malzemeyle (yumurta sarısı, Pecorino Romano peyniri, guanciale [domuz yanağı] ve karabiber) mucizeler yaratan **Carbonara** kültürü hakimdir. Malzeme kalitesindeki ödünsüzlük, İtalyan mutfağının temel direğidir.</p>
-        
-        <div class="img-stack">
-            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800">
-            <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?q=80&w=800">
+
+    <a href="lezzetler.html" class="floating-back-btn">← Geri Dönün</a>
+
+    <div class="hero"><h1>Akdeniz Tutkusu</h1></div>
+
+    <article class="article-content">
+        <section>
+            <span class="section-tag">Giriş: Bir Akdeniz Efsanesi</span>
+            <h2>Toprağın ve Sadeliğin Gücü</h2>
+            <p>İtalyan mutfağı, karmaşık tariflerden ziyade malzemenin en saf haline duyulan saygının bir ifadesidir. Tarladan yeni koparılmış bir domates, el yapımı bir makarna ve sızma zeytinyağı, bu ülkenin mutfak felsefesini özetler. Her şehir, kendi yerel ürünlerini bir <b>heritage [kültürel miras]</b> olarak görür ve yüzyıllık gelenekleri korur.</p>
+            
+            <div class="quote-box">
+                "İtalyanlar için yemek yemek sadece doymak değil, aile ve toprakla kurulan en kutsal bağdır."
+            </div>
+        </section>
+
+        <section>
+            <span class="section-tag">Bölüm 1: Bölgesel Gastronomi</span>
+            <h2>Kuzeyden Güneye Lezzet Durakları</h2>
+            <p><strong>Napoli:</strong> Gastronomi dünyasının kalbi olan bu şehirde, odun ateşinde 90 saniyede pişen <b>Pizza Margherita</b>, sadeliğin ne kadar lüks olabileceğinin en büyük kanıtıdır. Burada yenen her lokma, kentin tarihiyle harmanlanmış bir sanattır.</p>
+            <p><strong>Bologna:</strong> "La Grassa" (Şişman) lakaplı bu şehirde, gerçek bir <b>Tagliatelle alla Bolognese</b> deneyimi yaşamadan dönmeyin. Kısık ateşte saatlerce pişen o özel <b>ragù [et sosu]</b>, kuzey İtalya'nın zengin mutfak karakterini yansıtır.</p>
+        </section>
+
+        <div class="image-box">
+            <img src="https://cdn.tasteatlas.com/images/dishes/1c75cd778805422bb175f13613634cd6.jpg?w=1476&h=830" alt="İtalyan Makarnası">
+            <span>Mutfak Sanatı: Taze hamur ve doğal sosların buluştuğu o eşsiz İtalyan sofrası.</span>
         </div>
 
-        <div class="recipe-spotlight">
-            <h3>Gurme Rotası: Şehir Şehir Nerede Ne Yenmeli?</h3>
-            <p>**Napoli:** 1870'den beri açık olan L'Antica Pizzeria da Michele'de sadece Margherita veya Marinara deneyin. <br>
-            **Roma:** Bonci Pizzarium'da pizza al taglio [dilim pizza] sanatına şahit olun. <br>
-            **Floransa:** Trattoria Mario’da yerel halkla iç içe Bistecca alla Fiorentina [meşhur dev biftek] tadın.</p>
-        </div>
+        <section>
+            <span class="section-tag">Bölüm 2: Sokak Kültürü ve Tatlı</span>
+            <h2>İtalya'nın Tatlı ve Hareketli Ruhu</h2>
+            <p>Roma sokaklarında her köşe başında karşınıza çıkan <b>pizza al taglio [dilim pizza]</b> durakları, kentin hareketli yaşamına ayak uyduran en lezzetli mola yerleridir. Ancak gerçek bir İtalya turu, bulutsu bir dokuya sahip olan <strong>Tiramisu</strong> ve meyvelerin en doğal hali olan <strong>Gelato</strong> ile tamamlanır.</p>
+            <p>Sahil kasabalarında yapılan bir akşamüstü <b>aperitivo [yemek öncesi iştah açıcı]</b> ritüeli ise, Akdeniz yaşam tarzının en keyifli <b>seremonisidir [törensel uygulama]</b>.</p>
+        </section>
 
-        <h2>Tatlı ve Final: Gelato'dan Tiramisu'ya</h2>
-        <p>Final her zaman tatlıdır. Bir İtalyan için dondurma (Gelato), sokakta yürürken tüketilen bir atıştırmalıktan fazlasıdır; o, taze meyvelerin ve sütün kremsi bir sanatıdır. Kuzeyin efsanesi **Tiramisu** ise kahve ve mascarpone peynirinin bulutsu bir dengesidir. Bu lezzet turu, İtalya’nın neden dünyanın gastronomi başkenti olduğunu kanıtlar niteliktedir.</p>
-    </div>
+        <div class="pro-tips">
+            <h3>Gezginin Lezzet Notları</h3>
+            <div class="tip-item">
+                <strong>En İyi Pizza:</strong> Napoli'de <b>L'Antica Pizzeria da Michele</b> gibi tarihi mekanlarda sadece geleneksel reçeteleri deneyin.
+            </div>
+            <div class="tip-item">
+                <strong>Roma Klasiği:</strong> Şehrin dar sokaklarındaki trattoria'larda, peynir ve karabiberin uyumu olan <b>Cacio e Pepe</b>'yi mutlaka tadın.
+            </div>
+            <div class="tip-item">
+                <strong>Gerçek Gelato:</strong> Dondurmanızı seçerken aşırı parlak renklerden kaçının; doğal tonlar taze ve kaliteli malzemenin işaretidir.
+            </div>
+        </div>
+    </article>
+
 </body>
 </html>

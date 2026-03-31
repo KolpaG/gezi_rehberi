@@ -3,38 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <title>İzlanda | Doğa ve Elementlerin Dansı</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #34495e; --accent: #3498db; }
-        body { font-family: 'Inter', sans-serif; line-height: 2; color: #1a1a1a; margin: 0; background: #fdfdfd; }
-        .hero { height: 85vh; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1476610182048-b716b8518aae?q=80&w=1600') center/cover fixed; display: flex; align-items: center; justify-content: center; color: white; }
-        .hero h1 { font-family: 'Playfair Display'; font-size: 5.5rem; text-transform: uppercase; letter-spacing: 5px; }
-        .article-body { max-width: 950px; margin: 0 auto; padding: 100px 30px; }
-        .section-label { color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 3px; display: block; margin-bottom: 1.5rem; }
-        h2 { font-family: 'Playfair Display'; font-size: 3.8rem; margin: 4rem 0 2rem; line-height: 1.1; color: var(--primary); }
-        p { font-size: 1.3rem; margin-bottom: 3rem; text-align: justify; color: #2c3e50; }
-        .full-img { width: 100%; height: 650px; object-fit: cover; border-radius: 40px; margin: 5rem 0; box-shadow: 0 40px 80px rgba(0,0,0,0.2); }
-        .highlight-box { background: #ebf5fb; padding: 4rem; border-radius: 35px; border-left: 10px solid var(--accent); margin: 6rem 0; }
+        :root { 
+            --gold: #C5A065; 
+            --dark: #0A0A0A; 
+            --white: #FFFFFF;
+        }
+
+        html { zoom: 95%; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.8; 
+            color: rgba(255,255,255,0.9); 
+            background: var(--dark); 
+            overflow-x: hidden; 
+        }
+
+        /* --- Sağ Üst Yüzer Geri Dön Butonu --- */
+        .floating-back-btn {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            z-index: 2000;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.3;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 10px 20px;
+            border: 1px solid rgba(197, 160, 101, 0.2);
+            border-radius: 5px;
+            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.02);
+        }
+
+        .floating-back-btn:hover {
+            opacity: 1;
+            background: rgba(197, 160, 101, 0.1);
+            border-color: var(--gold);
+            transform: translateX(-8px);
+        }
+
+        /* --- Hero Alanı --- */
+        .hero { 
+            height: 80vh; 
+            background: linear-gradient(rgba(0,0,0,0.3), var(--dark)), 
+                        url('https://images.unsplash.com/photo-1476610182048-b716b8518aae?q=80&w=1600') center/cover fixed; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+        .hero h1 { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            letter-spacing: 8px;
+            color: var(--gold);
+            text-align: center;
+        }
+
+        /* --- Makale İçeriği --- */
+        .article-content { max-width: 850px; margin: 0 auto; padding: 80px 20px; }
+        
+        .section-tag { 
+            font-weight: 600; 
+            color: var(--gold); 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            display: block; 
+            margin-bottom: 1.5rem;
+            font-size: 0.8rem;
+        }
+
+        h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 3rem; 
+            margin: 3.5rem 0 2rem; 
+            border-left: 4px solid var(--gold); 
+            padding-left: 2rem; 
+            color: var(--white);
+            line-height: 1.2;
+        }
+
+        p { 
+            font-size: 1.15rem; 
+            margin-bottom: 2.5rem; 
+            color: rgba(255,255,255,0.7); 
+            text-align: justify; 
+        }
+
+        /* Kalın Yazıların Satırı Bölmemesi İçin inline !important Kullanıldı */
+        b, strong {
+            color: var(--white);
+            font-weight: 600;
+            display: inline !important;
+        }
+        
+        /* Görsel Kutusu */
+        .image-box { margin: 5rem 0; border-radius: 20px; overflow: hidden; border: 1px solid rgba(197, 160, 101, 0.1); }
+        .image-box img { width: 100%; height: 550px; object-fit: cover; filter: brightness(0.8); transition: 0.5s; }
+        .image-box:hover img { filter: brightness(1); }
+        .image-box span { 
+            display: block; 
+            padding: 1.2rem 2rem; 
+            background: #111; 
+            color: var(--gold); 
+            font-style: italic; 
+            font-size: 0.9rem;
+        }
+
+        /* İpucu Kutusu */
+        .pro-tips { 
+            background: rgba(197, 160, 101, 0.03); 
+            padding: 4rem; 
+            border-radius: 20px; 
+            margin: 6rem 0; 
+            border: 1px solid rgba(197, 160, 101, 0.1);
+        }
+        
+        .pro-tips h3 { 
+            font-family: 'Cinzel', serif; 
+            font-size: 1.8rem; 
+            margin-bottom: 2.5rem; 
+            color: var(--gold); 
+            text-align: center; 
+        }
+        
+        .tip-item { 
+            margin-bottom: 2rem; 
+            padding-left: 2rem; 
+            border-left: 2px solid var(--gold); 
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .tip-item strong { 
+            color: var(--white); 
+            display: inline !important; 
+            margin-right: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .floating-back-btn { top: auto; bottom: 30px; right: 20px; opacity: 0.8; background: var(--dark); }
+            h2 { font-size: 2.2rem; }
+        }
     </style>
 </head>
 <body>
-    <div class="hero"><h1>ELEMENTLERİN DANSI</h1></div>
-    <article class="article-body">
-        <span class="section-label">Bölüm 1: Altın Çember ve Ötesi</span>
-        <h2>Fışkıran Yeryüzü ve Devasa Şelaleler</h2>
-        <p>İzlanda, dünyanın oluşum sürecinin hala devam ettiği nadir yerlerden biridir. Yolculuğunuza başkent Reykjavik'ten başlayıp **Altın Çember** rotasına girdiğinizde, doğanın ham gücü sizi sarsacak. **Thingvellir Milli Parkı**'nda, Kuzey Amerika ve Avrasya tektonik [levha hareketleri] levhalarının birbirinden ayrıldığı o devasa yarığın içinde yürürken jeolojik bir mucizeye tanıklık edeceksiniz. Hemen ardından **Geysir** bölgesinde, yeraltı sularının metrelerce yükseğe fışkırdığı Strokkur'un patlama anını beklemek, adrenalini doruğa çıkarır.</p>
-        <p>**Gullfoss (Altın Şelale)** ise iki kademeli devasa yapısıyla, suyun gücünü iliklerinize kadar hissettirir. Ancak İzlanda sadece bu popüler rotadan ibaret değildir. Güney kıyılarına doğru ilerlediğinizde, arkasından yürüyebileceğiniz **Seljalandsfoss** ve 60 metre yükseklikten dökülen görkemli **Skógafoss** sizi karşılar. Her bir şelale, İzlanda'nın vahşi karakterinin farklı bir yüzünü temsil eder.</p>
-        
-        <img src="https://images.unsplash.com/photo-1529963183134-61a90db47eaf?q=80&w=1200" class="full-img" alt="İzlanda Buzulları">
 
-        <span class="section-label">Bölüm 2: Ateş ve Buzun Sessizliği</span>
-        <h2>Siyah Sahillerden Mavi Buzullara</h2>
-        <p>Vík kasabası yakınlarındaki **Reynisfjara**, simsiyah volkanik kumu ve devasa bazalt sütunlarıyla dünyanın en tehlikeli ama en büyüleyici sahillerinden biridir. Atlas Okyanusu'nun hırçın dalgaları bu sütunlara vururken, mitolojik bir film setinde olduğunuzu hissedersiniz. Doğuya doğru devam ettiğinizde ise karşınıza çıkan **Jökulsárlón Buzul Gölü**, devasa buz kütlelerinin göl üzerinde süzüldüğü masalsı bir sessizlik sunar. "Elmas Sahili" olarak bilinen bölgede, kıyıya vuran şeffaf buz parçalarının siyah kumlar üzerindeki parıltısını izlemek unutulmaz bir deneyimdir.</p>
-        
-        <div class="highlight-box">
+    <a href="rotalar.html" class="floating-back-btn">← Geri Dönün</a>
+
+    <div class="hero"><h1>Kuzeyin Sessizliği</h1></div>
+
+    <article class="article-content">
+        <section>
+            <span class="section-tag">Bölüm 1: Altın Çember ve Ötesi</span>
+            <h2>Fışkıran Yeryüzü ve Devasa Şelaleler</h2>
+            <p>İzlanda, dünyanın oluşum sürecinin hala devam ettiği nadir yerlerden biridir. Yolculuğunuza başkent Reykjavik'ten başlayıp <strong>Altın Çember</strong> rotasına girdiğinizde, doğanın ham gücü sizi sarsacak. <strong>Thingvellir Milli Parkı</strong>'nda, Kuzey Amerika ve Avrasya tektonik [levha hareketleri] levhalarının birbirinden ayrıldığı o devasa yarığın içinde yürürken jeolojik bir mucizeye tanıklık edeceksiniz. Hemen ardından <strong>Geysir</strong> bölgesinde, yeraltı sularının metrelerce yükseğe fışkırdığı Strokkur'un patlama anını beklemek, adrenalini doruğa çıkarır.</p>
+            <p><strong>Gullfoss</strong> (Altın Şelale) ise iki kademeli devasa yapısıyla, suyun gücünü iliklerinize kadar hissettirir. Ancak İzlanda sadece bu popüler rotadan ibaret değildir. Güney kıyılarına doğru ilerlediğinizde, arkasından yürüyebileceğiniz <strong>Seljalandsfoss</strong> ve 60 metre yükseklikten dökülen görkemli <strong>Skógafoss</strong> sizi karşılar. Her bir şelale, İzlanda'nın vahşi karakterinin farklı bir yüzünü temsil eder.</p>
+        </section>
+
+        <div class="image-box">
+            <img src="https://images.unsplash.com/photo-1529963183134-61a90db47eaf?q=80&w=1200" alt="İzlanda Buzulları">
+            <span>Buzul Senfonisi: Jökulsárlón üzerinde süzülen devasa buz kütleleri.</span>
+        </div>
+
+        <section>
+            <span class="section-tag">Bölüm 2: Ateş ve Buzun Sessizliği</span>
+            <h2>Siyah Sahillerden Mavi Buzullara</h2>
+            <p>Vík kasabası yakınlarındaki <strong>Reynisfjara</strong>, simsiyah volkanik kumu ve devasa bazalt sütunlarıyla dünyanın en tehlikeli ama en büyüleyici sahillerinden biridir. Atlas Okyanusu'nun hırçın dalgaları bu sütunlara vururken, mitolojik bir film setinde olduğunuzu hissedersiniz. Doğuya doğru devam ettiğinizde ise karşınıza çıkan <strong>Jökulsárlón Buzul Gölü</strong>, devasa buz kütlelerinin göl üzerinde süzüldüğü masalsı bir sessizlik sunar. "Elmas Sahili" olarak bilinen bölgede, kıyıya vuran şeffaf buz parçalarının siyah kumlar üzerindeki parıltısını izlemek unutulmaz bir deneyimdir.</p>
+        </section>
+
+        <div class="pro-tips">
             <h3>Kuzey Işıkları (Aurora Borealis) Rehberi</h3>
-            <p>Eylül ve Mart ayları arasında İzlanda'nın zifiri karanlık gökyüzünde yeşil, mor ve pembe ışıkların dansını izleyebilirsiniz. Bu doğa olayını görmek için şehir ışıklarından uzaklaşmalı ve temiz bir gökyüzü bulmalısınız. Thingvellir Milli Parkı, bu eşsiz görsel şölen için en ideal noktalardan biridir.</p>
+            <div class="tip-item">
+                <strong>En İyi Zaman:</strong> Eylül ve Mart ayları arasında İzlanda'nın zifiri karanlık gökyüzünde yeşil, mor ve pembe ışıkların dansını izleyebilirsiniz.
+            </div>
+            <div class="tip-item">
+                <strong>Gözlem İpucu:</strong> Bu doğa olayını görmek için şehir ışıklarından uzaklaşmalı ve temiz bir gökyüzü bulmalısınız.
+            </div>
+            <div class="tip-item">
+                <strong>Lokasyon Önerisi:</strong> <strong>Thingvellir Milli Parkı</strong>, bu eşsiz görsel şölen için en ideal ve en dramatik noktalardan biridir.
+            </div>
         </div>
     </article>
+
 </body>
 </html>
