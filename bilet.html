@@ -567,18 +567,37 @@ select, input, button, textarea {
 
         // --- Mevcut Mantık Fonksiyonları (Dokunulmadı) ---
         function handleCountryChange(type) {
-            const countryCode = document.getElementById(type + 'Country').value;
-            const citySelect = document.getElementById(type + 'City');
-            
-            citySelect.innerHTML = '<option value="" selected disabled>Şehir Seçin</option>';
-            if(database[countryCode]) {
-                database[countryCode].cities.forEach(city => {
-                    citySelect.innerHTML += `<option value="${city}">${city}</option>`;
-                });
-                citySelect.disabled = false;
-            }
-            updateMapVisuals();
-            updateLogic();
+            const fromSelect = document.getElementById('fromCountry');
+    const toSelect = document.getElementById('toCountry');
+    
+    const countryCode = document.getElementById(type + 'Country').value;
+    const citySelect = document.getElementById(type + 'City');
+    
+    // Şehirleri doldurma mantığı (Mevcut kodun)
+    citySelect.innerHTML = '<option value="" selected disabled>Şehir Seçin</option>';
+    if(database[countryCode]) {
+        database[countryCode].cities.forEach(city => {
+            citySelect.innerHTML += `<option value="${city}">${city}</option>`;
+        });
+        citySelect.disabled = false;
+    }
+
+    // AYNI ÜLKE SEÇİMİNİ ENGELLEME MANTIĞI
+    const otherType = (type === 'from') ? 'to' : 'from';
+    const otherSelect = document.getElementById(otherType + 'Country');
+    const selectedValue = document.getElementById(type + 'Country').value;
+
+    // Diğer listedeki tüm seçenekleri gez ve aynı olanı pasif yap
+    Array.from(otherSelect.options).forEach(option => {
+        if (option.value === selectedValue && option.value !== "") {
+            option.disabled = true; // Aynı ülkeyi devre dışı bırak
+        } else {
+            option.disabled = false; // Diğerlerini aktif tut
+        }
+    });
+
+    updateMapVisuals();
+    updateLogic();
         }
 
         function updateLogic() {
