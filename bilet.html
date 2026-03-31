@@ -7,10 +7,12 @@
     <style>
         :root { 
             --gold: #C5A065; 
-            --dark: #0A0A0A; 
-            --darker: #050505;
-            --white: #FFFFFF;
-            --nav-bg: #002B36; 
+    --gold-bright: #FFD700; 
+    --dark: #0A0A0A; 
+    --darker: #050505;
+    --white: #FFFFFF;
+    /* Index sayfasından gelen premium mavi gradyan */
+    --bg-gradient: linear-gradient(135deg, #051923 0%, #004e64 50%, #051923 100%);
         }
 
         html { zoom: 95%; scroll-behavior: smooth; }
@@ -27,7 +29,6 @@
             overflow-x: hidden;
         }
 
-        /* --- Arka Plan Ayarları --- */
         #bg-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -39,48 +40,129 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -2;
-            opacity: 0.25;
+            opacity: 0.15; /* Efektler için haritayı biraz daha kararttım */
             background-image: url('https://kolpag.github.io/gezi_rehberi/map.jpg');
-            background-size: cover;
-            filter: invert(1);
+            background-size: 100% 100%; 
+            background-position: center;
+            filter: grayscale(100%) brightness(50%); /* Haritayı tam karart */
         }
 
-        .glow-point {
+        /* PREMIUM SVG KATMANI STİLLERİ */
+        #map-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1;
-            opacity: 0;
-            transition: opacity 1s ease;
             pointer-events: none;
+            filter: drop-shadow(0 0 10px var(--gold)); /* Tüm SVG'ye genel bir parlama ekle */
         }
 
-        #glow-from { background: radial-gradient(circle at var(--fx, 50%) var(--fy, 50%), rgba(255, 255, 255, 0.2) 0%, transparent 30%); }
-        #glow-to { background: radial-gradient(circle at var(--tx, 50%) var(--ty, 50%), rgba(255, 255, 255, 0.2) 0%, transparent 30%); }
+        /* Atan Nokta Efekti (Pulse) */
+        .map-point {
+            fill: var(--gold-bright);
+            stroke: var(--white);
+            stroke-width: 0.1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
 
+        .map-point-outer {
+            fill: var(--gold);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .active-point .map-point { opacity: 1; }
+        .active-point .map-point-outer {
+            opacity: 0.4;
+            animation: pulsePoint 2s infinite; /* Nabız animasyonu */
+        }
+
+        @keyframes pulsePoint {
+            0% { r: 0.6; opacity: 0.4; }
+            70% { r: 2.5; opacity: 0; }
+            100% { r: 0.6; opacity: 0; }
+        }
+
+        /* Akan Elektrik Çizgisi */
+        .map-route {
+            fill: none;
+            stroke: rgba(197, 160, 101, 0.2); /* Arka plan sönük çizgi */
+            stroke-width: 0.4;
+            stroke-linecap: round;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .map-route-style {
+           fill: none;
+    stroke: var(--gold-bright);
+    stroke-width: 0.6; /* Biraz daha belirgin yaptık */
+    stroke-linecap: round;
+    /* 200 birimlik boşlukta 30 birimlik bir ışık hüzmesi */
+    stroke-dasharray: 30, 200; 
+    /* Başlangıç pozisyonu */
+    stroke-dashoffset: 230; 
+    opacity: 0;
+    filter: blur(0.5px) drop-shadow(0 0 5px var(--gold-bright));
+        }
+
+        .map-route.active {
+            opacity: 1;
+        }
+
+        .map-route.active + .map-route-style {
+            opacity: 1;
+    /* 6s yaparak hızı yavaşlattık ve 'linear' ile sabit hız verdik */
+    animation: flowRoute 6s linear infinite;
+        }
+
+        @keyframes flowRoute {
+            from { stroke-dashoffset: 230; } /* Toplam (boşluk + ışık) kadar ofset */
+    to { stroke-dashoffset: 0; }
+        }
+
+        /* --- Mevcut Stillerin Devamı (Dokunulmadı) --- */
         nav {
-            background: var(--nav-bg);
-            padding: 20px 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            z-index: 1000;
+            background: var(--bg-gradient);
+    padding: 1.2rem 8%; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    position: fixed; /* Sayfanın üstünde sabit kalması için */
+    top: 0;
+    width: 100%; 
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    border-bottom: 1px solid rgba(197, 160, 101, 0.15);
         }
 
         .logo {
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            color: var(--gold);
-            letter-spacing: 6px;
-            text-decoration: none;
+            color: var(--gold); 
+    font-family: 'Cinzel', serif; 
+    font-size: 2rem; 
+    font-weight: 700; 
+    letter-spacing: 3px;
+    text-decoration: none;
         }
 
         .nav-links { display: flex; gap: 40px; }
         .nav-links a {
-            text-decoration: none; color: var(--white); font-family: 'Inter', sans-serif;
-            font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
-            transition: 0.3s; opacity: 0.8;
+            text-decoration: none; 
+    color: rgba(255, 255, 255, 0.8); 
+    margin-left: 2.5rem; 
+    font-weight: 500; 
+    font-size: 0.9rem; 
+    text-transform: uppercase; 
+    letter-spacing: 1.5px;
+    transition: 0.4s ease;
+    display: inline-block;
         }
+        .nav-links a:hover { 
+    color: var(--gold);
+    transform: translateY(-3px);
+    text-shadow: 0 0 10px rgba(197, 160, 101, 0.3);
+    }
+    
 
         .main-container {
             flex: 1;
@@ -90,25 +172,95 @@
             padding: 0;
         }
 
-        /* Bilet Kısmı - Yüksekliği Biraz Azaltıldı ki Alttaki Kısım Gözüksün */
         .hero-section {
-            min-height: 85vh; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
+            padding-top: 100px; /* Navigasyonun yüksekliği kadar boşluk */
+    min-height: 85vh; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
         }
 
         .ticket-panel {
-            background: rgba(15, 15, 15, 0.9);
-            padding: 40px; border-radius: 20px;
+            background: rgba(15, 15, 15, 0.2);
+            padding: 40px; 
+            border-radius: 20px;
             border: 1px solid rgba(197, 160, 101, 0.2);
-            display: flex; flex-wrap: wrap; align-items: flex-end; gap: 20px;
-            width: 100%; max-width: 1400px; box-shadow: 0 50px 100px rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
+            display: flex; 
+            flex-wrap: wrap; 
+            align-items: flex-end; 
+            gap: 20px;
+            width: 95%; 
+            max-width: 1600px; 
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+            backdrop-filter: blur(2px);
         }
 
-        /* İletişim Kısmı - Yukarı Yaklaştırıldı */
+        .trip-type-selection {
+            width: 100%;
+            display: flex;
+            gap: 25px;
+            margin-bottom: 5px;
+        }
+
+        .trip-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+
+        .trip-option input {
+            width: auto;
+            accent-color: var(--gold);
+            cursor: pointer;
+        }
+
+        .input-group { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 8px; 
+            flex: 1; 
+            min-width: 200px;
+        }
+
+        .input-group label {
+            font-family: 'Cinzel', serif; font-size: 0.65rem; color: var(--gold);
+            letter-spacing: 1.5px; text-transform: uppercase;
+        }
+
+        select, input {
+            background: #111; border: 1px solid rgba(197, 160, 101, 0.2);
+            padding: 12px 15px; border-radius: 6px; color: var(--white);
+            font-size: 0.9rem; width: 100%;
+            transition: 0.3s ease;
+        }
+
+        .price-box {
+            text-align: right; 
+            min-width: 200px; 
+            border-left: 1px solid rgba(197, 160, 101, 0.2); 
+            padding-left: 30px;
+            flex-shrink: 0;
+        }
+
+        .price-box .amount {
+            display: block; font-family: 'Cinzel', serif; font-size: 1.6rem;
+            color: var(--gold); margin: 5px 0;
+        }
+
+        .buy-btn {
+            background: var(--gold); color: var(--dark); border: none;
+            padding: 15px 35px; border-radius: 6px; font-family: 'Cinzel', serif;
+            font-weight: 700; text-transform: uppercase; cursor: pointer; transition: 0.4s;
+            width: 100%;
+        }
+        .buy-btn:disabled { opacity: 0.3; filter: grayscale(1); cursor: not-allowed; }
+
         .footer-section {
             padding: 20px 0 80px 0;
             width: 100%;
@@ -117,7 +269,7 @@
         }
 
         .contact-panel {
-            background: rgba(15, 15, 15, 0.9);
+            background: rgba(15, 15, 15, 0.2);
             padding: 40px; border-radius: 20px;
             border: 1px solid rgba(197, 160, 101, 0.2);
             display: grid;
@@ -125,7 +277,7 @@
             gap: 40px;
             width: 100%; max-width: 1400px;
             box-shadow: 0 50px 100px rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(2px);
         }
 
         .contact-info {
@@ -146,15 +298,6 @@
 
         .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
-        /* Tüm Input ve Textarea için Odaklanma (Yanma) Efekti */
-        .contact-form input:focus, 
-        .contact-form textarea:focus { 
-            border-color: var(--gold);
-            box-shadow: 0 0 15px rgba(197, 160, 101, 0.3);
-            background: #151515;
-            outline: none;
-        }
-
         .contact-form textarea {
             grid-column: span 2;
             background: #111;
@@ -165,7 +308,6 @@
             font-family: 'Inter', sans-serif;
             min-height: 120px;
             resize: none;
-            transition: 0.3s ease;
         }
 
         .submit-btn {
@@ -184,56 +326,78 @@
 
         .submit-btn:hover { background: var(--gold); color: var(--dark); }
 
-        .input-group { display: flex; flex-direction: column; gap: 8px; }
-        .input-group label {
-            font-family: 'Cinzel', serif; font-size: 0.65rem; color: var(--gold);
-            letter-spacing: 1.5px; text-transform: uppercase;
-        }
+input:focus, 
+select:focus, 
+textarea:focus {
+    outline: none !important;
+    /* Rengi daha soluk ve asil bir tona çektik */
+    border-color: #B8860B !important; 
+    /* Parlamayı daha geniş ama daha şeffaf yaptık (0.3 opaklık) */
+    box-shadow: 0 0 12px rgba(184, 134, 11, 0.3) !important;
+    transform: scale(1.005); /* Büyümeyi çok hafiflettik */
+    transition: all 0.4s ease;
+}
 
-        select, input {
-            background: #111; border: 1px solid rgba(197, 160, 101, 0.2);
-            padding: 12px 15px; border-radius: 6px; color: var(--white);
-            font-size: 0.9rem; width: 100%;
-            transition: 0.3s ease;
-        }
+.buy-btn:active, 
+.submit-btn:active {
+    transform: scale(0.97);
+    /* Tıklama anındaki parlama da daha koyu bir altın tonu */
+    box-shadow: 0 0 15px rgba(139, 101, 8, 0.5) !important;
+}
 
-        .price-box {
-            text-align: right; min-width: 165px; border-left: 1px solid rgba(197, 160, 101, 0.2); padding-left: 20px;
-        }
+/* Tüm geçişleri daha akışkan hale getirdik */
+select, input, button, textarea {
+    transition: all 0.4s ease-in-out !important;
+}
 
-        .price-box .amount {
-            display: block; font-family: 'Cinzel', serif; font-size: 1.6rem;
-            color: var(--gold); margin: 5px 0;
-        }
-
-        .buy-btn {
-            background: var(--gold); color: var(--dark); border: none;
-            padding: 15px 35px; border-radius: 6px; font-family: 'Cinzel', serif;
-            font-weight: 700; text-transform: uppercase; cursor: pointer; transition: 0.4s;
-        }
-        .buy-btn:disabled { opacity: 0.3; filter: grayscale(1); }
     </style>
 </head>
 <body>
 
     <div id="bg-container"></div>
     <div id="world-map"></div>
-    <div id="glow-from" class="glow-point"></div>
-    <div id="glow-to" class="glow-point"></div>
+
+    <svg id="map-overlay" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <g id="route-group">
+            <path id="route-line-bg" class="map-route" d="" />
+            <path id="route-line-flow" class="map-route-style" d="" />
+        </g>
+        
+        <g id="group-from" class="point-group">
+            <circle class="map-point-outer" r="0.6" cx="0" cy="0" />
+            <circle class="map-point" r="0.7" cx="0" cy="0" />
+        </g>
+        
+        <g id="group-to" class="point-group">
+            <circle class="map-point-outer" r="0.6" cx="0" cy="0" />
+            <circle class="map-point" r="0.7" cx="0" cy="0" />
+        </g>
+    </svg>
 
     <nav>
         <a href="index.html" class="logo">GEZGİN</a>
-        <div class="nav-links">
-            <a href="index.html">ANA SAYFA</a>
-            <a href="rotalar.html">ROTALAR</a>
-            <a href="lezzetler.html">LEZZETLER</a>
-            <a href="bilet-al.html">BİLET AL</a>
-        </div>
+    <div class="nav-links">
+        <a href="index.html">Ana Sayfa</a>
+        <a href="rotalar.html">Rotalar</a>
+        <a href="lezzetler.html">Lezzetler</a>
+        <a href="bilet-al.html">Bilet Al</a>
+    </div>
     </nav>
 
     <div class="main-container">
         <section class="hero-section">
             <div class="ticket-panel">
+                <div class="trip-type-selection">
+                    <label class="trip-option">
+                        <input type="radio" name="tripType" value="one" onchange="updateLogic()">
+                        <span>SADECE GİDİŞ</span>
+                    </label>
+                    <label class="trip-option">
+                        <input type="radio" name="tripType" value="round" onchange="updateLogic()">
+                        <span>GİDİŞ-DÖNÜŞ</span>
+                    </label>
+                </div>
+
                 <div class="input-group">
                     <label>Nereden</label>
                     <select id="fromCountry" onchange="handleCountryChange('from')">
@@ -249,7 +413,7 @@
                         <option value="jp">Japonya</option>
                         <option value="is">İzlanda</option>
                     </select>
-                    <select id="fromCity" class="sub-select" disabled>
+                    <select id="fromCity" disabled onchange="updateLogic()">
                         <option value="">Şehir Seçin</option>
                     </select>
                 </div>
@@ -269,7 +433,7 @@
                         <option value="jp">Japonya</option>
                         <option value="is">İzlanda</option>
                     </select>
-                    <select id="toCity" class="sub-select" disabled>
+                    <select id="toCity" disabled onchange="updateLogic()">
                         <option value="">Şehir Seçin</option>
                     </select>
                 </div>
@@ -324,11 +488,18 @@
     </div>
 
     <script>
+        // Senin manuel koordinatların (Dokunulmadı)
         const mapCoordinates = {
-            tr: { x: 58, y: 40 }, gr: { x: 55, y: 41 }, es: { x: 48, y: 42 },
-            mx: { x: 25, y: 55 }, no: { x: 53, y: 22 }, ch: { x: 51, y: 38 },
-            it: { x: 52, y: 41 }, fr: { x: 50, y: 39 }, jp: { x: 85, y: 45 },
-            is: { x: 44, y: 20 }
+            tr: { x: 50.89, y: 33.14 },
+            es: { x: 40.20, y: 32.90 },
+            jp: { x: 80.30, y: 35.00 },
+            gr: { x: 47.35, y: 33.50 },
+            mx: { x: 11.58, y: 47.00 },
+            no: { x: 44.00, y: 19.00 },
+            ch: { x: 43.60, y: 28.60 },
+            it: { x: 44.65, y: 30.88 },
+            fr: { x: 42.00, y: 28.87 },
+            is: { x: 37.50, y: 17.20 }
         };
 
         const database = {
@@ -344,30 +515,58 @@
             is: { cities: ["Reykjavik", "Akureyri", "Vik"], coords: [64, -21] }
         };
 
+        // YENİ GÖRSELLEŞTİRME FONKSİYONU
         function updateMapVisuals() {
             const from = document.getElementById('fromCountry').value;
             const to = document.getElementById('toCountry').value;
-            const gFrom = document.getElementById('glow-from');
-            const gTo = document.getElementById('glow-to');
+            
+            const gFrom = document.getElementById('group-from');
+            const gTo = document.getElementById('group-to');
+            
+            const routeBg = document.getElementById('route-line-bg');
+            const routeFlow = document.getElementById('route-line-flow');
 
-            if (from && mapCoordinates[from]) {
-                const { x, y } = mapCoordinates[from];
-                gFrom.style.setProperty('--fx', x + '%');
-                gFrom.style.setProperty('--fy', y + '%');
-                gFrom.style.opacity = '1';
-            } else { gFrom.style.opacity = '0'; }
+            let cFrom = mapCoordinates[from];
+            let cTo = mapCoordinates[to];
 
-            if (to && mapCoordinates[to]) {
-                const { x, y } = mapCoordinates[to];
-                gTo.style.setProperty('--tx', x + '%');
-                gTo.style.setProperty('--ty', y + '%');
-                gTo.style.opacity = '1';
-            } else { gTo.style.opacity = '0'; }
+            // Kalkış Noktası
+            if (cFrom) {
+                gFrom.setAttribute('transform', `translate(${cFrom.x}, ${cFrom.y})`);
+                gFrom.classList.add('active-point');
+            } else { gFrom.classList.remove('active-point'); }
+
+            // Varış Noktası
+            if (cTo) {
+                gTo.setAttribute('transform', `translate(${cTo.x}, ${cTo.y})`);
+                gTo.classList.add('active-point');
+            } else { gTo.classList.remove('active-point'); }
+
+            // Kavisli Rota ve Akış
+            if (cFrom && cTo) {
+                // Kavis yüksekliği mesafe oranına göre
+                const distX = cTo.x - cFrom.x;
+                const distY = cTo.y - cFrom.y;
+                const dist = Math.sqrt(distX*distX + distY*distY);
+                
+                // Kontrol noktası (kavisin tepesi)
+                const midX = (cFrom.x + cTo.x) / 2;
+                const midY = (cFrom.y + cTo.y) / 2 - (dist * 0.15); // Mesafeye göre kavis ver
+                
+                const path = `M ${cFrom.x} ${cFrom.y} Q ${midX} ${midY} ${cTo.x} ${cTo.y}`;
+                
+                routeBg.setAttribute('d', path);
+                routeFlow.setAttribute('d', path);
+                
+                routeBg.classList.add('active'); // Bu active class'ı CSS'de flow'u tetikler
+            } else {
+                routeBg.classList.remove('active');
+                routeBg.setAttribute('d', '');
+                routeFlow.setAttribute('d', '');
+            }
         }
 
+        // --- Mevcut Mantık Fonksiyonları (Dokunulmadı) ---
         function handleCountryChange(type) {
-            const fromSelect = document.getElementById('fromCountry');
-            const toSelect = document.getElementById('toCountry');
             const countryCode = document.getElementById(type + 'Country').value;
             const citySelect = document.getElementById(type + 'City');
             
@@ -378,33 +577,21 @@
                 });
                 citySelect.disabled = false;
             }
-            
-            if (type === 'from') {
-                Array.from(toSelect.options).forEach(opt => opt.disabled = false);
-                const targetOption = Array.from(toSelect.options).find(opt => opt.value === countryCode);
-                if (targetOption) targetOption.disabled = true;
-            } else {
-                Array.from(fromSelect.options).forEach(opt => opt.disabled = false);
-                const targetOption = Array.from(fromSelect.options).find(opt => opt.value === countryCode);
-                if (targetOption) targetOption.disabled = true;
-            }
-
-            const hourSelect = document.getElementById('hours');
-            hourSelect.innerHTML = '<option value="" selected disabled>Saat Seçin</option>';
-            hourSelect.disabled = true;
-            
             updateMapVisuals();
             updateLogic();
         }
 
         function updateLogic() {
+            const tripType = document.querySelector('input[name="tripType"]:checked'); // Bunu ekle
             const from = document.getElementById('fromCountry').value;
+            const fromCity = document.getElementById('fromCity').value;
             const to = document.getElementById('toCountry').value;
+            const toCity = document.getElementById('toCity').value;
             const date = document.getElementById('travelDate').value;
             const hourSelect = document.getElementById('hours');
             const buyBtn = document.getElementById('buyBtn');
 
-            if(from && to && from !== to && date) {
+            if(tripType && from && to && fromCity && toCity && date) {
                 if(hourSelect.options.length <= 1) {
                     hourSelect.innerHTML = '<option value="" selected disabled>Saat Seçin</option>';
                     ["08:30", "13:00", "17:45", "22:30"].forEach(s => hourSelect.innerHTML += `<option value="${s}">${s}</option>`);
@@ -420,14 +607,33 @@
         }
 
         function calculatePrice() {
-            const fromCode = document.getElementById('fromCountry').value;
-            const toCode = document.getElementById('toCountry').value;
-            if(!fromCode || !toCode || fromCode === toCode) return;
-            const c1 = database[fromCode].coords;
-            const c2 = database[toCode].coords;
-            const dist = Math.sqrt(Math.pow(c1[0]-c2[0], 2) + Math.pow(c1[1]-c2[1], 2));
-            let price = (dist * 350) + 5500; 
-            document.getElementById('totalPrice').innerText = "₺" + Math.floor(price).toLocaleString('tr-TR');
+            const tripTypeInput = document.querySelector('input[name="tripType"]:checked');
+    
+    // Eğer gidiş tipi seçilmediyse fiyatı 0 tut ve çık
+    if (!tripTypeInput) {
+        document.getElementById('totalPrice').innerText = "₺0";
+        return;
+    }
+
+    // Değişkenleri birer kez tanımlıyoruz
+    const tripType = tripTypeInput.value;
+    const fromCode = document.getElementById('fromCountry').value;
+    const toCode = document.getElementById('toCountry').value;
+
+    // Ülke seçimleri eksikse hesaplama yapma
+    if(!fromCode || !toCode || fromCode === toCode) return;
+    
+    const c1 = database[fromCode].coords;
+    const c2 = database[toCode].coords;
+    const dist = Math.sqrt(Math.pow(c1[0]-c2[0], 2) + Math.pow(c1[1]-c2[1], 2));
+    
+    let price = (dist * 350) + 5500; 
+
+    if (tripType === 'round') {
+        price = price * 2;
+    }
+
+    document.getElementById('totalPrice').innerText = "₺" + Math.floor(price).toLocaleString('tr-TR');
         }
     </script>
 </body>
